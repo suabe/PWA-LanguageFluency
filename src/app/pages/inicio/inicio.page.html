@@ -1,0 +1,87 @@
+<ion-header class="ion-no-border"  translucent>
+  <ion-toolbar color="naranja">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="primerMenu"  color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="mostrarNot( $event )">
+        <ion-icon  name="notifications"></ion-icon>
+        <ion-badge color="danger">3</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" *ngIf="_user.dataUser.role === 'cliente'">
+  <ion-row>
+    <ion-col>
+      <ion-slides mode="ios" pager="ios" [options]="slideOptions">
+        <ion-slide *ngFor="let item of [1,1,1]">
+          <img src="/assets/banner01.png" alt="">
+        </ion-slide>
+      </ion-slides>
+    </ion-col>
+  </ion-row>
+  <ion-list>
+    <ion-list-header color="naranja" class="ion-text-center">
+      <ion-label>Ultimas sesiones del mes</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let item of [1,1,1,1]">
+      <ion-label>Awesome</ion-label>
+      <ion-label slot="end">Label</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header color="naranja" class="ion-text-center">
+      <ion-label>Ultimos referidos</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let item of [1,1,1,1]">
+      <ion-label>Awesome</ion-label>
+      <ion-label slot="end">Label</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-button (click)="doLogout()" expand="block" >
+    Salir
+  </ion-button>
+</ion-content>
+<ion-content class="ion-padding" *ngIf="_user.dataUser.role === 'conversador'">
+  <ion-row>
+    <ion-col>
+      <ion-slides mode="ios" pager="ios" [options]="slideOptions">
+        <ion-slide *ngFor="let item of [1,1,1]">
+          <img src="/assets/banner01.png" alt="">
+        </ion-slide>
+      </ion-slides>
+    </ion-col>
+  </ion-row>
+  <ion-list>
+    <ion-list-header color="naranja" class="ion-text-center">
+      <ion-label>Proximas llamadas</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let user of userList; index as i">
+      <ion-label>{{user.userName}} {{user.userLastName}}</ion-label>
+      <ion-button (click)="llamarCliente(user.userId)" slot="end" *ngIf="i === 0" color="azul">
+        <ion-icon slot="icon-only" name="call"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header color="naranja" class="ion-text-center">
+      <ion-label>Calificaciones</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>
+        <h2>Lamada</h2>
+        <p>22-Marzo-2021</p>
+      </ion-label>
+      <ion-label slot="end" class="ion-text-right">
+        <app-rating
+        rating="4" 
+        readonly = "true"
+        fontSize = "20px"
+        ></app-rating>
+      </ion-label>
+      
+    </ion-item>
+  </ion-list>
+</ion-content>

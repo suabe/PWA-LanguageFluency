@@ -1,0 +1,74 @@
+<app-header titulo="Mi Cuenta"></app-header>
+
+<ion-content class="ion-padding">
+    <ion-grid fixed>
+        <ion-row>
+            <ion-col size="3">
+                <ion-avatar>
+                    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
+                </ion-avatar>
+            </ion-col>
+            <ion-col size="9">
+                <ion-list>
+                    <ion-item>
+                        <ion-label>
+                            <h2>{{userPerfil.name}} {{userPerfil.lastName}}</h2>
+                            <p class="ion-text-capitalize">{{userPerfil.role}}</p>
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <ion-list>
+                    <ion-item>
+                        <ion-label>
+                            <h2>Email:</h2>
+                            <p>{{userPerfil.email}}</p>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>
+                            <h2>Telefono:</h2>
+                            <p>{{userPerfil.phone}}</p>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>
+                            <h2>Genero:</h2>
+                            <p>{{userPerfil.gender}}</p>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>
+                            <h2>Cumpleaños:</h2>
+                            <p>{{userPerfil.birthDtate | date: 'dd-MMMM-YYYY'}}</p>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item *ngIf="userPerfil.spei">
+                        <ion-label>
+                            <h2>SPEI</h2>
+                            <p>{{userPerfil.spei}}</p>
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="!userPerfil.spei">
+            <ion-col size="12">
+                <form [formGroup]="speiForm" (ngSubmit)="agregaSpei()" novalidate>
+                    <ion-item>
+                        <ion-label position="floating">SPEI <ion-text color="danger">*</ion-text></ion-label>
+                        <ion-input [formControl]="$any(speiForm).controls.spei" name="spei" type="text"></ion-input>
+                    </ion-item>
+
+                    <ion-button block color="primary" type="submit" [disabled]="speiForm.invalid">
+                        Agregar
+                    </ion-button>
+                </form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    
+</ion-content>

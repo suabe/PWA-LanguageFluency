@@ -1,0 +1,27 @@
+<app-header titulo="Wallet"></app-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-list-header color="naranja" class="ion-text-center">
+          <ion-label>Pagos realizados</ion-label>
+        </ion-list-header>
+        <ion-item *ngFor="let item of [1,1,1,1]">
+          <ion-label>Awesome</ion-label>
+          <ion-label slot="end" class="ion-text-right">Label</ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-list-header color="naranja" class="ion-text-center">
+          <ion-label>Tarjetas</ion-label>
+        </ion-list-header>
+        <ion-item *ngFor="let item of [1,1]">
+          <ion-label><h5>****-****-4242</h5><p>Expira 07/22</p></ion-label>
+          <ion-button (click)="borraTarjeta()" slot="end">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+      <ion-button (click)="agregaTarjeta()" expand="full" color="tertiary">
+          Agrega Tarjeta
+      </ion-button>
+</ion-content>
