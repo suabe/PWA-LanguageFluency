@@ -5,53 +5,53 @@
         <ion-row class="ion-padding">
           <ion-col size="6" offset="3" size-lg="3" size-md="4" size-sm="6" offset-md="4">
             <ion-img src="/assets/logo-login.png"></ion-img>
-            
+
           </ion-col>
           <ion-col size="12">
             <form [formGroup]="registroForm" (ngSubmit)="registro('cliente')" novalidate>
               <ion-item color="light">
                 <ion-icon slot="start" name="person-outline" color="naranja"></ion-icon>
-                <ion-label >Nombre</ion-label>
+                <!-- <ion-label >Nombre</ion-label> -->
                 <ion-input type="text" placeholder="Nombre" [formControl]="$any(registroForm).controls.name"></ion-input>
               </ion-item>
               <ion-item color="light">
                 <ion-icon slot="start" name="person-add-outline" color="naranja"></ion-icon>
-                <ion-label >Apellidos</ion-label>
+                <!-- <ion-label >Apellidos</ion-label> -->
                 <ion-input type="text" placeholder="Apellidos"[formControl]="$any(registroForm).controls.lastName"></ion-input>
               </ion-item>
               <ion-item color="light">
                 <ion-icon slot="start" name="male-female-outline" color="naranja"></ion-icon>
-                <ion-label>Género</ion-label>
-                <ion-select cancelText="Cancelar" multiple="false" placeholder="Seleciona" interface="action-sheet" [formControl]="$any(registroForm).controls.gender">
+                <!-- <ion-label>Género</ion-label> -->
+                <ion-select cancelText="Cancelar" multiple="false" placeholder="Genero" interface="action-sheet" [formControl]="$any(registroForm).controls.gender">
                   <ion-select-option value="hombre">Hombre</ion-select-option>
                   <ion-select-option value="mujer">Mujer</ion-select-option>
                 </ion-select>
               </ion-item>
               <ion-item color="light">
                 <ion-icon slot="start" name="calendar-outline" color="naranja"></ion-icon>
-                <ion-label >Cumpleaños</ion-label>
-                <ion-datetime display-format="YYYY-MMMM-DD" cancelText="Cancelar" done-text="Elegir" mode="ios" min="1970" max="2010" [formControl]="$any(registroForm).controls.birthDate"></ion-datetime>
-              </ion-item>    
+                <!-- <ion-label >Cumpleaños</ion-label> -->
+                <ion-datetime placeholder="Cumpleaños" display-format="YYYY-MMMM-DD" cancelText="Cancelar" done-text="Elegir" mode="ios" min="1970" max="2010" [formControl]="$any(registroForm).controls.birthDate"></ion-datetime>
+              </ion-item>
               <ion-item color="light">
                 <ion-icon slot="start" name="mail-outline" color="naranja"></ion-icon>
-                <ion-label >Email</ion-label>
-                <ion-input type="text" [formControl]="$any(registroForm).controls.email"></ion-input>
-              </ion-item> 
-          
+                <!-- <ion-label >Email</ion-label> -->
+                <ion-input placeholder="E-mail" type="text" [formControl]="$any(registroForm).controls.email"></ion-input>
+              </ion-item>
+
               <ion-item color="light">
                 <ion-icon slot="start" name="key-outline" color="naranja"></ion-icon>
-                <ion-label >Contraseña</ion-label>
-                <ion-input type="password" [formControl]="$any(registroForm).controls.password"></ion-input>
+                <!-- <ion-label >Contraseña</ion-label> -->
+                <ion-input placeholder="Contraseña" type="password" [formControl]="$any(registroForm).controls.password"></ion-input>
               </ion-item>
-    
+
               <ion-item color="light">
                 <ion-icon slot="start" name="call-outline" color="naranja"></ion-icon>
-                <ion-label >Teléfono</ion-label>
+                <!-- <ion-label >Teléfono</ion-label> -->
                 <ion-input type="tel" placeholder="Teléfono" [formControl]="$any(registroForm).controls.phone"></ion-input>
               </ion-item>
-          
+
               <ion-row>
-                <ion-col> 
+                <ion-col>
                 <ion-button type="submit"  expand="block" [disabled]="registroForm.invalid">Registrar</ion-button>
                 </ion-col>
               </ion-row>
@@ -65,53 +65,53 @@
         <ion-row class="ion-padding">
           <ion-col size="6" offset="3" size-lg="3" size-md="4" size-sm="6" offset-md="4">
             <ion-img src="/assets/logo-login.png"></ion-img>
-            
+
           </ion-col>
           <ion-col size="12">
             <form [formGroup]="registroForm" (ngSubmit)="registro('conversador')" novalidate>
               <ion-item color="light">
                 <ion-icon slot="start" name="person-outline" color="naranja"></ion-icon>
-                <ion-label >Nombre</ion-label>
+                <!-- <ion-label >Nombre</ion-label> -->
                 <ion-input type="text" placeholder="Nombre" [formControl]="$any(registroForm).controls.name"></ion-input>
               </ion-item>
               <ion-item color="light">
                 <ion-icon slot="start" name="person-add-outline" color="naranja"></ion-icon>
-                <ion-label >Apellidos</ion-label>
+                <!-- <ion-label >Apellidos</ion-label> -->
                 <ion-input type="text" placeholder="Apellidos"[formControl]="$any(registroForm).controls.lastName"></ion-input>
               </ion-item>
               <ion-item color="light">
                 <ion-icon slot="start" name="male-female-outline" color="naranja"></ion-icon>
-                <ion-label>Género</ion-label>
-                <ion-select cancelText="Cancelar" multiple="false" placeholder="Seleciona" interface="action-sheet" [formControl]="$any(registroForm).controls.gender">
+                <!-- <ion-label>Género</ion-label> -->
+                <ion-select cancelText="Cancelar" multiple="false" placeholder="Género" interface="action-sheet" [formControl]="$any(registroForm).controls.gender">
                   <ion-select-option value="hombre">Hombre</ion-select-option>
                   <ion-select-option value="mujer">Mujer</ion-select-option>
                 </ion-select>
               </ion-item>
               <ion-item color="light">
                 <ion-icon slot="start" name="calendar-outline" color="naranja"></ion-icon>
-                <ion-label >Cumpleaños</ion-label>
-                <ion-datetime display-format="YYYY-MMMM-DD" cancelText="Cancelar" done-text="Elegir" mode="ios" min="1970" max="2010" [formControl]="$any(registroForm).controls.birthDate"></ion-datetime>
-              </ion-item>    
+                <!-- <ion-label >Cumpleaños</ion-label> -->
+                <ion-datetime placeholder="Cumpleaños" display-format="YYYY-MMMM-DD" cancelText="Cancelar" done-text="Elegir" mode="ios" min="1970" max="2010" [formControl]="$any(registroForm).controls.birthDate"></ion-datetime>
+              </ion-item>
               <ion-item color="light">
                 <ion-icon slot="start" name="mail-outline" color="naranja"></ion-icon>
-                <ion-label >Email</ion-label>
-                <ion-input type="text" [formControl]="$any(registroForm).controls.email"></ion-input>
-              </ion-item> 
-          
+                <!-- <ion-label >Email</ion-label> -->
+                <ion-input placeholder="E-mail" type="text" [formControl]="$any(registroForm).controls.email"></ion-input>
+              </ion-item>
+
               <ion-item color="light">
                 <ion-icon slot="start" name="key-outline" color="naranja"></ion-icon>
-                <ion-label >Contraseña</ion-label>
-                <ion-input type="password" [formControl]="$any(registroForm).controls.password"></ion-input>
+                <!-- <ion-label >Contraseña</ion-label> -->
+                <ion-input placeholder="Contraseña" type="password" [formControl]="$any(registroForm).controls.password"></ion-input>
               </ion-item>
-    
+
               <ion-item color="light">
                 <ion-icon slot="start" name="call-outline" color="naranja"></ion-icon>
-                <ion-label >Teléfono</ion-label>
+                <!-- <ion-label >Teléfono</ion-label> -->
                 <ion-input type="tel" placeholder="Teléfono" [formControl]="$any(registroForm).controls.phone"></ion-input>
               </ion-item>
-          
+
               <ion-row>
-                <ion-col> 
+                <ion-col>
                 <ion-button type="submit"  expand="block" [disabled]="registroForm.invalid">Registrar</ion-button>
                 </ion-col>
               </ion-row>
@@ -121,19 +121,19 @@
       </ion-grid>
     </ion-slide>
   </ion-slides>
-  
-  
+
+
 </ion-content>
 <ion-footer class="ion-no-border">
   <ion-toolbar>
     <ion-row>
       <ion-col size="6">
-        <ion-button (click)="mostratRegCli()" size="small" expand="block" fill="outline" shape="round" color="azul">
+        <ion-button (click)="mostratRegCli()" size="small" expand="block" fill="{{fillUser}}" shape="round" color="azul">
           Como Cliente
         </ion-button>
       </ion-col>
       <ion-col size="6">
-        <ion-button (click)="mostratRegConv()" size="small" expand="block" fill="outline" shape="round" color="naranja">
+        <ion-button (click)="mostratRegConv()" size="small" expand="block" fill="{{fillConv}}" shape="round" color="naranja">
           Como Conversador
         </ion-button>
       </ion-col>

@@ -13,7 +13,8 @@ import { IonSlides, MenuController } from '@ionic/angular';
 })
 export class RegistrationPage implements OnInit {
   @ViewChild('sliderRegistro') slides: IonSlides;
-
+  fillUser = {};
+  fillConv = {};
   registroForm = new FormGroup({
     email: new FormControl( '',[Validators.required,Validators.email]),
     password: new FormControl ('', [Validators.required]),
@@ -40,6 +41,7 @@ export class RegistrationPage implements OnInit {
   }
   ionViewDidEnter() {
     this.slides.lockSwipes(true);
+    this.getIndex();
   }
 
   ionViewWillEnter() {
@@ -95,12 +97,29 @@ export class RegistrationPage implements OnInit {
     this.slides.lockSwipes(false);
     this.slides.slideTo(0);
     this.slides.lockSwipes(true);
+    this.getIndex();
   }
 
   mostratRegConv() {
     this.slides.lockSwipes(false);
     this.slides.slideTo(1);
     this.slides.lockSwipes(true);
+    this.getIndex();
+  }
+
+  async getIndex() {
+    await this.slides.getActiveIndex().then(slide => {
+      if (slide === 0) {
+        this.fillUser = 'solid';
+        this.fillConv = 'outline'
+        
+      } if (slide === 1) {
+        // console.log('conver');
+        this.fillUser = 'outline';
+        this.fillConv = 'solid'
+      }
+      
+    })
   }
 
 }

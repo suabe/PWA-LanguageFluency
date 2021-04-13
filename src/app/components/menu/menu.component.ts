@@ -31,6 +31,10 @@ export class MenuComponent implements OnInit {
 
   }
 
+  status() {
+    
+  }
+
   
 
   async showMenuPop( evento ) {

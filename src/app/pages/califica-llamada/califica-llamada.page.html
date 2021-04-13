@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="azul">
+    
+    <ion-title>Califica la llamada</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="empty bg-secondary"></div>
+  <div class="ion-text-center image-over-div">
+    <img src="https://image.flaticon.com/icons/svg/163/163809.svg" alt="" class="image-round border-white">
+  </div>
+
+  <div class="ion-text-center">
+    <h4>Ali Connor</h4>
+    <p class="text-profile">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus veritatis ut distinctio
+    </p>
+  </div>
+
+  <ion-grid fixed class="">
+    <ion-row class="ion-no-padding">
+      <ion-col size="4" offset="2">
+        <div class="ion-text-center">
+          <span class="text-statics-big text-primary">1.5</span> <br>
+          <small>Llamadas</small>
+        </div>
+      </ion-col>
+      <ion-col size="4">
+        <div class="ion-text-center">
+          <span class="text-statics-big text-primary">10.5</span> <br>
+          <small>Calificación</small>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="ion-padding">
+    <form [formGroup]="calificaForm" (ngSubmit)="calificar()" novalidate>
+      <ion-item>
+        <ion-label>Califica</ion-label>
+        <app-rating
+        rating="1"
+        fontSize = "20px"
+        ></app-rating>
+      </ion-item>
+      <ion-button type="submit" expand="block" color="azul" [disabled]="calificaForm.invalid">
+        Califica
+      </ion-button>
+    </form>
+  </div>
+
+  <div class="ion-padding">
+    <p class="text-profile">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis itaque natus illum deserunt eos ex voluptatibus,
+      tempore veniam quaerat eligendi, sint ducimus sit assumenda explicabo impedit expedita suscipit voluptate odit?
+    </p>
+  </div>
+
+</ion-content>

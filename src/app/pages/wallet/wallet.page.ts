@@ -36,6 +36,7 @@ export class WalletPage implements OnInit {
       exp_month: 12,
       exp_year: 25,
       cvc: '224',
+      name: 'Neto'
     });
     console.log(res,'tarjeta');
     

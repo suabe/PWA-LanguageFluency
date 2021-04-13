@@ -43,6 +43,14 @@ const routes: Routes = [
     path: 'agrega-tarjeta',
     loadChildren: () => import('./pages/agrega-tarjeta/agrega-tarjeta.module').then( m => m.AgregaTarjetaPageModule)
   },
+  {
+    path: 'califica-llamada',
+    loadChildren: () => import('./pages/califica-llamada/califica-llamada.module').then( m => m.CalificaLlamadaPageModule)
+  },
+  {
+    path: 'sessiones',
+    loadChildren: () => import('./pages/sessiones/sessiones.module').then( m => m.SessionesPageModule)
+  },
 ];
 
 @NgModule({

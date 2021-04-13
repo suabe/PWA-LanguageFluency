@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { PopoverController, MenuController } from '@ionic/angular';
+import { PopoverController, MenuController, ModalController } from '@ionic/angular';
 import { NotificationsComponent } from '../../components/notifications/notifications.component';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ToastService } from '../../services/toast.service';
 import { DataUsuarioService } from '../../services/data-usuario.service';
+import { CalificaLlamadaPage } from '../califica-llamada/califica-llamada.page';
 
 @Component({
   selector: 'app-inicio',
@@ -25,7 +26,8 @@ export class InicioPage implements OnInit {
     private menu: MenuController,
     private fbstore: AngularFirestore,
     private toastservice: ToastService,
-    public _user: DataUsuarioService
+    public _user: DataUsuarioService,
+    private modalCtrl: ModalController
   ) { }
 
   async getClientes() {
@@ -74,6 +76,12 @@ export class InicioPage implements OnInit {
 
   llamarCliente(userId) {
     this.toastservice.showToast('Llamando...',5000)
+    setTimeout(async () => {
+      const modal = await this.modalCtrl.create({
+        component: CalificaLlamadaPage
+      });
+      await modal.present();
+    }, 3000);
     console.log(userId);
     
   }

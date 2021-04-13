@@ -56,11 +56,14 @@
   </ion-row>
   <ion-list>
     <ion-list-header color="naranja" class="ion-text-center">
-      <ion-label>Proximas llamadas</ion-label>
+      <ion-label>Llamada en curso</ion-label>
     </ion-list-header>
-    <ion-item *ngFor="let user of userList; index as i">
-      <ion-label>{{user.userName}} {{user.userLastName}}</ion-label>
-      <ion-button (click)="llamarCliente(user.userId)" slot="end" *ngIf="i === 0" color="azul">
+    <ion-item >
+      <ion-label>
+        <h2>Usuario</h2>
+        <p>Intereses: Viajes, Deportes, Cine</p>
+      </ion-label>
+      <ion-button (click)="llamarCliente('1')" slot="end"  color="azul">
         <ion-icon slot="icon-only" name="call"></ion-icon>
       </ion-button>
     </ion-item>

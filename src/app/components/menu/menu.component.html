@@ -62,15 +62,15 @@
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
-        <ion-item  routerLink="perfil">
-          <ion-icon slot="start" name="person-circle"></ion-icon>
-          <ion-label>Mi Cuenta</ion-label>
+        <ion-item  routerLink="sessiones">
+          <ion-icon slot="start" name="call"></ion-icon>
+          <ion-label>Sessiones</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
-        <ion-item routerLink="notificaciones">
-          <ion-icon slot="start" name="notifications"></ion-icon>
-          <ion-label>Notificaciones</ion-label>
+        <ion-item  routerLink="perfil">
+          <ion-icon slot="start" name="person-circle"></ion-icon>
+          <ion-label>Mi Cuenta</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
@@ -81,4 +81,12 @@
       </ion-menu-toggle>
     </ion-list>
   </ion-content>
+  <ion-footer *ngIf="_user.dataUser.role === 'conversador' ">
+    <ion-toolbar>
+      <ion-item>
+        <ion-label>Estatus</ion-label>
+        <ion-toggle></ion-toggle>
+      </ion-item>
+    </ion-toolbar>
+  </ion-footer>
 </ion-menu>
