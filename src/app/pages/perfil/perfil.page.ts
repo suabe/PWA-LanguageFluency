@@ -35,10 +35,10 @@ export class PerfilPage implements OnInit {
     const userLocal = JSON.parse(localStorage.getItem('user'));
     if (userLocal) {
       this.uId = userLocal.uid;
-      console.log(userLocal.uid);
+      // console.log(userLocal.uid);
     } else {
       this.uId = '';
-      console.log(userLocal);
+      // console.log(userLocal);
     }
   }
 
@@ -72,7 +72,7 @@ export class PerfilPage implements OnInit {
     }
     try {
       await this.fbstore.doc('perfiles/'+this.uId).update(dataSpei).then(data => {
-        console.log(data);
+        // console.log(data);
         window.location.reload();
       })
     } catch (error) {

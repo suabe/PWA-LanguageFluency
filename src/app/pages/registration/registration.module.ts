@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { RegistrationPageRoutingModule } from './registration-routing.module';
 
 import { RegistrationPage } from './registration.page';
+import {IonicTelInputModule} from 'ionic-tel-input';
+
 
 @NgModule({
   imports: [
@@ -14,7 +16,8 @@ import { RegistrationPage } from './registration.page';
     FormsModule,
     IonicModule,
     RegistrationPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    IonicTelInputModule
   ],
   declarations: [RegistrationPage]
 })

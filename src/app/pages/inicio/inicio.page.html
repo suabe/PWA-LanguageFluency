@@ -1,6 +1,6 @@
 <ion-header class="ion-no-border"  translucent>
   <ion-toolbar color="naranja">
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" *ngIf="_user.emailVerified">
       <ion-menu-button menu="primerMenu"  color="light"></ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end">
@@ -11,7 +11,9 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+<div >
 
+</div>
 <ion-content class="ion-padding" *ngIf="_user.dataUser.role === 'cliente'">
   <ion-row>
     <ion-col>
@@ -32,7 +34,7 @@
     </ion-item>
   </ion-list>
   <ion-list>
-    <ion-list-header color="naranja" class="ion-text-center">
+    <ion-list-header color="azul" class="ion-text-center">
       <ion-label>Ultimos referidos</ion-label>
     </ion-list-header>
     <ion-item *ngFor="let item of [1,1,1,1]">
@@ -40,9 +42,7 @@
       <ion-label slot="end">Label</ion-label>
     </ion-item>
   </ion-list>
-  <ion-button (click)="doLogout()" expand="block" >
-    Salir
-  </ion-button>
+  
 </ion-content>
 <ion-content class="ion-padding" *ngIf="_user.dataUser.role === 'conversador'">
   <ion-row>
@@ -69,7 +69,7 @@
     </ion-item>
   </ion-list>
   <ion-list>
-    <ion-list-header color="naranja" class="ion-text-center">
+    <ion-list-header color="azul" class="ion-text-center">
       <ion-label>Calificaciones</ion-label>
     </ion-list-header>
     <ion-item>

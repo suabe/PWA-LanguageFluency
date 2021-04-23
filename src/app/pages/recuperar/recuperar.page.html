@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"><ion-icon slot="icon-only" name="add"></ion-icon></ion-back-button>
+    </ion-buttons>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row >
+      <ion-col size="12" size-lg="3" size-md="4" size-sm="6" offset-md="4">
+        <ion-item color="darck" lines="none">
+          <ion-img src="/assets/logo-login.png"></ion-img>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding">
+      <ion-col size="12" size-lg="3" size-md="4" size-sm="6" offsetMd="4">
+        <form [formGroup]="recuperaForm" (ngSubmit)="recuperar()" novalidate>    
+          <ion-item  color="light">
+            <ion-icon slot="start" name="mail-outline" color="naranja"></ion-icon>
+            
+            <ion-label >Email</ion-label>
+            <ion-input type="text" [formControl]="$any(recuperaForm).controls.email"
+                       pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                       type="email" required></ion-input>
+            
+          </ion-item> 
+      
+      
+          <ion-row>
+            <ion-col> 
+            <ion-button type="submit"  expand="block" color="azul" [disabled]="recuperaForm.invalid">Recuprar</ion-button>
+            </ion-col>
+          </ion-row>
+      
+          <span class="divider line one-line"></span>
+      
+          
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

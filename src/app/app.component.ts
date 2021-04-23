@@ -15,17 +15,17 @@ export class AppComponent {
     public fbauth: AngularFireAuth,
     public ngroute: Router
   ) {
-    const authfbObserver = fbauth.authState.subscribe( user => {
-      if (user) {
-        //console.log(user);
-        this.ngroute.navigate(['inicio']);
-        authfbObserver.unsubscribe();
-      } else {
-        console.log('Sin usuario', user);
-        this.ngroute.navigate(['login']);
-        authfbObserver.unsubscribe();
-      }
-    });
+    // const authfbObserver = fbauth.authState.subscribe( user => {
+    //   if (user) {
+    //     //console.log(user);
+    //     this.ngroute.navigate(['inicio']);
+    //     authfbObserver.unsubscribe();
+    //   } else {
+    //     console.log('Sin usuario', user);
+    //     this.ngroute.navigate(['login']);
+    //     authfbObserver.unsubscribe();
+    //   }
+    // });
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

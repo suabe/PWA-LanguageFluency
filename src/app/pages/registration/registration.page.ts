@@ -122,4 +122,17 @@ export class RegistrationPage implements OnInit {
     })
   }
 
+  telInputObject(obj) {
+    console.log(obj);
+    //obj.intlTelInput('setCountry', 'mx');
+  }
+  onCountryChange(obj) {
+    console.log(obj);
+   //obj.intlTelInput('setCountry', 'mx');
+  }
+  hasError(obj) {
+    console.log(obj);
+    //obj.intlTelInput('setCountry', 'mx');
+  }
+
 }

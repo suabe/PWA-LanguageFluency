@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { ToastService } from '../../services/toast.service';
 import { HttpClient} from '@angular/common/http';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { DataUsuarioService } from '../../services/data-usuario.service';
 
 declare var Stripe;
 
@@ -17,12 +19,15 @@ export class AgregaTarjetaPage implements OnInit {
   card: any;
   name: string = "";
   email: string = "";
+  priceID: string ="";
   constructor(
     private modalCtrl: ModalController,
     private loading: LoadingController,
     private alertc: AlertController,
     private toastService: ToastService,
-    private http: HttpClient
+    private http: HttpClient,
+    private fbstore: AngularFirestore,
+    public _user: DataUsuarioService
   ) {
     this.stripe = new Stripe('pk_test_51IdzQvFjLGC5FmHqNEcCIDKir8SZhCPCKJe6Z9M07rfukQtstQfzllgTJktH7IkVHy0c8PTSIIPHEGDbO319mfOZ00DL0fDLYQ')
    }
@@ -92,9 +97,8 @@ export class AgregaTarjetaPage implements OnInit {
                     errorElement.textContent = result.error.message;
                     this.loading.dismiss();
                   } else {
-                    console.log(result);
-                    this.modalCtrl.dismiss();
-                    //this.attachSourceNewCustomer(result);
+                    //console.log(result);
+                    this.attachSourceNewCustomer(result);
                   }
                 })
               }
@@ -108,7 +112,49 @@ export class AgregaTarjetaPage implements OnInit {
   }
 
   attachSourceNewCustomer(result) {
+    this.http.post('https://us-central1-ejemplocrud-e7eb1.cloudfunctions.net/attachSourceNewCustomer',{
+      name: this.name,
+      email: this.email,
+      token: result.source.id
+    }).subscribe(async (data: any) => {
+      //console.log(data);
+      this.loading.dismiss();
+      if (data.id != '') {
+        this.savePaymentMethod(result, data)
+      } else {
+        this.alertc.dismiss()
+        this.toastService.showToast('¡Error al guardar!',2000)
+      }
+    });
+  }
+
+  savePaymentMethod(result, customer) {
+    //console.log('Price ID', this.priceID[0]);
     
+    this.http.post('https://us-central1-ejemplocrud-e7eb1.cloudfunctions.net/crearPlan', {
+      customer: customer.id,
+      priceId: this.priceID
+    }).subscribe(  async (data: any) => {
+      if (data.id) {
+        let payMethod = {
+          token: result.source.id,
+          card: result.source.card,
+          customer: customer.id,
+          plan: data.id,
+          activa: true,
+          creada: data.created
+        }
+        this.fbstore.collection('wallet/').doc(this._user.userID).set(payMethod).then(data => {
+          console.log('Se agrego Plan');
+          this.alertc.dismiss()
+          this.modalCtrl.dismiss(data);
+        })
+        
+      } else {
+        this.alertc.dismiss()
+        this.toastService.showToast('Error al crear Plan',3000)
+      }
+    });
   }
 
   guardar() {

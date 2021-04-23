@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { AgregaTarjetaPage } from '../agrega-tarjeta/agrega-tarjeta.page';
 import { Plugins } from '@capacitor/core'
 import '@capacitor-community/stripe';
@@ -17,7 +17,8 @@ const Stripe  = Plugins.Stripe as StripePlugin;
 export class WalletPage implements OnInit {
 
   constructor(
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private loading: LoadingController
   ) {
     
    }
@@ -26,21 +27,10 @@ export class WalletPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.validaTarjeta();
-  }
-
-  async validaTarjeta() {
-    await Stripe.setPublishableKey({key: 'pk_test_51IdzQvFjLGC5FmHqNEcCIDKir8SZhCPCKJe6Z9M07rfukQtstQfzllgTJktH7IkVHy0c8PTSIIPHEGDbO319mfOZ00DL0fDLYQ'});
-    const res = await Stripe.createCardToken({
-      number: '4242424242424242',
-      exp_month: 12,
-      exp_year: 25,
-      cvc: '224',
-      name: 'Neto'
-    });
-    console.log(res,'tarjeta');
     
   }
+
+ 
 
   async agregaTarjeta() {
     const modal = await this.modalCtrl.create({

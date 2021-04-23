@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { CalificaLlamadaPage } from '../califica-llamada/califica-llamada.page';
 
 @Component({
   selector: 'app-sesiones',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SesionesPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private modalCtrl: ModalController
+  ) { }
 
   ngOnInit() {
+  }
+
+  async calificaCliente(userId) {
+    const modal = await this.modalCtrl.create({
+      component: CalificaLlamadaPage
+    });
+    await modal.present();
+    console.log(userId);
+    
+
   }
 
 }

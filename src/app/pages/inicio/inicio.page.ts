@@ -19,6 +19,7 @@ export class InicioPage implements OnInit {
   };
   userList = [];
   //userPerfil = JSON.parse(localStorage.getItem('perfil'));
+  emailVerified: false;
   constructor(
     public ngroute: Router,
     private fbauth: AngularFireAuth,
@@ -28,7 +29,9 @@ export class InicioPage implements OnInit {
     private toastservice: ToastService,
     public _user: DataUsuarioService,
     private modalCtrl: ModalController
-  ) { }
+  ) { 
+    
+  }
 
   async getClientes() {
     try {
@@ -53,6 +56,7 @@ export class InicioPage implements OnInit {
   ngOnInit() {
   }
   ionViewWillEnter() {
+    this.verifica();
     this.menu.enable(true,'primerMenu');
     this.getClientes();
     
@@ -91,6 +95,14 @@ export class InicioPage implements OnInit {
     await this.fbauth.signOut().then(() => {
       this.ngroute.navigate(['login']);
     });
+  }
+
+  verifica() {
+    this.emailVerified = this._user.emailVerified
+    if (!this.emailVerified) {
+      
+      this.toastservice.showToast('Email no verificado, por favor revisa tu buzon',4000);
+    }
   }
 
 }

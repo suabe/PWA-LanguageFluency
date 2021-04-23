@@ -76,7 +76,7 @@
   --ion-color-light-tint: #f5f6f9;
 
   /**naranja**/
-  --ion-color-naranja: #ff8504;
+  --ion-color-naranja: #F9951C;
   --ion-color-naranja-rgb: 255,133,4;
   --ion-color-naranja-contrast: #000000;
   --ion-color-naranja-contrast-rgb: 0, 0, 0;
@@ -84,7 +84,7 @@
   --ion-color-naranja-tint: #ff911d;
 
   /**azul**/
-  --ion-color-azul: #0575fa;
+  --ion-color-azul: #3873B2;
   --ion-color-azul-rgb: 5,117,250;
   --ion-color-azul-contrast: #ffffff;
   --ion-color-azul-contrast-rgb: 255,255,255;
@@ -107,6 +107,9 @@
   --ion-color-shade: var(--ion-color-azul-shade) !important;
   --ion-color-tint: var(--ion-color-azul-tint) !important;
 }
+@import 'intl-tel-input-mobile/build/css/intlTelInput.css';
+.iti-flag {background-image: url("../assets/imgs/flags/flags.png");}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { .iti-flag {background-image: url("../assets/imgs/flags/flags@2x.png");} }
 @media (prefers-color-scheme: dark) {
   /*
    * Dark Colors

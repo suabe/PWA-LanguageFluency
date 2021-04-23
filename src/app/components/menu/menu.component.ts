@@ -16,26 +16,13 @@ export class MenuComponent implements OnInit {
     public _user: DataUsuarioService,
     private popoverCtrl: PopoverController,
     public menu: MenuController
-  ) {
-    
-    
-    
-    
-    
-   }
-   ionViewDidEnter() {
-     
-   }
-  ngOnInit() {
-    
-
-  }
-
-  status() {
-    
-  }
-
+  ) {}
   
+  ionViewDidEnter() {}
+
+  ngOnInit() {}
+
+  status() {}
 
   async showMenuPop( evento ) {
     const popover = await this.popoverCtrl.create({

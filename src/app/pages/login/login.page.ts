@@ -46,9 +46,9 @@ export class LoginPage implements OnInit {
     this.authService.SignIn(this.loginform.get('email').value,this.loginform.get('password').value).then( data => {
       console.log('se logeo',data);
       if (data.user) {
+        this.redirectUser(data.user.emailVerified)
         this.authService.getUserPerfil(data.user.uid);
         
-        this.router.navigateRoot('inicio', {animated: true});
       } else {
         console.log('no hay usuario'); 
       }
@@ -61,6 +61,14 @@ export class LoginPage implements OnInit {
       
     });
     
+  }
+
+  private redirectUser(isVerified: boolean): void {
+    if (isVerified) {
+      this.router.navigateRoot('inicio', {animated: true});
+    } else {
+      this.toastservice.showToast('Email no verificado, por favor revisa tu buzon',4000)
+    }
   }
 
 }

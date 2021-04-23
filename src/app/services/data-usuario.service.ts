@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from '../interfaces/interfaces';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -11,7 +12,9 @@ export class DataUsuarioService {
 
   dataUser:  User = {};
   cargo: false;
-
+  userID = '';
+  isAuthenticated: BehaviorSubject<Boolean> = new BehaviorSubject<Boolean>(null);
+  emailVerified: false;
   constructor(
     public afStrore: AngularFirestore,
     public ngFireAuth: AngularFireAuth
@@ -19,20 +22,22 @@ export class DataUsuarioService {
     //console.log('Data User  Listo');
     this.ngFireAuth.authState.subscribe((user: any) => {
       if (user) {
-        console.log(user.uid);
+        //console.log('Servicio ',user);
       try {
         this.afStrore.doc('perfiles/'+user.uid).valueChanges().subscribe( result => {
           this.dataUser = result;
-          console.log(this.dataUser);
-          
+          this.userID = user.uid;
+          this.isAuthenticated.next(true);
+          this.emailVerified = user.emailVerified;
+          // console.log(this.emailVerified);
         })
       } catch (error) {
         console.log(error.message);
-        
+        this.isAuthenticated.next(false);
       }
       } else {
-        console.log('no hau usuario');
-        
+        //console.log('no hau usuario');
+        this.isAuthenticated.next(false);
       }
       
     })
