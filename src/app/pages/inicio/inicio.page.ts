@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { PopoverController, MenuController, ModalController } from '@ionic/angular';
+import { PopoverController, MenuController, ModalController, AlertController } from '@ionic/angular';
 import { NotificationsComponent } from '../../components/notifications/notifications.component';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ToastService } from '../../services/toast.service';
 import { DataUsuarioService } from '../../services/data-usuario.service';
 import { CalificaLlamadaPage } from '../califica-llamada/califica-llamada.page';
+import { MessagingService } from '../../services/messaging.service';
 
 @Component({
   selector: 'app-inicio',
@@ -28,9 +29,11 @@ export class InicioPage implements OnInit {
     private fbstore: AngularFirestore,
     private toastservice: ToastService,
     public _user: DataUsuarioService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    public messagingService: MessagingService,
+    public alertCtrl: AlertController
   ) { 
-    
+    this.listenForMessages();
   }
 
   async getClientes() {
@@ -59,7 +62,7 @@ export class InicioPage implements OnInit {
     this.verifica();
     this.menu.enable(true,'primerMenu');
     this.getClientes();
-    
+    this.requestPermission();
   }
 
   async mostrarNot(evento) {
@@ -91,7 +94,7 @@ export class InicioPage implements OnInit {
   }
 
   async doLogout(): Promise<void> {
-    localStorage.removeItem('perfil');
+    
     await this.fbauth.signOut().then(() => {
       this.ngroute.navigate(['login']);
     });
@@ -103,6 +106,35 @@ export class InicioPage implements OnInit {
       
       this.toastservice.showToast('Email no verificado, por favor revisa tu buzon',4000);
     }
+  }
+
+  listenForMessages() {
+    this.messagingService.getMessages().subscribe(async (msg: any) => {
+      const alert = await this.alertCtrl.create({
+        header: msg.notification.title,
+        subHeader: msg.notification.body,
+        message: msg.data.info,
+        buttons: ['OK'],
+        mode: 'ios',
+        backdropDismiss: false,
+        animated: true
+      });
+ 
+      await alert.present();
+    });
+  }
+
+
+  requestPermission() {
+    this.messagingService.requestPermission().subscribe(
+      async token => {
+        this.toastservice.showToast('Got your token', 2000);
+        
+      },
+      async (err) => {
+        this.toastservice.showToast(err, 2000);
+      }
+    );
   }
 
 }

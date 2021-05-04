@@ -15,8 +15,9 @@ export class RegistrationPage implements OnInit {
   @ViewChild('sliderRegistro') slides: IonSlides;
   fillUser = {};
   fillConv = {};
+  countryCode = '';
   registroForm = new FormGroup({
-    email: new FormControl( '',[Validators.required,Validators.email]),
+    email: new FormControl( 'seiyasuabe@gmail.com',[Validators.required,Validators.email]),
     password: new FormControl ('', [Validators.required]),
     name: new FormControl('',Validators.required),
     lastName: new FormControl('',Validators.required),
@@ -67,9 +68,11 @@ export class RegistrationPage implements OnInit {
       gender: this.registroForm.get('gender').value,
       birthDtate: this.registroForm.get('birthDate').value,
       phone: this.registroForm.get('phone').value,
+      code: this.countryCode,
       role: rol
     }
-
+    // console.log(usuario);
+    
     this.authService.RegisterUser(usuario.email, usuario.password)      
     .then(async (res) => {
       // Do something here
@@ -123,16 +126,27 @@ export class RegistrationPage implements OnInit {
   }
 
   telInputObject(obj) {
-    console.log(obj);
-    //obj.intlTelInput('setCountry', 'mx');
+    console.log('telInputObject',obj);
+    // obj.intlTelInput('setCountry', 'mx');
   }
   onCountryChange(obj) {
-    console.log(obj);
-   //obj.intlTelInput('setCountry', 'mx');
+    console.log('onCountryChange',obj);
+   //this.countryCode = obj.dialCode
   }
   hasError(obj) {
-    console.log(obj);
-    //obj.intlTelInput('setCountry', 'mx');
+    //console.log('hasError',obj);
+    if (obj) {
+      console.log('sin error');
+      this.registroForm.controls['phone'].setErrors(null)
+    } else {
+      console.log('hay error');
+      this.registroForm.controls['phone'].setErrors({'incorrect': true})
+    }
+  }
+
+  getNumber(obj) {
+    console.log('getNumber',obj);
+    this.countryCode = obj
   }
 
 }

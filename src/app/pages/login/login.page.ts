@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 //import { Validator } from '../../helpers/validation.helpers';
 import { ToastService } from '../../services/toast.service';
 import { MenuController, NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +14,13 @@ import { MenuController, NavController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
   loginform = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('seiyasuabe@icloud.com'),
+    password: new FormControl('NETnet123'),
   });
   
   constructor(
     public authService: AuthenticationService,
-    public router: NavController,
+    public router: Router,
     public loginFormbuilder: FormBuilder,
     //private valuechecker: Validator,
     private toastservice: ToastService,
@@ -46,9 +47,9 @@ export class LoginPage implements OnInit {
     this.authService.SignIn(this.loginform.get('email').value,this.loginform.get('password').value).then( data => {
       console.log('se logeo',data);
       if (data.user) {
-        this.redirectUser(data.user.emailVerified)
-        this.authService.getUserPerfil(data.user.uid);
-        
+        // this.redirectUser(data.user.emailVerified)
+        //this.authService.getUserPerfil(data.user.uid);
+        this.router.navigateByUrl('/inicio', { replaceUrl: true });
       } else {
         console.log('no hay usuario'); 
       }
@@ -65,7 +66,7 @@ export class LoginPage implements OnInit {
 
   private redirectUser(isVerified: boolean): void {
     if (isVerified) {
-      this.router.navigateRoot('inicio', {animated: true});
+      this.router.navigate(['/inicio'], { replaceUrl: true });
     } else {
       this.toastservice.showToast('Email no verificado, por favor revisa tu buzon',4000)
     }

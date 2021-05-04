@@ -20,22 +20,22 @@ export class MenuPopComponent implements OnInit {
 
   ngOnInit() {}
 
-  async salir(): Promise<void> {
-    localStorage.removeItem('perfil');
-    await this.fbauth.signOut().then(() => {
-      this.popoverCtrl.dismiss();
-      this.menu.close('primerMenu');
-      this.route.navigate(['login']);
-      localStorage.removeItem('perfil');
+   salir() {
+    this.popoverCtrl.dismiss({
+      salir:true
     });
   }
 
   config() {
-    this.popoverCtrl.dismiss();
+    this.popoverCtrl.dismiss({
+      salir: false
+    });
   }
 
   ayuda() {
-    this.popoverCtrl.dismiss();
+    this.popoverCtrl.dismiss({
+      salir: false
+    });
   }
 
 }

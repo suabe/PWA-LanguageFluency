@@ -3,6 +3,8 @@ import { PopoverController, MenuController } from '@ionic/angular';
 import { MenuPopComponent } from '../menu-pop/menu-pop.component';
 
 import { DataUsuarioService } from '../../services/data-usuario.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -15,7 +17,9 @@ export class MenuComponent implements OnInit {
   constructor(
     public _user: DataUsuarioService,
     private popoverCtrl: PopoverController,
-    public menu: MenuController
+    public menu: MenuController,
+    private fbauth: AngularFireAuth,
+    public ngroute: Router
   ) {}
   
   ionViewDidEnter() {}
@@ -33,6 +37,22 @@ export class MenuComponent implements OnInit {
     });
 
     await popover.present();
+    const {data} = await popover.onWillDismiss();
+    if (data.salir) {
+      console.log('salir');
+      //this.menu.close();
+      await this.fbauth.signOut().then(() => {
+        this.ngroute.navigate(['/login'], { replaceUrl: true });
+      });
+    }
+    //console.log('Padre:', data);
+  }
+
+  async doLogout(): Promise<void> {
+    
+    await this.fbauth.signOut().then(() => {
+      this.ngroute.navigate(['/login'], { replaceUrl: true });
+    });
   }
 
 }
