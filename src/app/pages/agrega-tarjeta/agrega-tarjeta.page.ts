@@ -118,11 +118,12 @@ export class AgregaTarjetaPage implements OnInit {
       token: result.source.id
     }).subscribe(async (data: any) => {
       //console.log(data);
-      this.loading.dismiss();
+      // this.loading.dismiss();
       if (data.id != '') {
         this.savePaymentMethod(result, data)
       } else {
         this.alertc.dismiss()
+        this.loading.dismiss();
         this.toastService.showToast('¡Error al guardar!',2000)
       }
     });
@@ -144,17 +145,22 @@ export class AgregaTarjetaPage implements OnInit {
           activa: true,
           creada: data.created
         }
+        console.log('Stripe ->', data);
+        
         this.fbstore.collection('wallet/').doc(this._user.userID).set(payMethod).then(data => {
           console.log('Se agrego Plan');
           this.alertc.dismiss()
-          this.modalCtrl.dismiss(data);
+          this.modalCtrl.dismiss({plan: data});
+          this.loading.dismiss();
         })
         
       } else {
         this.alertc.dismiss()
+        this.loading.dismiss();
         this.toastService.showToast('Error al crear Plan',3000)
       }
     });
+    
   }
 
   guardar() {

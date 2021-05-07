@@ -4,9 +4,11 @@ import { AgregaTarjetaPage } from '../agrega-tarjeta/agrega-tarjeta.page';
 import { Plugins } from '@capacitor/core'
 import '@capacitor-community/stripe';
 import { StripePlugin } from '@capacitor-community/stripe';
+import { WalletService } from '../../services/wallet.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { DataUsuarioService } from '../../services/data-usuario.service';
 
 const Stripe  = Plugins.Stripe as StripePlugin;
-
 
 
 @Component({
@@ -16,18 +18,23 @@ const Stripe  = Plugins.Stripe as StripePlugin;
 })
 export class WalletPage implements OnInit {
 
+  wallet:any = ''
+
   constructor(
     private modalCtrl: ModalController,
-    private loading: LoadingController
+    private loading: LoadingController,
+    private afStore: AngularFirestore,
+    private _user: DataUsuarioService
   ) {
     
    }
 
   ngOnInit() {
+
   }
 
   ionViewWillEnter() {
-    
+    this.getWallet()
   }
 
  
@@ -49,6 +56,18 @@ export class WalletPage implements OnInit {
 
   borraTarjeta() {
     
+  }
+
+  async getWallet() {
+    await this.afStore.collection('wallet').doc(this._user.userID).ref.get().then( doc => {
+      if (doc.exists) {
+        //console.log(doc.data());
+        return this.wallet = doc.data()
+      } else {
+        console.log('Sin datos...');
+        
+      }
+    } )
   }
 
 }

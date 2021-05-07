@@ -14,14 +14,17 @@
         <ion-list-header color="naranja" class="ion-text-center">
           <ion-label>Plan</ion-label>
         </ion-list-header>
-        <ion-item *ngFor="let item of [1,1]">
-          <ion-label><h5>****-****-4242</h5><p>Expira 07/22</p></ion-label>
+        <ion-item *ngIf="wallet">
+          <ion-label>
+            <h5>{{wallet.plan}} </h5>
+            <p>Tarjeta {{wallet.card.last4}} - Expira {{wallet.card.exp_month}}/{{wallet.card.exp_year}}</p>
+          </ion-label>
           <ion-button (click)="borraTarjeta()" slot="end">
               <ion-icon slot="icon-only" name="trash"></ion-icon>
           </ion-button>
         </ion-item>
       </ion-list>
-      <ion-button (click)="agregaTarjeta()" expand="full" color="tertiary">
+      <ion-button (click)="agregaTarjeta()" expand="full" color="tertiary" *ngIf="!wallet">
           Agrega Plan
       </ion-button>
 </ion-content>
