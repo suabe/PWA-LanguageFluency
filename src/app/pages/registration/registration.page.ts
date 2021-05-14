@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { ToastService } from '../../services/toast.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
@@ -17,12 +17,13 @@ export class RegistrationPage implements OnInit {
   fillConv = {};
   countryCode = '';
   registroForm = new FormGroup({
-    email: new FormControl( 'seiyasuabe@gmail.com',[Validators.required,Validators.email]),
+    email: new FormControl( '',[Validators.required,Validators.email]),
     password: new FormControl ('', [Validators.required]),
     name: new FormControl('',Validators.required),
     lastName: new FormControl('',Validators.required),
     gender: new FormControl('',Validators.required),
     birthDate: new FormControl('',Validators.required),
+    bio: new FormControl('',Validators.required),
     phone: new FormControl('',[Validators.required,Validators.minLength(10)])
   });
   constructor(
@@ -68,6 +69,7 @@ export class RegistrationPage implements OnInit {
       gender: this.registroForm.get('gender').value,
       birthDtate: this.registroForm.get('birthDate').value,
       phone: this.registroForm.get('phone').value,
+      bio: this.registroForm.get('bio').value,
       code: this.countryCode,
       role: rol
     }

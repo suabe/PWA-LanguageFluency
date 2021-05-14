@@ -3,6 +3,8 @@ import { CanLoad, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataUsuarioService } from '../services/data-usuario.service';
 import { filter, map, take } from 'rxjs/operators';
+import { NavController } from '@ionic/angular';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ import { filter, map, take } from 'rxjs/operators';
 export class AuthGuard implements CanLoad {
   constructor(
     private _user : DataUsuarioService,
-    private router: Router  
+    private navCtrl: NavController
   ){}
   canLoad(): Observable<boolean> | boolean  {
     return this._user.isAuthenticated.pipe(
@@ -20,7 +22,7 @@ export class AuthGuard implements CanLoad {
         if (isAuthenticated) {
           return true;
         } else {
-          this.router.navigateByUrl('/login');
+          this.navCtrl.navigateRoot('/login', {animated: true});
           return false;
         }
       })

@@ -1,60 +1,108 @@
-<app-header titulo="Mi Cuenta"></app-header>
+<ion-header class="ion-no-border"  translucent>
+    <ion-toolbar color="naranja">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/" text="Regresar"></ion-back-button>
+      </ion-buttons>
+      <ion-title class="ion-text-capitalize">Mi cuenta</ion-title>
+      
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content class="ion-padding">
-    <ion-grid fixed>
-        <ion-row>
-            <ion-col size="3">
-                <ion-avatar>
-                    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
-                </ion-avatar>
+<ion-content>
+    <div class="vertical-padding">
+  
+        <div class="ion-text-center">
+          <h4>{{userPerfil.name}} {{userPerfil.lastName}}</h4>
+        </div>
+        <div class="ion-text-center">
+          <span class="text-muted ion-no-margin text-job ion-text-capitalize">{{userPerfil.role}}</span>
+        </div>
+      
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="4" class="ion-no-padding position-relative">
+              <!-- <ion-button fill="clear" class="button-vertical-align button-left">
+                <ion-icon slot="icon-only" name="chatbubbles"></ion-icon>
+              </ion-button> -->
             </ion-col>
-            <ion-col size="9">
-                <ion-list>
-                    <ion-item>
-                        <ion-label>
-                            <h2>{{userPerfil.name}} {{userPerfil.lastName}}</h2>
-                            <p class="ion-text-capitalize">{{userPerfil.role}}</p>
-                        </ion-label>
-                    </ion-item>
-                </ion-list>
+            <ion-col size="4">
+              <img src="https://image.flaticon.com/icons/svg/163/163801.svg" alt="" class="image-round border-tertiary margin-top">
             </ion-col>
+            <ion-col size="4" class="ion-no-padding position-relative">
+              <!-- <ion-button fill="clear" class="button-vertical-align button-right">
+                <ion-icon slot="icon-only" name="call"></ion-icon>
+              </ion-button> -->
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      
+      </div>
+    
+      <ion-grid fixed class="border-bottom border-top">
+        <ion-row class="ion-no-padding">
+          <ion-col size="4">
+            <div class="ion-text-center">
+              <span class="text-statics-big text-primary">1.5</span> <br>
+              <small>Post</small>
+            </div>
+          </ion-col>
+          <ion-col size="4">
+            <div class="ion-text-center">
+              <span class="text-statics-big text-primary">10.5</span> <br>
+              <small>Followers</small>
+            </div>
+          </ion-col>
+          <ion-col size="4">
+            <div class="ion-text-center">
+              <span class="text-statics-big text-primary">1.3</span> <br>
+              <small>Following</small>
+            </div>
+          </ion-col>
         </ion-row>
-        <ion-row>
-            <ion-col size="12">
-                <ion-list>
-                    <ion-item>
-                        <ion-label>
-                            <h2>Email:</h2>
-                            <p>{{userPerfil.email}}</p>
-                        </ion-label>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label>
-                            <h2>Telefono:</h2>
-                            <p>{{userPerfil.phone}}</p>
-                        </ion-label>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label>
-                            <h2>Genero:</h2>
-                            <p>{{userPerfil.gender}}</p>
-                        </ion-label>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label>
-                            <h2>Cumpleaños:</h2>
-                            <p>{{userPerfil.birthDtate | date: 'dd-MMMM-YYYY'}}</p>
-                        </ion-label>
-                    </ion-item>
-                    <ion-item *ngIf="userPerfil.spei">
-                        <ion-label>
-                            <h2>SPEI</h2>
-                            <p>{{userPerfil.spei}}</p>
-                        </ion-label>
-                    </ion-item>
-                </ion-list>
+      </ion-grid>
+    
+      <div class="vertical-padding">
+        <p class="ion-text-center text-profile">
+          {{userPerfil.bio}}
+        </p>
+      </div>
+    
+      <div class="ion-padding">
+        <ion-grid class="ion-no-padding">
+          <ion-row>
+            <ion-col size="6">
+              <strong class="text-tertiary">Género</strong> <br>
+              <small class="text-white">{{userPerfil.gender}}</small>
             </ion-col>
-        </ion-row>
+            <ion-col size="6">
+              <strong class="text-tertiary">Email</strong> <br>
+              <small class="text-white">{{userPerfil.email}}</small>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <strong class="text-tertiary">Teléfono</strong> <br>
+              <small class="text-white">{{userPerfil.phone}}</small>
+            </ion-col>
+            <ion-col size="6">
+              <strong class="text-tertiary">Pais</strong> <br>
+              <small class="text-white">México</small>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <strong class="text-tertiary">Cumpleaños</strong> <br>
+              <small class="text-white">{{userPerfil.birthDtate | date: 'dd-MMMM-YYYY'}}</small>
+            </ion-col>
+            <ion-col size="6">
+              <strong class="text-tertiary">SPEI</strong> <br>
+              <small class="text-white">{{userPerfil.spei}}</small>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+      <div class="ion-padding">
         <ion-row *ngIf="!userPerfil.spei">
             <ion-col size="12">
                 <form [formGroup]="speiForm" (ngSubmit)="agregaSpei()" novalidate>
@@ -62,13 +110,32 @@
                         <ion-label position="floating">SPEI <ion-text color="danger">*</ion-text></ion-label>
                         <ion-input [formControl]="$any(speiForm).controls.spei" name="spei" type="text"></ion-input>
                     </ion-item>
-
+    
                     <ion-button block color="primary" type="submit" [disabled]="speiForm.invalid">
                         Agregar
                     </ion-button>
                 </form>
             </ion-col>
         </ion-row>
-    </ion-grid>
+      </div>
+
+      
+
     
+      <ion-fab vertical="top" horizontal="end" slot="fixed">
+        <ion-fab-button color="azul" size="small">
+          <ion-icon name="settings-outline"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="bottom">
+          <ion-fab-button color="naranja" (click)="editarPerfil()">
+            <ion-icon  name="person-add-outline"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button color="naranja">
+            <ion-icon  name="camera-outline"></ion-icon>
+            <input type="file" style="display: none;" (change)="subirImgPerfil($event)">
+          </ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
 </ion-content>
+
+

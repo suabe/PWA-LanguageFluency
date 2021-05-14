@@ -18,6 +18,7 @@ export class InicioPage implements OnInit {
   slideOptions = {
     
   };
+  impro:any  = ''
   userList = [];
   //userPerfil = JSON.parse(localStorage.getItem('perfil'));
   emailVerified: false;
@@ -36,32 +37,13 @@ export class InicioPage implements OnInit {
     this.listenForMessages();
   }
 
-  async getClientes() {
-    try {
-      await this.fbstore.collection('perfiles', ref => ref.where('role', '==', 'cliente')).snapshotChanges()
-      .subscribe(data => {
-        //console.log(data);
-        this.userList = data.map( result => {
-          //console.log(result);
-          return {
-            userId: result.payload.doc.id,
-            userName: result.payload.doc.data()['name'],
-            userLastName: result.payload.doc.data()['lastName']
-          }
-        })
-      });
-      
-    } catch (error) {
-      this.toastservice.showToast(error.message, 2000)
-    }
-  }
-
+  
   ngOnInit() {
   }
   ionViewWillEnter() {
     this.verifica();
     this.menu.enable(true,'primerMenu');
-    this.getClientes();
+    this.getPlans();
     this.requestPermission();
   }
 
@@ -72,15 +54,15 @@ export class InicioPage implements OnInit {
       mode: 'ios',
       backdropDismiss: false
     });
-
+    
     await popover.present();
-
+    
     //const {data} = await popover.onDidDismiss();
     const {data} = await popover.onWillDismiss();
     console.log('Padre:', data);
     
   }
-
+  
   llamarCliente(userId) {
     this.toastservice.showToast('Llamando...',5000)
     setTimeout(async () => {
@@ -92,14 +74,14 @@ export class InicioPage implements OnInit {
     console.log(userId);
     
   }
-
+  
   async doLogout(): Promise<void> {
     
     await this.fbauth.signOut().then(() => {
       this.ngroute.navigate(['login']);
     });
   }
-
+  
   verifica() {
     this.emailVerified = this._user.emailVerified
     if (!this.emailVerified) {
@@ -107,7 +89,7 @@ export class InicioPage implements OnInit {
       this.toastservice.showToast('Email no verificado, por favor revisa tu buzon',4000);
     }
   }
-
+  
   listenForMessages() {
     this.messagingService.getMessages().subscribe(async (msg: any) => {
       const alert = await this.alertCtrl.create({
@@ -119,12 +101,12 @@ export class InicioPage implements OnInit {
         backdropDismiss: false,
         animated: true
       });
- 
+      
       await alert.present();
     });
   }
-
-
+  
+  
   requestPermission() {
     this.messagingService.requestPermission().subscribe(
       async token => {
@@ -134,7 +116,53 @@ export class InicioPage implements OnInit {
       async (err) => {
         this.toastservice.showToast(err, 2000);
       }
-    );
-  }
+      );
+    }
+    
+    async getClientes() {
+      try {
+        await this.fbstore.collection('perfiles', ref => ref.where('role', '==', 'cliente')).snapshotChanges()
+        .subscribe(data => {
+          //console.log(data);
+          this.userList = data.map( result => {
+            //console.log(result);
+            return {
+              userId: result.payload.doc.id,
+              userName: result.payload.doc.data()['name'],
+              userLastName: result.payload.doc.data()['lastName']
+            }
+          })
+        });
+        
+      } catch (error) {
+        this.toastservice.showToast(error.message, 2000)
+      }
+    }
 
+    async getPlans() {
+      try {
+        this.fbstore.collection('plans', ref => ref.where('active', '==', true)).snapshotChanges()
+        .subscribe( data => {
+          this.userList = data.map( result => {
+            const userPerfil = this.fbstore.collection('perfiles').doc(result.payload.doc.data()['uid']).ref.get().then( doc => {return  doc.data()})
+            // .then( doc => {  
+            //   this.impro = doc.data() 
+            //   console.log(this.impro.name);
+            // })
+          
+            
+            return {
+              planID: result.payload.doc.id,
+              iUid: result.payload.doc.data()['uid'],
+              uPerfil: userPerfil
+            }
+          })
+          console.log(this.userList);
+        });
+        
+      } catch (error) {
+        this.toastservice.showToast(error.message, 2000)
+      }
+  }
+  
 }

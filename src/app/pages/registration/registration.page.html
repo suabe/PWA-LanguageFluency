@@ -51,6 +51,11 @@
                 (ionicTelOutput)="getNumber($event)"
                  placeholder="Teléfono" name="registroForm" [formControl]="$any(registroForm).controls.phone">
               </ion-item>
+
+              <ion-item color="light">
+                <ion-icon slot="start" name="id-card-outline" color="naranja"></ion-icon>
+                <ion-textarea placeholder="Biografía" inputmode="text" [formControl]="$any(registroForm).controls.bio"></ion-textarea>
+              </ion-item>
               
               <ion-item color="light">
                 <ion-icon slot="start" name="mail-outline" color="naranja"></ion-icon>
@@ -117,6 +122,11 @@
                 (hasError)="hasError($event)"
                 (ionicTelOutput)="getNumber($event)"
                  placeholder="Teléfono" name="registroForm" [formControl]="$any(registroForm).controls.phone" required>
+              </ion-item>
+
+              <ion-item color="light">
+                <ion-icon slot="start" name="id-card-outline" color="naranja"></ion-icon>
+                <ion-textarea placeholder="Biografía" inputmode="text" [formControl]="$any(registroForm).controls.bio"></ion-textarea>
               </ion-item>
 
               <ion-item color="light">

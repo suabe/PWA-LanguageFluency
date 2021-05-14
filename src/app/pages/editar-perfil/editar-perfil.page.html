@@ -1,0 +1,68 @@
+<ion-header class="ion-no-border"  translucent>
+  <ion-toolbar color="naranja">
+    
+    <ion-title class="ion-text-capitalize">Editar Perfil</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-grid fixed>
+    <ion-row class="ion-padding">
+      <ion-col size="12">
+        <form [formGroup]="registroForm" (ngSubmit)="actualiza()" novalidate>
+          <ion-item color="light">
+            <ion-icon slot="start" name="person-outline" color="naranja"></ion-icon>
+            <!-- <ion-label >Nombre</ion-label> -->
+            <ion-input type="text" placeholder="Nombre" [formControl]="$any(registroForm).controls.name"></ion-input>
+          </ion-item>
+          <ion-item color="light">
+            <ion-icon slot="start" name="person-add-outline" color="naranja"></ion-icon>
+            <!-- <ion-label >Apellidos</ion-label> -->
+            <ion-input type="text" placeholder="Apellidos"[formControl]="$any(registroForm).controls.lastName"></ion-input>
+          </ion-item>
+          <ion-item color="light">
+            <ion-icon slot="start" name="male-female-outline" color="naranja"></ion-icon>
+            <!-- <ion-label>Género</ion-label> -->
+            <ion-select cancelText="Cancelar" multiple="false" placeholder="Genero" interface="action-sheet" [formControl]="$any(registroForm).controls.gender">
+              <ion-select-option value="hombre">Hombre</ion-select-option>
+              <ion-select-option value="mujer">Mujer</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item color="light">
+            <ion-icon slot="start" name="calendar-outline" color="naranja"></ion-icon>
+            <!-- <ion-label >Cumpleaños</ion-label> -->
+            <ion-datetime placeholder="Cumpleaños" display-format="YYYY-MMMM-DD" cancelText="Cancelar" done-text="Elegir" mode="ios" min="1970" max="2010" [formControl]="$any(registroForm).controls.birthDate"></ion-datetime>
+          </ion-item>
+          
+          <ion-item color="light">
+            <ion-icon slot="start" name="call-outline" color="naranja"></ion-icon>
+            <!-- <ion-label >Teléfono</ion-label> -->
+            <input type="tel" ionicTelInput [ionicTelInputOptions]="{initialCountry: 'mx',onlyCountries:['mx','ar','us']}"
+            (countryChange)="onCountryChange($event)"
+            (intlTelInputObject)="telInputObject($event)"
+            (hasError)="hasError($event)"
+            (ionicTelOutput)="getNumber($event)"
+             placeholder="Teléfono" name="registroForm" [formControl]="$any(registroForm).controls.phone">
+          </ion-item>
+      
+          <ion-item color="light">
+            <ion-icon slot="start" name="id-card-outline" color="naranja"></ion-icon>
+            <ion-textarea placeholder="Biografía" inputmode="text" [formControl]="$any(registroForm).controls.bio"></ion-textarea>
+          </ion-item>
+          
+      
+      
+          <ion-row>
+            <ion-col>
+            <ion-button type="submit"  expand="block" [disabled]="registroForm.invalid">Guardar</ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

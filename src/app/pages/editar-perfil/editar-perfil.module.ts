@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RegistrationPageRoutingModule } from './registration-routing.module';
+import { EditarPerfilPageRoutingModule } from './editar-perfil-routing.module';
 
-import { RegistrationPage } from './registration.page';
+import { EditarPerfilPage } from './editar-perfil.page';
 import {IonicTelInputModule} from 'ionic-tel-input';
 
 @NgModule({
@@ -14,10 +14,10 @@ import {IonicTelInputModule} from 'ionic-tel-input';
     CommonModule,
     FormsModule,
     IonicModule,
-    RegistrationPageRoutingModule,
     ReactiveFormsModule,
+    EditarPerfilPageRoutingModule,
     IonicTelInputModule
   ],
-  declarations: [RegistrationPage]
+  declarations: [EditarPerfilPage]
 })
-export class RegistrationPageModule {}
+export class EditarPerfilPageModule {}

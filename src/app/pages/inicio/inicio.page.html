@@ -58,9 +58,9 @@
     <ion-list-header color="naranja" class="ion-text-center">
       <ion-label>Llamada en curso</ion-label>
     </ion-list-header>
-    <ion-item >
+    <ion-item *ngFor="let user of userList" >
       <ion-label>
-        <h2>Usuario</h2>
+        <h2>{{user.iName.name}}</h2>
         <p>Intereses: Viajes, Deportes, Cine</p>
       </ion-label>
       <ion-button (click)="llamarCliente('1')" slot="end"  color="azul">

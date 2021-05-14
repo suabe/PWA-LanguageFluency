@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
   
   constructor(
     public authService: AuthenticationService,
-    public router: Router,
+    public navCtrl: NavController,
     public loginFormbuilder: FormBuilder,
     //private valuechecker: Validator,
     private toastservice: ToastService,
@@ -44,15 +44,16 @@ export class LoginPage implements OnInit {
   doLogin() {
     //console.log(this.loginform.get('email').value);
     
-    this.authService.SignIn(this.loginform.get('email').value,this.loginform.get('password').value).then( data => {
+    return this.authService.SignIn(this.loginform.get('email').value,this.loginform.get('password').value).then( data => {
       console.log('se logeo',data);
-      if (data.user) {
-        // this.redirectUser(data.user.emailVerified)
-        //this.authService.getUserPerfil(data.user.uid);
-        this.router.navigateByUrl('/inicio', { replaceUrl: true });
-      } else {
-        console.log('no hay usuario'); 
-      }
+      this.navCtrl.navigateRoot('/inicio', {animated: true});
+      // if (data.user) {
+      //   // this.redirectUser(data.user.emailVerified)
+      //   //this.authService.getUserPerfil(data.user.uid);
+        
+      // } else {
+      //   console.log('no hay usuario'); 
+      // }
       
       //this.router.navigateRoot('inicio', {animated: true});
     }).catch((error) => {
@@ -66,7 +67,7 @@ export class LoginPage implements OnInit {
 
   private redirectUser(isVerified: boolean): void {
     if (isVerified) {
-      this.router.navigate(['/inicio'], { replaceUrl: true });
+      this.navCtrl.navigateRoot('/inicio', {animated: true});
     } else {
       this.toastservice.showToast('Email no verificado, por favor revisa tu buzon',4000)
     }
