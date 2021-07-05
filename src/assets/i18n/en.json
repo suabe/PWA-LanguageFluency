@@ -1,0 +1,10 @@
+{
+    "MENU": {
+        "HOME": "Home",
+        "SESSIONS": "Sessions",
+        "WALLET": "Wallet",
+        "ACOUNT": "Acount",
+        "NOTIFICATIONS": "Notifications",
+        "HELP": "Help"
+    }
+}

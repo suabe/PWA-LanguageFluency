@@ -1,0 +1,10 @@
+{
+    "MENU": {
+        "HOME": "Inicio",
+        "SESSIONS": "Sessiones",
+        "WALLET": "Cartera",
+        "ACOUNT": "Mi Cuenta",
+        "NOTIFICATIONS": "Notificaciones",
+        "HELP": "Ayuda"
+    }
+}

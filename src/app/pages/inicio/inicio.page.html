@@ -28,9 +28,12 @@
     <ion-list-header color="naranja" class="ion-text-center">
       <ion-label>Ultimas sesiones del mes</ion-label>
     </ion-list-header>
-    <ion-item *ngFor="let item of [1,1,1,1]">
-      <ion-label>Awesome</ion-label>
-      <ion-label slot="end">Label</ion-label>
+    <ion-item *ngFor="let call of callList">
+      <ion-label>
+        <h5>{{ call.sid }}</h5>
+        <p>Creada:</p>
+      </ion-label>
+      
     </ion-item>
   </ion-list>
   <ion-list>

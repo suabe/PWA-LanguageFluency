@@ -25,8 +25,9 @@
                 <ion-icon slot="icon-only" name="chatbubbles"></ion-icon>
               </ion-button> -->
             </ion-col>
-            <ion-col size="4">
-              <img src="https://image.flaticon.com/icons/svg/163/163801.svg" alt="" class="image-round border-tertiary margin-top">
+            <ion-col size="4">   
+              <img *ngIf="userPerfil.foto" [src]="userPerfil.foto" class="image-round border-tertiary margin-top">
+              <img *ngIf="!userPerfil.foto" src="https://image.flaticon.com/icons/svg/163/163801.svg" alt="" class="image-round border-tertiary margin-top">
             </ion-col>
             <ion-col size="4" class="ion-no-padding position-relative">
               <!-- <ion-button fill="clear" class="button-vertical-align button-right">
@@ -130,9 +131,9 @@
           <ion-fab-button color="naranja" (click)="editarPerfil()">
             <ion-icon  name="person-add-outline"></ion-icon>
           </ion-fab-button>
-          <ion-fab-button color="naranja">
+          <ion-fab-button color="naranja" (click)="subirImgPerfil()">
             <ion-icon  name="camera-outline"></ion-icon>
-            <input type="file" style="display: none;" (change)="subirImgPerfil($event)">
+            <input type="file" style="display: none;" #filePicker (change)="subirAlbum($event)">
           </ion-fab-button>
         </ion-fab-list>
       </ion-fab>

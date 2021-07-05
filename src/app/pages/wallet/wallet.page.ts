@@ -19,7 +19,7 @@ const Stripe  = Plugins.Stripe as StripePlugin;
 export class WalletPage implements OnInit {
 
   wallet:any = ''
-
+  pagos = []
   constructor(
     private modalCtrl: ModalController,
     private loading: LoadingController,
@@ -35,6 +35,7 @@ export class WalletPage implements OnInit {
 
   ionViewWillEnter() {
     this.getWallet()
+    this.getPagos()
   }
 
  
@@ -51,7 +52,7 @@ export class WalletPage implements OnInit {
 
     const {data} = await modal.onDidDismiss();
     console.log('Datos a guardar', data);
-    
+    window.location.reload();
   }
 
   borraTarjeta() {
@@ -67,6 +68,20 @@ export class WalletPage implements OnInit {
         console.log('Sin datos...');
         
       }
+    } )
+  }
+
+  async getPagos() {
+    await  this.afStore.collection('pagos', ref => ref.where('uid','==',this._user.userID)).snapshotChanges()
+    .subscribe( data => {
+      this.pagos = data.map( result => {
+        // console.log('Pagos=>',result);
+        return {
+          invoice: result.payload.doc.data()['invoice'],
+          pagado: result.payload.doc.data()['amount_paid'],
+          created: result.payload.doc.data()['created']
+        }
+      })
     } )
   }
 

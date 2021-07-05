@@ -20,37 +20,37 @@
       <ion-menu-toggle>
         <ion-item  routerLink="/inicio">
           <ion-icon slot="start" name="home-outline"></ion-icon>
-          <ion-label>Home</ion-label>
+          <ion-label>{{'MENU.HOME' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
         <ion-item  routerLink="sesiones" >
           <ion-icon slot="start" name="chatbubbles-outline"></ion-icon>
-          <ion-label>Sesiones</ion-label>
+          <ion-label>{{'MENU.SESSIONS' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
         <ion-item  routerLink="wallet">
           <ion-icon slot="start" name="wallet-outline"></ion-icon>
-          <ion-label>Wallet</ion-label>
+          <ion-label>{{'MENU.WALLET' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
         <ion-item  routerLink="perfil">
           <ion-icon slot="start" name="person-circle-outline"></ion-icon>
-          <ion-label>Mi Cuenta</ion-label>
+          <ion-label>{{'MENU.ACOUNT' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
         <ion-item routerLink="notificaciones">
           <ion-icon slot="start" name="notifications-outline"></ion-icon>
-          <ion-label>Notificaciones</ion-label>
+          <ion-label>{{'MENU.NOTIFICATIONS' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
         <ion-item  routerLink="ayuda">
           <ion-icon slot="start" name="help-buoy-outline"></ion-icon>
-          <ion-label>Ayuda</ion-label>
+          <ion-label>{{'MENU.HELP' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
     </ion-list>
@@ -58,34 +58,38 @@
       <ion-menu-toggle>
         <ion-item  routerLink="/inicio">
           <ion-icon slot="start" name="home-outline" color="naranja"></ion-icon>
-          <ion-label>Home</ion-label>
+          <ion-label>{{'MENU.HOME' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
         <ion-item  routerLink="sessiones">
           <ion-icon slot="start" name="call-outline"></ion-icon>
-          <ion-label>Sessiones</ion-label>
+          <ion-label>{{ 'MENU.SESSIONS' | translate }}</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
         <ion-item  routerLink="perfil">
           <ion-icon slot="start" name="person-circle-outline"></ion-icon>
-          <ion-label>Mi Cuenta</ion-label>
+          <ion-label>{{'MENU.ACOUNT' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
         <ion-item  routerLink="ayuda">
           <ion-icon slot="start" name="help-buoy-outline"></ion-icon>
-          <ion-label>Ayuda</ion-label>
+          <ion-label>{{'MENU.HELP' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
     </ion-list>
   </ion-content>
-  <ion-footer *ngIf="_user.dataUser.role === 'conversador' ">
+  <ion-footer>
     <ion-toolbar>
       <ion-item>
-        <ion-label>Estatus</ion-label>
-        <ion-toggle></ion-toggle>
+        <ion-label>Language</ion-label>
+        <ion-select name="lang" interface="popover" (ionChange)="setLanguage($event)">
+          <ion-select-option *ngFor="let item of listLang"
+          [value]="item.lang">
+          {{item.text}}</ion-select-option>
+        </ion-select>
       </ion-item>
     </ion-toolbar>
   </ion-footer>

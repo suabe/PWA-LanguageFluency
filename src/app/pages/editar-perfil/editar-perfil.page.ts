@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 
+
 @Component({
   selector: 'app-editar-perfil',
   templateUrl: './editar-perfil.page.html',

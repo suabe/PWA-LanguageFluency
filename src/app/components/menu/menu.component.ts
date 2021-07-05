@@ -5,6 +5,7 @@ import { MenuPopComponent } from '../menu-pop/menu-pop.component';
 import { DataUsuarioService } from '../../services/data-usuario.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-menu',
@@ -12,14 +13,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
-  
+  cookieValue;
+  flagvalue;
+  countryName;
+  lang;
+  listLang = [
+    { text: 'English', flag: 'assets/imags/flags/us.jpg', lang: 'en' },
+    { text: 'Spanish', flag: 'assets/imags/flags/spain.jpg', lang: 'es' },
+  ];
   
   constructor(
     public _user: DataUsuarioService,
     private popoverCtrl: PopoverController,
     public menu: MenuController,
     private fbauth: AngularFireAuth,
-    public ngroute: NavController
+    public ngroute: NavController,
+    public languageService:LanguageService
   ) {}
   
   ionViewDidEnter() {}
@@ -54,6 +63,13 @@ export class MenuComponent implements OnInit {
     return this.fbauth.signOut().then(() => {
       this.ngroute.navigateRoot('/login', { animated: true });
     });
+  }
+
+  setLanguage(lang) {
+    
+    this.languageService.setLanguage(lang.detail.value);
+
+    
   }
 
 }

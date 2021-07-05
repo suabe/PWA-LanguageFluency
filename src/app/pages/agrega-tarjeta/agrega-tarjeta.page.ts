@@ -146,8 +146,8 @@ export class AgregaTarjetaPage implements OnInit {
           creada: data.created
         }
         console.log('Stripe ->', data);
-        
-        this.fbstore.collection('wallet/').doc(this._user.userID).set(payMethod).then(data => {
+        await this.fbstore.collection('plans').doc(this._user.userID).set(data)
+        await this.fbstore.collection('wallet').doc(this._user.userID).set(payMethod).then(data => {
           console.log('Se agrego Plan');
           this.alertc.dismiss()
           this.modalCtrl.dismiss({plan: data});

@@ -20,6 +20,7 @@ export class InicioPage implements OnInit {
   };
   impro:any  = ''
   userList = [];
+  callList = [];
   //userPerfil = JSON.parse(localStorage.getItem('perfil'));
   emailVerified: false;
   constructor(
@@ -41,9 +42,14 @@ export class InicioPage implements OnInit {
   ngOnInit() {
   }
   ionViewWillEnter() {
+    if (this._user.dataUser.role === 'cliente') {
+      this.getCallsImp()
+    } else {
+      this.getPlans();
+    }
     this.verifica();
     this.menu.enable(true,'primerMenu');
-    this.getPlans();
+    
     this.requestPermission();
   }
 
@@ -163,6 +169,19 @@ export class InicioPage implements OnInit {
       } catch (error) {
         this.toastservice.showToast(error.message, 2000)
       }
+  }
+
+  async getCallsImp() {
+    try {
+      this.fbstore.collection('calls', ref => ref.where('inmpId', '==', this._user.userID)).snapshotChanges()
+      .subscribe( data => {
+        this.callList = data.map( result => {
+          return result.payload.doc.data()
+        })
+      } )
+    } catch (error) {
+      this.toastservice.showToast(error.message, 2000)
+    }
   }
   
 }

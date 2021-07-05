@@ -8,6 +8,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { MenuPopComponent } from './menu-pop/menu-pop.component';
 import { RatingComponent } from './rating/rating.component';
 
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../services/language.service';
 
 @NgModule({
     declarations: [
@@ -27,7 +29,9 @@ import { RatingComponent } from './rating/rating.component';
     imports: [
       CommonModule,
       IonicModule,
-      RouterModule
-    ]
+      RouterModule,
+      TranslateModule
+    ],
+    providers : [LanguageService]
   })
   export class ComponentsModule { }

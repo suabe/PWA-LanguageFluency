@@ -102,3 +102,13 @@ $image-size: 120px;
 ion-content {
     --background: url('/assets/shapes.svg') no-repeat 0 0/100% 185%;
 }
+
+ion-img img {
+    background-color: #CECECE;
+    border: 2px solid #FAFAFA;
+    border-radius: 50%;
+    display: block;
+    height: $image-size;
+    margin: 0 auto;
+    width: $image-size;
+}
