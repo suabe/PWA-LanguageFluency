@@ -69,15 +69,16 @@ export class InicioPage implements OnInit {
     
   }
   
-  llamarCliente(userId) {
+  llamarCliente(user) {
     this.toastservice.showToast('Llamando...',5000)
     setTimeout(async () => {
       const modal = await this.modalCtrl.create({
-        component: CalificaLlamadaPage
+        component: CalificaLlamadaPage,
+        componentProps: user
       });
       await modal.present();
-    }, 3000);
-    console.log(userId);
+    }, 2000);
+    console.log(user);
     
   }
   
@@ -147,22 +148,25 @@ export class InicioPage implements OnInit {
 
     async getPlans() {
       try {
-        this.fbstore.collection('plans', ref => ref.where('active', '==', true)).snapshotChanges()
+        this.fbstore.collection('plans', ref => ref.where('active', '==', true)
+                                                    .where('enllamada', '==', false)).snapshotChanges()
         .subscribe( data => {
           this.userList = data.map( result => {
-            const userPerfil = this.fbstore.collection('perfiles').doc(result.payload.doc.data()['uid']).ref.get().then( doc => {return  doc.data()})
-            // .then( doc => {  
-            //   this.impro = doc.data() 
-            //   console.log(this.impro.name);
-            // })
-          
-            
             return {
               planID: result.payload.doc.id,
               iUid: result.payload.doc.data()['uid'],
-              uPerfil: userPerfil
-            }
+            }            
           })
+          for (let index = 0; index < this.userList.length; index++) {
+            this.fbstore.collection('perfiles').doc(this.userList[index]['iUid']).snapshotChanges().subscribe(perfil => {
+              this.userList[index]['name'] = perfil.payload.data()['name'];
+              this.userList[index]['lastName'] = perfil.payload.data()['lastName'];
+              this.userList[index]['foto'] = perfil.payload.data()['foto'];
+              this.userList[index]['imTel'] = perfil.payload.data()['code'];
+              this.userList[index]['bio'] = perfil.payload.data()['bio']
+            })
+            
+          }
           console.log(this.userList);
         });
         
