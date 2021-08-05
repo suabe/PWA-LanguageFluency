@@ -18,3 +18,6 @@ ion-item {
     --inner-border-width: 0px;
     --border-color: #fff;
 }
+ion-content {
+    --background: url('/assets/shapes.svg') no-repeat 0 0/100% 185%;
+}

@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { InicioPageRoutingModule } from './inicio-routing.module';
+import { CommissionsPageRoutingModule } from './commissions-routing.module';
 
-import { InicioPage } from './inicio.page';
+import { CommissionsPage } from './commissions.page';
 import { ComponentsModule } from '../../components/components.module';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -15,10 +15,10 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     FormsModule,
     IonicModule,
-    InicioPageRoutingModule,
+    CommissionsPageRoutingModule,
     ComponentsModule,
     TranslateModule
   ],
-  declarations: [InicioPage]
+  declarations: [CommissionsPage]
 })
-export class InicioPageModule {}
+export class CommissionsPageModule {}

@@ -1,0 +1,39 @@
+<app-header titulo="{{'CALLDETAIL.TITLE' | translate}}"></app-header>
+
+<ion-content class="ion-padding">
+  <ion-row>
+    <ion-col>
+      <ion-slides mode="ios" pager="ios">
+        <ion-slide>
+          <img src="/assets/banner01.png" alt="">
+        </ion-slide>
+      </ion-slides>
+    </ion-col>
+  </ion-row>
+  <ion-list>
+    <ion-list-header color="azul">
+      <ion-label >Speaker</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label >{{speaker.name}} {{speaker.lastName}} </ion-label>
+    </ion-item>
+    <ion-list-header color="azul">
+      <ion-label>Improver</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>{{call?.improver?.name}} {{call?.improver?.lastName}}</ion-label>
+    </ion-item>
+    <ion-list-header color="azul">
+      <ion-label>Llamada</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Duración {{complemento?.duration/60}} min</ion-label>
+      <ion-label slot="end">{{complemento?.start_time | date: 'dd-MMM-YYYY'}}</ion-label>
+    </ion-item>
+    <ion-item *ngIf="recordings">
+      <audio controls>
+        <source [src]="url" type="audio/mpeg">
+      </audio>
+    </ion-item>
+  </ion-list>
+</ion-content>

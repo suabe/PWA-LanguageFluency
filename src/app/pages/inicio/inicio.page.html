@@ -1,14 +1,11 @@
 <ion-header class="ion-no-border"  translucent>
-  <ion-toolbar color="naranja">
+  <ion-toolbar color="azul">
     <ion-buttons slot="start" *ngIf="_user.emailVerified">
       <ion-menu-button menu="primerMenu"  color="light"></ion-menu-button>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button (click)="mostrarNot( $event )">
-        <ion-icon  name="notifications"></ion-icon>
-        <ion-badge color="danger">3</ion-badge>
-      </ion-button>
-    </ion-buttons>
+    <ion-avatar slot="end">
+      <img src="assets/logo-toolbar.png" />
+    </ion-avatar>
   </ion-toolbar>
 </ion-header>
 <div >
@@ -58,34 +55,30 @@
     </ion-col>
   </ion-row>
   <ion-list>
-    <ion-list-header color="naranja" class="ion-text-center">
-      <ion-label>Llamada en curso</ion-label>
+    <ion-list-header color="naranja">
+      <ion-label>{{'HOME.LASTSESSIONS' | translate}}</ion-label>
     </ion-list-header>
-    <ion-item *ngFor="let user of userList; let i = index" >
+    <ion-item *ngFor="let user of callList; let i = index" >
       <ion-label>
-        <h2>{{user.name}}</h2>
-        <p>{{user.bio }}</p>
+        <h2>{{user.create | date: 'dd-MMM-YYYY'}}</h2>
       </ion-label>
-      <ion-button *ngIf="i == 0" (click)="llamarCliente(user)" slot="end"  color="azul">
+      <ion-label slot="end">Duracion 10 min</ion-label>
+      <!-- <ion-button *ngIf="i == 0" (click)="llamarCliente(user)" slot="end"  color="azul">
         <ion-icon slot="icon-only" name="call"></ion-icon>
-      </ion-button>
+      </ion-button> -->
     </ion-item>
   </ion-list>
   <ion-list>
-    <ion-list-header color="azul" class="ion-text-center">
-      <ion-label>Calificaciones</ion-label>
+    <ion-list-header color="azul" >
+      <ion-label>{{'HOME.REFERREDUSERS' | translate}}</ion-label>
+      <ion-label position="end" class="ion-text-center">{{'HOME.REGISTRATIONDATE' | translate}}</ion-label>
     </ion-list-header>
     <ion-item>
       <ion-label>
-        <h2>Lamada</h2>
-        <p>22-Marzo-2021</p>
+        Usuario
       </ion-label>
       <ion-label slot="end" class="ion-text-right">
-        <app-rating
-        rating="4" 
-        readonly = "true"
-        fontSize = "20px"
-        ></app-rating>
+        01 Ene 2021
       </ion-label>
       
     </ion-item>

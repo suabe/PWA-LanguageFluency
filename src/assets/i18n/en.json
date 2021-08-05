@@ -5,6 +5,21 @@
         "WALLET": "Wallet",
         "ACOUNT": "Acount",
         "NOTIFICATIONS": "Notifications",
-        "HELP": "Help"
+        "HELP": "Help",
+        "RECORDS" : "Records",
+        "CALLS" : "Calls",
+        "COMMISSIONS" : "Commissions"
+    },
+    "HOME": {
+        "LASTSESSIONS": "Last Sessions",
+        "REFERREDUSERS": "Referred Users",
+        "REGISTRATIONDATE": "Registration date"
+    },
+    "RECORDS": {
+        "TITLE": "Records",
+        "SUBTITLE": "Last Calls"
+    },
+    "CALLDETAIL": {
+        "TITLE": "Call detail"
     }
 }

@@ -75,6 +75,38 @@ const routes: Routes = [
     redirectTo: '/login',
     pathMatch: 'full'
   },
+  {
+    path: 'records',
+    loadChildren: () => import('./pages/records/records.module').then( m => m.RecordsPageModule),
+    canLoad: [AuthGuard]
+  },
+  {
+    path: 'call-detail/:id',
+    loadChildren: () => import('./pages/call-detail/call-detail.module').then( m => m.CallDetailPageModule),
+    canLoad: [AuthGuard]
+  },
+  {
+    path: 'calls',
+    loadChildren: () => import('./pages/calls/calls.module').then( m => m.CallsPageModule),
+    canLoad: [AuthGuard]
+  },
+  {
+    path: 'commissions',
+    loadChildren: () => import('./pages/commissions/commissions.module').then( m => m.CommissionsPageModule),
+    canLoad: [AuthGuard]
+  },  {
+    path: 'commissions-calls',
+    loadChildren: () => import('./pages/commissions-calls/commissions-calls.module').then( m => m.CommissionsCallsPageModule)
+  },
+  {
+    path: 'commissions-referrals',
+    loadChildren: () => import('./pages/commissions-referrals/commissions-referrals.module').then( m => m.CommissionsReferralsPageModule)
+  },
+
+
+
+
+
 ];
 
 @NgModule({

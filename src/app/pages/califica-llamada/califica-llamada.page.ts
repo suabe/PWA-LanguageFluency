@@ -33,10 +33,10 @@ export class CalificaLlamadaPage implements OnInit {
       destination: this.imTel,//Numero del Improver, con codigo de pais
       impId: this.iUid//UID del Improver
     }).subscribe( async (data: any) => {
-      console.log(data);
+      // console.log(data);
       
     } )
-    console.log(this.imTel);
+    // console.log(this.imTel);
     
   }
 

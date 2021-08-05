@@ -45,7 +45,7 @@ export class InicioPage implements OnInit {
     if (this._user.dataUser.role === 'cliente') {
       this.getCallsImp()
     } else {
-      this.getPlans();
+      this.getCallsSpeaker();
     }
     this.verifica();
     this.menu.enable(true,'primerMenu');
@@ -115,16 +115,19 @@ export class InicioPage implements OnInit {
   
   
   requestPermission() {
-    this.messagingService.requestPermission().subscribe(
-      async token => {
-        this.toastservice.showToast('Got your token', 2000);
-        
-      },
-      async (err) => {
-        this.toastservice.showToast(err, 2000);
-      }
-      );
+    if (!this._user.dataUser.mtoken) {
+      this.messagingService.requestPermission().subscribe(
+        async token => {
+          this.toastservice.showToast('Got your token', 2000);
+          
+        },
+        async (err) => {
+          this.toastservice.showToast(err, 2000);
+        }
+        );  
     }
+    
+  }
     
     async getClientes() {
       try {
@@ -146,33 +149,34 @@ export class InicioPage implements OnInit {
       }
     }
 
-    async getPlans() {
-      try {
-        this.fbstore.collection('plans', ref => ref.where('active', '==', true)
-                                                    .where('enllamada', '==', false)).snapshotChanges()
-        .subscribe( data => {
-          this.userList = data.map( result => {
-            return {
-              planID: result.payload.doc.id,
-              iUid: result.payload.doc.data()['uid'],
-            }            
-          })
-          for (let index = 0; index < this.userList.length; index++) {
-            this.fbstore.collection('perfiles').doc(this.userList[index]['iUid']).snapshotChanges().subscribe(perfil => {
-              this.userList[index]['name'] = perfil.payload.data()['name'];
-              this.userList[index]['lastName'] = perfil.payload.data()['lastName'];
-              this.userList[index]['foto'] = perfil.payload.data()['foto'];
-              this.userList[index]['imTel'] = perfil.payload.data()['code'];
-              this.userList[index]['bio'] = perfil.payload.data()['bio']
-            })
-            
+    
+
+  async getCallsSpeaker() {
+    try {
+      this.fbstore.collection('calls', ref => ref.where('speId', '==', this._user.userID)
+                                                 .orderBy('create', 'desc').limit(3)
+      ).snapshotChanges().subscribe( data => {
+        this.callList = data.map( result => {
+          return {
+            callId: result.payload.doc.id,
+            impID: result.payload.doc.data()['inmpId'],
+            create: result.payload.doc.data()['create']
           }
-          console.log(this.userList);
-        });
-        
-      } catch (error) {
-        this.toastservice.showToast(error.message, 2000)
-      }
+        })
+        for(let index = 0; index < this.callList.length; index++) {
+          this.fbstore.collection('perfiles').doc(this.callList[index]['impID']).snapshotChanges().subscribe(perfil => {
+            this.callList[index]['name'] = perfil.payload.data()['name'];
+            this.callList[index]['lastName'] = perfil.payload.data()['lastName'];
+            this.callList[index]['foto'] = perfil.payload.data()['foto'];
+            this.callList[index]['imTel'] = perfil.payload.data()['code'];
+            this.callList[index]['bio'] = perfil.payload.data()['bio']
+          })
+        }
+        console.log(this.callList);
+      })
+    } catch (error) {
+      
+    }
   }
 
   async getCallsImp() {

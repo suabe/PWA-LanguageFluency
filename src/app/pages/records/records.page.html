@@ -1,0 +1,28 @@
+<app-header titulo="{{'RECORDS.TITLE' | translate}}"></app-header>
+
+<ion-content class="ion-padding">
+  <ion-row>
+    <ion-col>
+      <ion-slides mode="ios" pager="ios">
+        <ion-slide>
+          <img src="/assets/banner01.png" alt="">
+        </ion-slide>
+      </ion-slides>
+    </ion-col>
+  </ion-row>
+  <ion-list>
+    <ion-list-header color="azul">
+      <ion-label>{{'RECORDS.SUBTITLE' | translate}}</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let user of callList; let i = index" >
+      <ion-label>
+        <h2>{{user.name}} {{user.lastName}}</h2>
+        <p>{{user.create | date: 'dd-MMM-YYYY'}}</p>
+      </ion-label>
+      <!-- <ion-label slot="end">Duracion 10 min</ion-label> -->
+      <ion-button [routerLink]="['/call-detail',user.callId]" slot="end"  color="azul">
+        <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

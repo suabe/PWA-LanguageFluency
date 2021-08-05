@@ -9,4 +9,5 @@ export interface User {
     emailVerified?: boolean;
     role?: string;
     spei?: string;
+    mtoken?: string;
  }

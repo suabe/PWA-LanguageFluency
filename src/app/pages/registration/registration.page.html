@@ -19,7 +19,20 @@
         </ion-row>
         <ion-row class="ion-padding">
           <ion-col size="12" size-lg="3" size-md="4" size-sm="6" offsetMd="4">
-            
+            <ion-row>
+              <ion-col> 
+                <ion-button (click)="mostratRegCli()"  expand="block"  shape="round" color="azul">
+                  Como Improver
+                </ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col> 
+                <ion-button (click)="mostratRegConv()"  expand="block"  shape="round" color="naranja">
+                  Como Speaker
+                </ion-button>
+              </ion-col>
+            </ion-row>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -29,7 +42,7 @@
         <ion-row class="ion-padding">
           <ion-col size="6" offset="3" size-lg="3" size-md="4" size-sm="6" offset-md="4">
             <ion-img src="/assets/logo-login.png"></ion-img>
-
+            
           </ion-col>
           <ion-col size="12">
             <form [formGroup]="registroForm" (ngSubmit)="registro('cliente')" novalidate>
@@ -101,10 +114,9 @@
         <ion-row class="ion-padding">
           <ion-col size="6" offset="3" size-lg="3" size-md="4" size-sm="6" offset-md="4">
             <ion-img src="/assets/logo-login.png"></ion-img>
-
           </ion-col>
           <ion-col size="12">
-            <form [formGroup]="registroForm" (ngSubmit)="registro('conversador')" novalidate>
+            <form [formGroup]="registroForm" (ngSubmit)="registroSpeaker()" novalidate>
               <ion-item color="light">
                 <ion-icon slot="start" name="person-outline" color="naranja"></ion-icon>
                 <!-- <ion-label >Nombre</ion-label> -->
@@ -146,6 +158,12 @@
               </ion-item>
 
               <ion-item color="light">
+                <ion-icon slot="start" name="card-outline" color="naranja"></ion-icon>
+                <!-- <ion-label >Apellidos</ion-label> -->
+                <ion-input type="text" placeholder="SPEI" [formControl]="$any(registroForm).controls.spei" required></ion-input>
+              </ion-item>
+
+              <ion-item color="light">
                 <ion-icon slot="start" name="mail-outline" color="naranja"></ion-icon>
                 <!-- <ion-label >Email</ion-label> -->
                 <ion-input placeholder="E-mail" type="text" [formControl]="$any(registroForm).controls.email"></ion-input>
@@ -172,19 +190,19 @@
 
 
 </ion-content>
-<ion-footer class="ion-no-border">
+<!-- <ion-footer class="ion-no-border">
   <ion-toolbar>
     <ion-row>
       <ion-col size="6">
-        <ion-button (click)="mostratRegCli()" size="small" expand="block" fill="{{fillUser}}" shape="round" color="azul">
+        <ion-button (click)="mostratRegCli()"  expand="block" fill="{{fillUser}}" shape="round" color="azul">
           Como Improver
         </ion-button>
       </ion-col>
       <ion-col size="6">
-        <ion-button (click)="mostratRegConv()" size="small" expand="block" fill="{{fillConv}}" shape="round" color="naranja">
+        <ion-button (click)="mostratRegConv()"  expand="block" fill="{{fillConv}}" shape="round" color="naranja">
           Como Speaker
         </ion-button>
       </ion-col>
     </ion-row>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

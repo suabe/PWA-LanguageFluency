@@ -24,6 +24,7 @@ export class RegistrationPage implements OnInit {
     gender: new FormControl('',Validators.required),
     birthDate: new FormControl('',Validators.required),
     bio: new FormControl('',Validators.required),
+    spei: new FormControl('',Validators.required),
     phone: new FormControl('',[Validators.required,Validators.minLength(10)])
   });
   constructor(
@@ -70,8 +71,10 @@ export class RegistrationPage implements OnInit {
       birthDtate: this.registroForm.get('birthDate').value,
       phone: this.registroForm.get('phone').value,
       bio: this.registroForm.get('bio').value,
+      spei: this.registroForm.get('spei').value,
       code: this.countryCode,
-      role: rol
+      role: rol,
+      creado: new Date()
     }
     // console.log(usuario);
     
@@ -98,16 +101,39 @@ export class RegistrationPage implements OnInit {
     
   }
 
+  registroSpeaker() {
+    let usuario = {
+      email: this.registroForm.get('email').value,
+      password: this.registroForm.get('password').value,
+      name: this.registroForm.get('name').value,
+      lastName: this.registroForm.get('lastName').value,
+      gender: this.registroForm.get('gender').value,
+      birthDtate: this.registroForm.get('birthDate').value,
+      phone: this.registroForm.get('phone').value,
+      bio: this.registroForm.get('bio').value,
+      spei: this.registroForm.get('spei').value,
+      code: this.countryCode,
+      creado: new Date()
+    } 
+
+    return this.fbstore.collection('potenciales').add(usuario).then( (potencialID) => {
+      this.router.navigate(['login']);
+      this.toastservice.showToast('Registro Exitoso, te hemos enviado a tu correo las instrucciones para completar tu Registro', 5000)
+    }).catch( (error) => {
+      console.error('Error writing new message to database', error);
+    })
+  }
+
   mostratRegCli() {
     this.slides.lockSwipes(false);
-    this.slides.slideTo(0);
+    this.slides.slideTo(1);
     this.slides.lockSwipes(true);
     this.getIndex();
   }
 
   mostratRegConv() {
     this.slides.lockSwipes(false);
-    this.slides.slideTo(1);
+    this.slides.slideTo(2);
     this.slides.lockSwipes(true);
     this.getIndex();
   }

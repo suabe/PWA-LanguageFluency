@@ -2,17 +2,17 @@
   
   <ion-content>
     <ion-list>
-      <ion-item color="naranja">
-        <ion-icon slot="start" size="large" name="person-circle-outline" color="dark"></ion-icon>
+      <ion-item color="azul">
+        <ion-icon slot="start" size="large" name="person-circle" ></ion-icon>
         <ion-label>
           <h4>{{_user.dataUser.name }} {{_user.dataUser.lastName }}</h4>
           <p class="ion-text-capitalize">{{_user.dataUser.role }}</p>
         </ion-label>
-        <ion-buttons slot="end">
+        <!-- <ion-buttons slot="end">
           <ion-button (click)="showMenuPop( $event )">
             <ion-icon slot="icon-only" name="caret-down" color="dark"></ion-icon>
           </ion-button>
-        </ion-buttons>
+        </ion-buttons> -->
       </ion-item>
       
     </ion-list>
@@ -62,17 +62,30 @@
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
-        <ion-item  routerLink="sessiones">
-          <ion-icon slot="start" name="call-outline"></ion-icon>
-          <ion-label>{{ 'MENU.SESSIONS' | translate }}</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
         <ion-item  routerLink="perfil">
           <ion-icon slot="start" name="person-circle-outline"></ion-icon>
           <ion-label>{{'MENU.ACOUNT' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item  routerLink="records">
+          <ion-icon slot="start" name="folder-outline"></ion-icon>
+          <ion-label>{{ 'MENU.RECORDS' | translate }}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item  routerLink="calls">
+          <ion-icon slot="start" name="call-outline"></ion-icon>
+          <ion-label>{{ 'MENU.CALLS' | translate }}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item  routerLink="commissions">
+          <ion-icon slot="start" name="wallet-outline"></ion-icon>
+          <ion-label>{{ 'MENU.COMMISSIONS' | translate }}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      
       <ion-menu-toggle>
         <ion-item  routerLink="ayuda">
           <ion-icon slot="start" name="help-buoy-outline"></ion-icon>

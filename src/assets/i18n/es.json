@@ -5,6 +5,31 @@
         "WALLET": "Cartera",
         "ACOUNT": "Mi Cuenta",
         "NOTIFICATIONS": "Notificaciones",
-        "HELP": "Ayuda"
+        "HELP": "Ayuda",
+        "RECORDS" : "Historial",
+        "CALLS" : "Llamadas",
+        "COMMISSIONS" : "Comisiones"
+    },
+    "HOME": {
+        "LASTSESSIONS": "Últimas sesiones del mes",
+        "REFERREDUSERS": "Usuarios referidos",
+        "REGISTRATIONDATE": "Fecha de registro"
+    },
+    "RECORDS": {
+        "TITLE": "Historial",
+        "SUBTITLE": "Últimas llamadas"
+    },
+    "CALLDETAIL": {
+        "TITLE": "Detalle de llamada"
+    },
+    "CALLS": {
+        "TITLE": "Llamadas",
+        "SUBTITLE": "Llamadas a realizar"
+    },
+    "COMMISSIONS": {
+        "TITLE": "Comisiones por llamada",
+        "SUBTITLE": "Comisiones por referidos",
+        "CALLS": "Llamada",
+        "REFERRALS": "Referidos"
     }
 }
