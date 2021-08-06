@@ -8,6 +8,7 @@ import { RegistrationPageRoutingModule } from './registration-routing.module';
 
 import { RegistrationPage } from './registration.page';
 import {IonicTelInputModule} from 'ionic-tel-input';
+import{ ArchwizardModule } from 'angular-archwizard'
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import {IonicTelInputModule} from 'ionic-tel-input';
     IonicModule,
     RegistrationPageRoutingModule,
     ReactiveFormsModule,
-    IonicTelInputModule
+    IonicTelInputModule,
+    ArchwizardModule
   ],
   declarations: [RegistrationPage]
 })

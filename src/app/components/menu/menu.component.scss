@@ -29,6 +29,10 @@ ion-icon {
     color: var(--color)
 }
 
+ion-footer ion-icon{
+    --color:#000;
+}
+
 h4, p {
     color: #000 !important;
 }

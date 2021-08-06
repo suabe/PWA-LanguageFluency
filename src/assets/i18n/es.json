@@ -8,7 +8,8 @@
         "HELP": "Ayuda",
         "RECORDS" : "Historial",
         "CALLS" : "Llamadas",
-        "COMMISSIONS" : "Comisiones"
+        "COMMISSIONS" : "Comisiones",
+        "LOGOUT": "Cerrar Sesión"
     },
     "HOME": {
         "LASTSESSIONS": "Últimas sesiones del mes",

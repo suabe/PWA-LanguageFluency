@@ -24,8 +24,10 @@ export class RegistrationPage implements OnInit {
     gender: new FormControl('',Validators.required),
     birthDate: new FormControl('',Validators.required),
     bio: new FormControl('',Validators.required),
-    spei: new FormControl('',Validators.required),
-    phone: new FormControl('',[Validators.required,Validators.minLength(10)])
+    //spei: new FormControl('',Validators.required),
+    phone: new FormControl('',[Validators.required,Validators.minLength(10)]),
+    horario: new FormControl('',Validators.required),
+    idioma: new FormControl('',Validators.required)
   });
   constructor(
     private authService: AuthenticationService,
@@ -71,7 +73,9 @@ export class RegistrationPage implements OnInit {
       birthDtate: this.registroForm.get('birthDate').value,
       phone: this.registroForm.get('phone').value,
       bio: this.registroForm.get('bio').value,
-      spei: this.registroForm.get('spei').value,
+      //spei: this.registroForm.get('spei').value,
+      idioma: this.registroForm.get('idioma').value,
+      horario: this.registroForm.get('horario').value,
       code: this.countryCode,
       role: rol,
       creado: new Date()
@@ -111,7 +115,9 @@ export class RegistrationPage implements OnInit {
       birthDtate: this.registroForm.get('birthDate').value,
       phone: this.registroForm.get('phone').value,
       bio: this.registroForm.get('bio').value,
-      spei: this.registroForm.get('spei').value,
+      //spei: this.registroForm.get('spei').value,
+      idioma: this.registroForm.get('idioma').value,
+      horario: this.registroForm.get('horario').value,
       code: this.countryCode,
       creado: new Date()
     } 

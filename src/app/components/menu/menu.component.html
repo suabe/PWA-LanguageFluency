@@ -94,9 +94,13 @@
       </ion-menu-toggle>
     </ion-list>
   </ion-content>
-  <ion-footer>
-    <ion-toolbar>
-      <ion-item>
+  <ion-footer class="ion-no-border" >
+    <ion-item color="fondo" class="ion-text-center" (click)="doLogout()">
+      <ion-icon slot="end" name="log-out"></ion-icon>
+      <ion-label slot="end">{{'MENU.LOGOUT' | translate}}</ion-label>
+    </ion-item>
+    <ion-toolbar color="azul">
+      <ion-item slot="start" color="azul">
         <ion-label>Language</ion-label>
         <ion-select name="lang" interface="popover" (ionChange)="setLanguage($event)">
           <ion-select-option *ngFor="let item of listLang"
@@ -104,6 +108,7 @@
           {{item.text}}</ion-select-option>
         </ion-select>
       </ion-item>
+      
     </ion-toolbar>
   </ion-footer>
 </ion-menu>

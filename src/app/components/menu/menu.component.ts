@@ -27,7 +27,7 @@ export class MenuComponent implements OnInit {
     private popoverCtrl: PopoverController,
     public menu: MenuController,
     private fbauth: AngularFireAuth,
-    public ngroute: NavController,
+    public ngroute: Router,
     public languageService:LanguageService
   ) {}
   
@@ -61,7 +61,7 @@ export class MenuComponent implements OnInit {
   doLogout() {
     
     return this.fbauth.signOut().then(() => {
-      this.ngroute.navigateRoot('/login', { animated: true });
+      this.ngroute.navigate(['/login']);
     });
   }
 

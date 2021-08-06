@@ -34,7 +34,7 @@
               "src/combined-sw.js",
               "src/firebase-messaging-sw.js"
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
+            "styles": ["node_modules/angular-archwizard/styles/archwizard.css","src/theme/variables.scss", "src/global.scss"],
             "scripts": []
           },
           "configurations": {

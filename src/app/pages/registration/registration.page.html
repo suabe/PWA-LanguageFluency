@@ -117,70 +117,107 @@
           </ion-col>
           <ion-col size="12">
             <form [formGroup]="registroForm" (ngSubmit)="registroSpeaker()" novalidate>
-              <ion-item color="light">
-                <ion-icon slot="start" name="person-outline" color="naranja"></ion-icon>
-                <!-- <ion-label >Nombre</ion-label> -->
-                <ion-input type="text" placeholder="Nombre" [formControl]="$any(registroForm).controls.name" required></ion-input>
-              </ion-item>
-              <ion-item color="light">
-                <ion-icon slot="start" name="person-add-outline" color="naranja"></ion-icon>
-                <!-- <ion-label >Apellidos</ion-label> -->
-                <ion-input type="text" placeholder="Apellidos"[formControl]="$any(registroForm).controls.lastName" required></ion-input>
-              </ion-item>
-              <ion-item color="light">
-                <ion-icon slot="start" name="male-female-outline" color="naranja"></ion-icon>
-                <!-- <ion-label>Género</ion-label> -->
-                <ion-select cancelText="Cancelar" multiple="false" placeholder="Género" interface="action-sheet" [formControl]="$any(registroForm).controls.gender" required>
-                  <ion-select-option value="hombre">Hombre</ion-select-option>
-                  <ion-select-option value="mujer">Mujer</ion-select-option>
-                </ion-select>
-              </ion-item>
-              <ion-item color="light">
-                <ion-icon slot="start" name="calendar-outline" color="naranja"></ion-icon>
-                <!-- <ion-label >Cumpleaños</ion-label> -->
-                <ion-datetime placeholder="Cumpleaños" display-format="YYYY-MMMM-DD" cancelText="Cancelar" done-text="Elegir" mode="ios" min="1970" max="2010" [formControl]="$any(registroForm).controls.birthDate" required></ion-datetime>
-              </ion-item>
+              <aw-wizard navBarLocation="bottom">
+                <aw-wizard-step stepTitle="">
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="person-outline" color="azul"></ion-icon>
+                    <!-- <ion-label >Nombre</ion-label> -->
+                    <ion-input type="text" placeholder="Nombre" [formControl]="$any(registroForm).controls.name" required></ion-input>
+                  </ion-item>
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="person-add-outline" color="azul"></ion-icon>
+                    <!-- <ion-label >Apellidos</ion-label> -->
+                    <ion-input type="text" placeholder="Apellidos"[formControl]="$any(registroForm).controls.lastName" required></ion-input>
+                  </ion-item>
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="male-female-outline" color="azul"></ion-icon>
+                    <!-- <ion-label>Género</ion-label> -->
+                    <ion-select cancelText="Cancelar" multiple="false" placeholder="Género" interface="action-sheet" [formControl]="$any(registroForm).controls.gender" required>
+                      <ion-select-option value="hombre">Hombre</ion-select-option>
+                      <ion-select-option value="mujer">Mujer</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="calendar-outline" color="azul"></ion-icon>
+                    <!-- <ion-label >Cumpleaños</ion-label> -->
+                    <ion-datetime placeholder="Cumpleaños" display-format="YYYY-MMMM-DD" cancelText="Cancelar" done-text="Elegir" mode="ios" min="1970" max="2010" [formControl]="$any(registroForm).controls.birthDate" required></ion-datetime>
+                  </ion-item>
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="mail-outline" color="azul"></ion-icon>
+                    <!-- <ion-label >Email</ion-label> -->
+                    <ion-input placeholder="E-mail" type="text" [formControl]="$any(registroForm).controls.email"></ion-input>
+                  </ion-item>
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="id-card-outline" color="azul"></ion-icon>
+                    <ion-textarea placeholder="Biografía" inputmode="text" [formControl]="$any(registroForm).controls.bio"></ion-textarea>
+                  </ion-item>
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="call-outline" color="azul"></ion-icon>
+                    <!-- <ion-label >Teléfono</ion-label> -->
+                    <input type="tel" ionicTelInput [ionicTelInputOptions]="{initialCountry: 'mx',onlyCountries:['mx','ar','us']}"
+                    (countryChange)="onCountryChange($event)"
+                    (intlTelInputObject)="telInputObject($event)"
+                    (hasError)="hasError($event)"
+                    (ionicTelOutput)="getNumber($event)"
+                     placeholder="Teléfono" name="registroForm" [formControl]="$any(registroForm).controls.phone" required>
+                  </ion-item>
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="key-outline" color="azul"></ion-icon>
+                    <!-- <ion-label >Contraseña</ion-label> -->
+                    <ion-input placeholder="Contraseña" type="password" [formControl]="$any(registroForm).controls.password"></ion-input>
+                  </ion-item>
+                  <!-- <ion-item color="light">
+                    <ion-icon slot="start" name="card-outline" color="naranja"></ion-icon>
+                     <ion-label >Apellidos</ion-label>
+                    <ion-input type="text" placeholder="SPEI" [formControl]="$any(registroForm).controls.spei" required></ion-input>
+                  </ion-item> -->
+                  <!-- <button type="button" awNextStep>Next Step</button> -->
+                  <ion-button  awNextStep>
+                    Siguiente
+                  </ion-button>
+                </aw-wizard-step>
+                
+                <aw-wizard-step stepTitle="">
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="time-outline" color="azul"></ion-icon>
+                    <!-- <ion-label>Awesome Label</ion-label> -->
+                    <ion-datetime placeholder="Horario" display-format="HH:mm" cancelText="Cancelar" done-text="Elegir" mode="ios" [formControl]="$any(registroForm).controls.horario" required></ion-datetime>
+                  </ion-item>
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="male-female-outline" color="azul"></ion-icon>
+                    <!-- <ion-label>Idioma</ion-label> -->
+                    <ion-select cancelText="Cancelar" multiple="false" placeholder="Idioma" interface="action-sheet" [formControl]="$any(registroForm).controls.idioma" required>
+                      <ion-select-option value="es">Español</ion-select-option>
+                      <ion-select-option value="en">Ingles</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <!-- <button type="button" awPreviousStep>Previous Step</button> -->
+                  <ion-row>
+                    <ion-col>
+                      <ion-button color="warning" awPreviousStep>
+                        Regresar
+                      </ion-button>
+                    </ion-col>
+                    <ion-col>
+                    <ion-button type="submit" [disabled]="registroForm.invalid">Registrar</ion-button>
+                    </ion-col>
+                  </ion-row>
+                </aw-wizard-step>
+              </aw-wizard>
+              
 
-              <ion-item color="light">
-                <ion-icon slot="start" name="call-outline" color="naranja"></ion-icon>
-                <!-- <ion-label >Teléfono</ion-label> -->
-                <input type="tel" ionicTelInput [ionicTelInputOptions]="{initialCountry: 'mx',onlyCountries:['mx','ar','us']}"
-                (countryChange)="onCountryChange($event)"
-                (intlTelInputObject)="telInputObject($event)"
-                (hasError)="hasError($event)"
-                (ionicTelOutput)="getNumber($event)"
-                 placeholder="Teléfono" name="registroForm" [formControl]="$any(registroForm).controls.phone" required>
-              </ion-item>
+              
 
-              <ion-item color="light">
-                <ion-icon slot="start" name="id-card-outline" color="naranja"></ion-icon>
-                <ion-textarea placeholder="Biografía" inputmode="text" [formControl]="$any(registroForm).controls.bio"></ion-textarea>
-              </ion-item>
+              
 
-              <ion-item color="light">
-                <ion-icon slot="start" name="card-outline" color="naranja"></ion-icon>
-                <!-- <ion-label >Apellidos</ion-label> -->
-                <ion-input type="text" placeholder="SPEI" [formControl]="$any(registroForm).controls.spei" required></ion-input>
-              </ion-item>
+              
 
-              <ion-item color="light">
-                <ion-icon slot="start" name="mail-outline" color="naranja"></ion-icon>
-                <!-- <ion-label >Email</ion-label> -->
-                <ion-input placeholder="E-mail" type="text" [formControl]="$any(registroForm).controls.email"></ion-input>
-              </ion-item>
+              
 
-              <ion-item color="light">
-                <ion-icon slot="start" name="key-outline" color="naranja"></ion-icon>
-                <!-- <ion-label >Contraseña</ion-label> -->
-                <ion-input placeholder="Contraseña" type="password" [formControl]="$any(registroForm).controls.password"></ion-input>
-              </ion-item>
+              
 
 
-              <ion-row>
-                <ion-col>
-                <ion-button type="submit"  expand="block" [disabled]="registroForm.invalid">Registrar</ion-button>
-                </ion-col>
-              </ion-row>
+              
             </form>
           </ion-col>
         </ion-row>
