@@ -13,7 +13,7 @@ export class LanguageService {
     let browserLang;
     this.translate.addLangs(this.languages);
     browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|es/) ? browserLang : 'es')
+    translate.use(browserLang.match(/en|es/) ? browserLang : 'en')
    }
 
    public setLanguage(lang) {

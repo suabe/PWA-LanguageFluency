@@ -1,4 +1,4 @@
-<app-header titulo="{{'COMMISSIONS.SUBTITLE' | translate}}"></app-header>
+<app-header titulo="{{'COMMISSIONS.SUBTITLE' | translate}}" [color]="color"></app-header>
 
 <ion-content class="ion-padding">
   <ion-card>
@@ -10,18 +10,93 @@
       <ion-label color="naranja">Ganancia total</ion-label>
       <ion-label color="azul">{{ 0 | currency }}</ion-label>
     </ion-item> -->
-    <ion-item color="azul">
+    <ion-item [color]="color">
       <ion-label>Referidos activos</ion-label>
+      <ion-label slot="end" class="ion-text-end">Activo</ion-label>      
     </ion-item>
-    <ion-item>
-      <ion-label>Usuario</ion-label>
-      <ion-label>ID</ion-label>
-      <ion-label>Comision</ion-label>
-    </ion-item>
-    <ion-item *ngFor="let item of [1,1,1,1,1]">
-      <ion-label>Usuario 01</ion-label>
-      <ion-label>S0000001</ion-label>
-      <ion-label>{{0 | currency}}</ion-label>
-    </ion-item>
+    <ion-list>      
+      <ion-item color="light" detail  routerLink="/referral-detail">
+        <ion-label>
+          <p>I00001</p>
+          <h2>Jorge</h2>
+        </ion-label>
+        <ion-icon slot="end" name="checkmark-circle-outline" color="success"></ion-icon>
+      </ion-item>
+      <ion-item color="light" detail  routerLink="/referral-detail">
+        <ion-label>
+          <p>I00002</p>
+          <h2>Alina</h2>
+        </ion-label>
+        <ion-icon slot="end" name="checkmark-circle-outline" color="success"></ion-icon>
+      </ion-item>
+      <ion-item color="light" detail  routerLink="/referral-detail">
+        <ion-label>
+          <p>I00003</p>
+          <h2>Juan</h2>
+        </ion-label>
+        <ion-icon slot="end" name="checkmark-circle-outline" color="success"></ion-icon>
+      </ion-item>
+      <ion-item color="light" detail  routerLink="/referral-detail">
+        <ion-label>
+          <p>I00004</p>
+          <h2>Ale</h2>
+        </ion-label>
+        <ion-icon slot="end" name="checkmark-circle-outline" color="success"></ion-icon>
+      </ion-item>
+    </ion-list>
+    <!-- <table class="table table-striped table-responsive">
+      <thead>
+        <tr>
+          <th>LFId</th>
+          <th>Name</th>
+          <th>Contract</th>
+          <th>Fee</th>
+          <th>%</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>I00001</td>
+          <td>Jorge</td>
+          <td>Fluent</td>
+          <td>45.0</td>
+          <td>5.0%</td>
+          <td>yes</td>
+        </tr>
+        <tr>
+          <td>I00002</td>
+          <td>Alina</td>
+          <td>Fluent</td>
+          <td>45.0</td>
+          <td>5.0%</td>
+          <td>yes</td>
+        </tr>
+        <tr>
+          <td>I00003</td>
+          <td>Juan</td>
+          <td>Fluent</td>
+          <td>45.0</td>
+          <td>5.0%</td>
+          <td>yes</td>
+        </tr>
+        <tr>
+          <td>I00004</td>
+          <td>Ale</td>
+          <td>Fluent</td>
+          <td>45.0</td>
+          <td>5.0%</td>
+          <td>yes</td>
+        </tr>
+        <tr>
+          <td>I00005</td>
+          <td>Beto</td>
+          <td>+Fluent</td>
+          <td>75.0</td>
+          <td>5.0%</td>
+          <td>yes</td>
+        </tr>
+      </tbody>
+    </table> -->
   </ion-card>
 </ion-content>

@@ -1,0 +1,73 @@
+<app-header titulo="{{'CALLDETAIL.TITLE' | translate}}" color="naranja"></app-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        <h2>Llamada</h2>
+        <p>{{call?.sid}}</p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <h2>Speaker</h2>
+        <p>{{call?.speaker?.name}} {{call?.speaker?.lastName}}</p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label slot="start">
+        <h2>Fecha</h2>
+        <p>{{complemento?.start_time | date: 'dd-MMM-YYYY'}}</p>
+      </ion-label>
+      <ion-label slot="end">
+        <h2>Intentos</h2>
+        <p>1</p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label slot="start">
+        <h2>Duración</h2>
+        <p>{{complemento?.duration/60}} min</p>
+      </ion-label>
+      <ion-icon slot="end" name="checkmark-circle-outline" color="success"></ion-icon>
+      <!-- <ion-label slot="end">
+        <h2>10 min?</h2>
+        <p>Ok</p>
+      </ion-label> -->
+    </ion-item>
+    <ion-list-header color="naranja">
+      <ion-label>Calificacion</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label slot="start">
+        <h2>Fluency</h2>
+        <p>5</p>
+      </ion-label>
+      <ion-label>
+        <h2>Pronunciation</h2>
+        <p>5</p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label slot="start">
+        <h2>Grammar</h2>
+        <p>5</p>
+      </ion-label>
+      <ion-label>
+        <h2>AVG</h2>
+        <p>5</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header color="naranja">
+      <ion-label>Llamada</ion-label>
+    </ion-list-header>
+    <ion-item *ngIf="recordings">
+      <audio controls>
+        <source [src]="url" type="audio/mpeg">
+      </audio>
+    </ion-item>
+  </ion-list>
+</ion-content>
+

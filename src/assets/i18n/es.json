@@ -1,8 +1,9 @@
 {
     "MENU": {
         "HOME": "Inicio",
-        "SESSIONS": "Sessiones",
+        "SESSIONS": "Sesiones",
         "WALLET": "Cartera",
+        "PLANS": "Planes",
         "ACOUNT": "Mi Cuenta",
         "NOTIFICATIONS": "Notificaciones",
         "HELP": "Ayuda",
@@ -32,5 +33,9 @@
         "SUBTITLE": "Comisiones por referidos",
         "CALLS": "Llamada",
         "REFERRALS": "Referidos"
+    },
+    "SESSIONS": {
+        "TITLE": "Sesiones",
+        "SUBTITLE": "Ultimas Llamadas"
     }
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes, CanLoad } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { AutoLoginGuard } from './guards/auto-login.guard';
 import { EmailVerifiedGuard } from './guards/email-verified.guard';
@@ -9,57 +9,57 @@ const routes: Routes = [
   {
     path: 'registration',
     loadChildren: () => import('./pages/registration/registration.module').then( m => m.RegistrationPageModule),
-    canLoad: [AutoLoginGuard]
+    
   },
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
-    canLoad: [AutoLoginGuard]
+    
   },
   {
     path: 'inicio',
     loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule),
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'sesiones',
     loadChildren: () => import('./pages/sesiones/sesiones.module').then( m => m.SesionesPageModule),
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'wallet',
     loadChildren: () => import('./pages/wallet/wallet.module').then( m => m.WalletPageModule),
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'perfil',
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule),
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'notificaciones',
     loadChildren: () => import('./pages/notificaciones/notificaciones.module').then( m => m.NotificacionesPageModule),
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'ayuda',
     loadChildren: () => import('./pages/ayuda/ayuda.module').then( m => m.AyudaPageModule),
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'agrega-tarjeta',
     loadChildren: () => import('./pages/agrega-tarjeta/agrega-tarjeta.module').then( m => m.AgregaTarjetaPageModule),
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'califica-llamada',
     loadChildren: () => import('./pages/califica-llamada/califica-llamada.module').then( m => m.CalificaLlamadaPageModule),
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'sessiones',
     loadChildren: () => import('./pages/sessiones/sessiones.module').then( m => m.SessionesPageModule),
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'recuperar',
@@ -68,40 +68,113 @@ const routes: Routes = [
   {
     path: 'editar-perfil',
     loadChildren: () => import('./pages/editar-perfil/editar-perfil.module').then( m => m.EditarPerfilPageModule),
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/inicio',
     pathMatch: 'full'
   },
   {
     path: 'records',
     loadChildren: () => import('./pages/records/records.module').then( m => m.RecordsPageModule),
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'call-detail/:id',
     loadChildren: () => import('./pages/call-detail/call-detail.module').then( m => m.CallDetailPageModule),
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'calls',
     loadChildren: () => import('./pages/calls/calls.module').then( m => m.CallsPageModule),
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'commissions',
     loadChildren: () => import('./pages/commissions/commissions.module').then( m => m.CommissionsPageModule),
-    canLoad: [AuthGuard]
-  },  {
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'commissions-calls',
-    loadChildren: () => import('./pages/commissions-calls/commissions-calls.module').then( m => m.CommissionsCallsPageModule)
+    loadChildren: () => import('./pages/commissions-calls/commissions-calls.module').then( m => m.CommissionsCallsPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'commissions-referrals',
-    loadChildren: () => import('./pages/commissions-referrals/commissions-referrals.module').then( m => m.CommissionsReferralsPageModule)
+    loadChildren: () => import('./pages/commissions-referrals/commissions-referrals.module').then( m => m.CommissionsReferralsPageModule),
+    canActivate: [AuthGuard]
   },
+  {
+    path: 'perfil-options',
+    loadChildren: () => import('./pages/perfil-options/perfil-options.module').then( m => m.PerfilOptionsPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'perfil-bank',
+    loadChildren: () => import('./pages/perfil-bank/perfil-bank.module').then( m => m.PerfilBankPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'perfil-password',
+    loadChildren: () => import('./pages/perfil-password/perfil-password.module').then( m => m.PerfilPasswordPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'perfil-suspend',
+    loadChildren: () => import('./pages/perfil-suspend/perfil-suspend.module').then( m => m.PerfilSuspendPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'perfil-delete',
+    loadChildren: () => import('./pages/perfil-delete/perfil-delete.module').then( m => m.PerfilDeletePageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'detalle-llamada/:id',
+    loadChildren: () => import('./pages/detalle-llamada/detalle-llamada.module').then( m => m.DetalleLlamadaPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'wallet-pagos',
+    loadChildren: () => import('./pages/wallet-pagos/wallet-pagos.module').then( m => m.WalletPagosPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'wallet-tarjetas',
+    loadChildren: () => import('./pages/wallet-tarjetas/wallet-tarjetas.module').then( m => m.WalletTarjetasPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'plans',
+    loadChildren: () => import('./pages/plans/plans.module').then( m => m.PlansPageModule),
+    canActivate: [AuthGuard]
+  },  {
+    path: 'referral-detail',
+    loadChildren: () => import('./pages/referral-detail/referral-detail.module').then( m => m.ReferralDetailPageModule)
+  },
+  {
+    path: 'agrega-plan',
+    loadChildren: () => import('./pages/agrega-plan/agrega-plan.module').then( m => m.AgregaPlanPageModule)
+  },
+  {
+    path: 'agrega-plan-modal',
+    loadChildren: () => import('./pages/agrega-plan-modal/agrega-plan-modal.module').then( m => m.AgregaPlanModalPageModule)
+  },
+  {
+    path: 'ayuda-factura',
+    loadChildren: () => import('./pages/ayuda-factura/ayuda-factura.module').then( m => m.AyudaFacturaPageModule)
+  },
+  {
+    path: 'ayuda-soporte',
+    loadChildren: () => import('./pages/ayuda-soporte/ayuda-soporte.module').then( m => m.AyudaSoportePageModule)
+  },
+
+
+
+
+
+
 
 
 

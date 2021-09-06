@@ -9,15 +9,23 @@ import { InicioPageRoutingModule } from './inicio-routing.module';
 import { InicioPage } from './inicio.page';
 import { ComponentsModule } from '../../components/components.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CalificaLlamadaPage } from '../califica-llamada/califica-llamada.page';
+import { CalificaLlamadaPageModule } from '../califica-llamada/califica-llamada.module';
 
 @NgModule({
+  entryComponents: [
+    CalificaLlamadaPage
+  ],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     InicioPageRoutingModule,
     ComponentsModule,
-    TranslateModule
+    TranslateModule,
+    CalificaLlamadaPageModule,
+    NgbModule
   ],
   declarations: [InicioPage]
 })

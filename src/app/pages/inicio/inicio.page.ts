@@ -21,8 +21,10 @@ export class InicioPage implements OnInit {
   impro:any  = ''
   userList = [];
   callList = [];
+  userPerfil
   //userPerfil = JSON.parse(localStorage.getItem('perfil'));
   emailVerified: false;
+  color = 'azul';
   constructor(
     public ngroute: Router,
     private fbauth: AngularFireAuth,
@@ -42,15 +44,18 @@ export class InicioPage implements OnInit {
   ngOnInit() {
   }
   ionViewWillEnter() {
+    this.userPerfil = this._user.dataUser
     if (this._user.dataUser.role === 'cliente') {
+      this.color = 'naranja'
       this.getCallsImp()
     } else {
-      this.getCallsSpeaker();
+      this.getPlans();
     }
     this.verifica();
     this.menu.enable(true,'primerMenu');
     
     this.requestPermission();
+    this.contador()
   }
 
   async mostrarNot(evento) {
@@ -151,32 +156,37 @@ export class InicioPage implements OnInit {
 
     
 
-  async getCallsSpeaker() {
-    try {
-      this.fbstore.collection('calls', ref => ref.where('speId', '==', this._user.userID)
-                                                 .orderBy('create', 'desc').limit(3)
-      ).snapshotChanges().subscribe( data => {
-        this.callList = data.map( result => {
-          return {
-            callId: result.payload.doc.id,
-            impID: result.payload.doc.data()['inmpId'],
-            create: result.payload.doc.data()['create']
-          }
-        })
-        for(let index = 0; index < this.callList.length; index++) {
-          this.fbstore.collection('perfiles').doc(this.callList[index]['impID']).snapshotChanges().subscribe(perfil => {
-            this.callList[index]['name'] = perfil.payload.data()['name'];
-            this.callList[index]['lastName'] = perfil.payload.data()['lastName'];
-            this.callList[index]['foto'] = perfil.payload.data()['foto'];
-            this.callList[index]['imTel'] = perfil.payload.data()['code'];
-            this.callList[index]['bio'] = perfil.payload.data()['bio']
+    async getPlans() {
+      try {
+        this.fbstore.collection('plans', ref => ref.where('active', '==', true)
+                                                    .where('enllamada', '==', false)).snapshotChanges()
+        .subscribe( data => {
+          this.userList = data.map( result => {
+            return {
+              planID: result.payload.doc.id,
+              iUid: result.payload.doc.data()['uid'],
+            }            
           })
-        }
-        console.log(this.callList);
-      })
-    } catch (error) {
-      
-    }
+          for (let index = 0; index < this.userList.length; index++) {
+            this.fbstore.collection('perfiles').doc(this.userList[index]['iUid']).snapshotChanges().subscribe(perfil => {
+              this.userList[index]['name'] = perfil.payload.data()['name'];
+              this.userList[index]['lastName'] = perfil.payload.data()['lastName'];
+              this.userList[index]['foto'] = perfil.payload.data()['foto'];
+              this.userList[index]['imTel'] = perfil.payload.data()['code'];
+              this.userList[index]['bio'] = perfil.payload.data()['bio'];
+              this.userList[index]['creado'] = perfil.payload.data()['creado'];
+              this.userList[index]['gender'] = perfil.payload.data()['gender'];
+              this.userList[index]['country'] = perfil.payload.data()['country'];
+              
+            })
+            
+          }
+          // console.log(this.userList);
+        });
+        
+      } catch (error) {
+        this.toastservice.showToast(error.message, 2000)
+      }
   }
 
   async getCallsImp() {
@@ -189,6 +199,19 @@ export class InicioPage implements OnInit {
       } )
     } catch (error) {
       this.toastservice.showToast(error.message, 2000)
+    }
+  }
+
+  async contador() {
+    var padLeft = n => "0000000".substring(0, "0000000".length - n.length) + n;
+    try {
+      this.fbstore.collection('perfiles', ref => ref.where('role', '==', 'cliente')).snapshotChanges().subscribe(data =>{
+        let contador = data.length
+        // console.log('Usuarios', 'I'+padLeft(contador + ""));
+        
+      })
+    } catch (error) {
+      
     }
   }
   

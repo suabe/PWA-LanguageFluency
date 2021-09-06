@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanLoad, Router } from '@angular/router';
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataUsuarioService } from '../services/data-usuario.service';
 import { filter, map, take } from 'rxjs/operators';
@@ -9,12 +9,12 @@ import { NavController } from '@ionic/angular';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanLoad {
+export class AuthGuard implements CanActivate {
   constructor(
     private _user : DataUsuarioService,
-    private navCtrl: NavController
+    private router: Router
   ){}
-  canLoad(): Observable<boolean> | boolean  {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)  {
     return this._user.isAuthenticated.pipe(
       filter(val => val !== null),
       take(1),
@@ -22,10 +22,11 @@ export class AuthGuard implements CanLoad {
         if (isAuthenticated) {
           return true;
         } else {
-          this.navCtrl.navigateRoot('/login', {animated: true});
+          this.router.navigate(['/login']);
           return false;
         }
       })
     )
+    
   }
 }

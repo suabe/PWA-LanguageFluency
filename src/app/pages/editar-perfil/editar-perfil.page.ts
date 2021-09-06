@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
+import { DataUsuarioService } from '../../services/data-usuario.service';
 
 
 @Component({
@@ -9,26 +10,86 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
   styleUrls: ['./editar-perfil.page.scss'],
 })
 export class EditarPerfilPage implements OnInit {
+  color = 'azul';
   countryCode = '';
   registroForm = new FormGroup({
     email: new FormControl( '',[Validators.required,Validators.email]),
-    password: new FormControl ('', [Validators.required]),
     name: new FormControl('',Validators.required),
     lastName: new FormControl('',Validators.required),
     gender: new FormControl('',Validators.required),
     birthDate: new FormControl('',Validators.required),
     bio: new FormControl('',Validators.required),
-    phone: new FormControl('',[Validators.required,Validators.minLength(10)])
+    phone: new FormControl('',[Validators.required,Validators.minLength(10)]),
+    horario: new FormControl('',Validators.required),
+    horario2: new FormControl('',Validators.required)
   });
+  improForm = new FormGroup({
+    email: new FormControl( '',[Validators.required,Validators.email]),
+    name: new FormControl('',Validators.required),
+    lastName: new FormControl('',Validators.required),
+    gender: new FormControl('',Validators.required),
+    birthDate: new FormControl('',Validators.required),
+    bio: new FormControl('',Validators.required),
+    idref: new FormControl(''),
+    // spei: new FormControl('',Validators.required),
+    phone: new FormControl('',[Validators.required,Validators.minLength(10)])
+  })
   constructor(
-    private modalCtr: ModalController
+    private modalCtr: ModalController,
+    public _user: DataUsuarioService,
+    public alerCtrl: AlertController
   ) { }
+  
+  ionViewWillEnter() {
+    if (this._user.dataUser.role === 'cliente') {
+      this.color = 'naranja'
+    }
+    this.registroForm.setValue({
+      email: this._user.dataUser.email,
+      name: this._user.dataUser.name,
+      lastName: this._user.dataUser.lastName,
+      gender: this._user.dataUser.gender,
+      birthDate: this._user.dataUser.birthDate,
+      bio: this._user.dataUser.bio,
+      phone: this._user.dataUser.phone,
+      horario: this._user.dataUser.horario,
+      horario2: this._user.dataUser.horario2,
+    })
+  }
 
   ngOnInit() {
   }
 
-  actualiza() {
+  async actualiza() {
+    const alert = await this.alerCtrl.create({
+      mode: 'ios',
+      header: 'Confirmar cambios',
+      subHeader: 'Ingresa tu contraseña',
+      inputs: [
+        {
+          name: 'password',
+          type: 'password',
+          placeholder: 'Contraseña'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Guardar',
+          handler: data => {
+            this.modalCtr.dismiss();
+          }
+        }
+      ]
+    })
 
+    await alert.present();
   }
 
   cerrarModal() {

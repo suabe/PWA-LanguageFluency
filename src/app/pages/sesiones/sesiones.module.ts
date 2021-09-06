@@ -8,6 +8,7 @@ import { SesionesPageRoutingModule } from './sesiones-routing.module';
 
 import { SesionesPage } from './sesiones.page';
 import { ComponentsModule } from '../../components/components.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     SesionesPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    TranslateModule
   ],
   declarations: [SesionesPage]
 })

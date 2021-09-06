@@ -1,0 +1,131 @@
+<app-header titulo="Eliminar Cuenta" [color]="color"></app-header>
+
+<ion-content class="ion-padding">
+  
+  <form [formGroup]="deleteForm" (ngSubmit)="delete()">
+    <aw-wizard navBarLocation="bottom">
+      <aw-wizard-step stepTitle="">
+        <div class="vertical-padding">
+      
+          <ion-grid fixed>
+            <ion-row>
+              <ion-col size="3" class="ion-no-padding position-relative">
+                <!-- <div class="ion-text-left">
+                  <p>Hola</p>
+                  <h4>{{userPerfil?.name}} {{userPerfil?.lastName}}</h4>
+                </div> -->
+                <!-- <div class="ion-text-center">
+                  <span class="text-muted ion-no-margin text-job ion-text-capitalize">{{userPerfil.role}}</span>
+                </div> -->
+                <!-- <ion-button fill="clear" class="button-vertical-align button-left">
+                  <ion-icon slot="icon-only" name="chatbubbles"></ion-icon>
+                </ion-button> -->
+              </ion-col>
+              <ion-col size="6">   
+                <img *ngIf="userPerfil?.foto" [src]="userPerfil?.foto" class="image-round border-tertiary margin-top">
+                <img *ngIf="!userPerfil?.foto" src="https://image.flaticon.com/icons/svg/163/163801.svg" alt="" class="image-round border-tertiary margin-top">
+                <div class="ion-text-center">
+                  <p>Hola</p>
+                  <h4>{{userPerfil?.name}} {{userPerfil?.lastName}}</h4>
+                </div>
+              </ion-col>
+              <!-- <ion-col size="4" class="ion-no-padding position-relative">
+                <ion-button fill="clear" class="button-vertical-align button-right">
+                  <ion-icon slot="icon-only" name="call"></ion-icon>
+                </ion-button> 
+              </ion-col> -->
+            </ion-row>
+          </ion-grid>
+        
+        </div>
+        <ion-card mode="md" [ngClass]="_user.dataUser.role === 'cliente'? 'borde-improver': 'borde-speaker' ">
+          <ion-card-title class="ion-text-center">¿Estás seguro que quieres eliminar esta cuenta?</ion-card-title>
+          <ion-card-content>
+            Si deseas suspender tu cuenta ingresa tu contraseña
+          </ion-card-content>
+          <ion-item color="light">
+            <ion-label position="floating">Password <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required formControlName="password" type="text"></ion-input>
+          </ion-item>
+        </ion-card>
+        <ion-button  awNextStep>
+          Siguiente
+        </ion-button>
+      </aw-wizard-step>
+  
+      <aw-wizard-step stepTitle="">
+        <ion-list  id="listaMenu" [ngClass]="_user.dataUser.role === 'cliente'? 'borde-improver': 'borde-speaker' ">
+          <ion-list-header>
+            <ion-label>Nos interesa conocer el motivo de tu suspensión, por favor responde nuetro cuestionario</ion-label>
+          </ion-list-header>
+          <ion-radio-group formControlName="motivo" value="">
+            <ion-list-header>
+              <ion-label>¿Por que quieres suspender tu cuenta?</ion-label>
+            </ion-list-header>
+            <ion-item>
+              <ion-label>Ya no necesito el servicio</ion-label>
+              <ion-radio slot="start" value="Ya no necesito el servicio"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No me gusto el servicio</ion-label>
+              <ion-radio slot="start" value="No me gusto el servicio"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No estaré disponible un tiempo</ion-label>
+              <ion-radio slot="start" value="No estaré disponible un tiempo"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Otro</ion-label>
+              <ion-radio slot="start" value="otro"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+          <ion-input *ngIf="deleteForm.value.motivo == 'otro'" type="text" placeholder="Otro"></ion-input>
+          <ion-radio-group name="referidos" value="">
+            <ion-list-header>
+              <ion-label>¿Tienes Referidos asociados a tu cuenta?</ion-label>
+            </ion-list-header>
+            <ion-item>
+              <ion-label>Si</ion-label>
+              <ion-radio slot="start" value="Si"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No se</ion-label>
+              <ion-radio slot="start" value="No se"></ion-radio>
+            </ion-item>
+          </ion-radio-group>  
+          <ion-radio-group name="minutos" value="">
+            <ion-list-header>
+              <ion-label>¿Tienes minutos para llamadas pendientes?</ion-label>
+            </ion-list-header>
+            <ion-item>
+              <ion-label>Si</ion-label>
+              <ion-radio slot="start" value="Si"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No se</ion-label>
+              <ion-radio slot="start" value="No se"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+        
+        <ion-button awPreviousStep color="naranja">
+          Atras
+        </ion-button>
+        <ion-button block color="primary" type="submit" [disabled]="deleteForm.invalid">
+          Enviar
+        </ion-button>
+      </aw-wizard-step>
+    </aw-wizard>
+    
+    
+  </form>
+  
+</ion-content>

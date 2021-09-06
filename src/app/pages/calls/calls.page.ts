@@ -42,11 +42,14 @@ export class CallsPage implements OnInit {
             this.userList[index]['lastName'] = perfil.payload.data()['lastName'];
             this.userList[index]['foto'] = perfil.payload.data()['foto'];
             this.userList[index]['imTel'] = perfil.payload.data()['code'];
-            this.userList[index]['bio'] = perfil.payload.data()['bio']
+            this.userList[index]['bio'] = perfil.payload.data()['bio'];
+            this.userList[index]['creado'] = perfil.payload.data()['creado'];
+            this.userList[index]['gender'] = perfil.payload.data()['gender'];
+            this.userList[index]['country'] = perfil.payload.data()['country'];
           })
           
         }
-        console.log(this.userList);
+        // console.log(this.userList);
       });
       
     } catch (error) {
@@ -63,7 +66,7 @@ llamarCliente(user) {
     });
     await modal.present();
   }, 2000);
-  console.log(user);
+  // console.log(user);
   
 }
 

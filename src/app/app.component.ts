@@ -12,24 +12,20 @@ import { DataUsuarioService } from './services/data-usuario.service';
 export class AppComponent {
   constructor(
     private platform: Platform,
-    public fbauth: AngularFireAuth,
-    public ngroute: Router
-  ) {
-    // const authfbObserver = fbauth.authState.subscribe( user => {
-    //   if (user) {
-    //     //console.log(user);
-    //     this.ngroute.navigate(['inicio']);
-    //     authfbObserver.unsubscribe();
-    //   } else {
-    //     console.log('Sin usuario', user);
-    //     this.ngroute.navigate(['login']);
-    //     authfbObserver.unsubscribe();
-    //   }
-    // });
+    private fbauth: AngularFireAuth,
+    private route: Router,
+    private _user: DataUsuarioService
+  ) {    
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-
+      // this._user.isAuthenticated.subscribe(state => {
+      //   if (state) {
+      //     this.route.navigate(['inicio'])
+      //   } else {
+      //     this.route.navigate(['login'])
+      //   }
+      // })
     });
   }
 }

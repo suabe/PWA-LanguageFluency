@@ -7,44 +7,83 @@
 </ion-header>
 
 <ion-content>
+  <div id="headeRating">
+    <div class="empty"></div>
+    <div class="ion-text-center image-over-div">
+      <img [src]="foto" alt="" class="image-round ">
+    </div>
 
-  <div class="empty bg-secondary"></div>
-  <div class="ion-text-center image-over-div">
-    <img [src]="foto" alt="" class="image-round border-white">
+    <div class="ion-text-center">
+      <h4>{{name}} {{lastName}} </h4>
+      <p class="text-profile">
+        {{bio}}
+      </p>
+      <p>Miembro desde {{creado.toDate() | date: 'dd-MMM-YYYY'}} </p>
+    </div>
+    <ion-grid fixed class="">
+      <ion-row class="ion-no-padding">
+        <ion-col size="4" offset="2">
+          <div class="ion-text-center">
+            <span class="text-statics-big text-primary">{{min}} : {{seg}}</span> <br>
+            <small class="text-primary">Duracion</small>
+          </div>
+        </ion-col>
+        <ion-col size="4" >
+          <div class="ion-text-center">
+            <span class="text-statics-big text-primary">1.5</span> <br>
+            <small class="text-primary">Rating</small>
+          </div>
+        </ion-col>
+        
+      </ion-row>
+    </ion-grid>
   </div>
+  
 
-  <div class="ion-text-center">
-    <h4>{{name}} {{lastName}} </h4>
-    <p class="text-profile">
-      {{bio}}
-    </p>
-  </div>
+  
 
-  <ion-grid fixed class="">
-    <ion-row class="ion-no-padding">
-      <ion-col size="4" offset="2">
-        <div class="ion-text-center">
-          <span class="text-statics-big text-primary">1.5</span> <br>
-          <small>Llamadas</small>
-        </div>
-      </ion-col>
-      <ion-col size="4">
-        <div class="ion-text-center">
-          <span class="text-statics-big text-primary">10.5</span> <br>
-          <small>Calificación</small>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <div class="ion-padding">
+  <div class="ion-padding" id="califica">
     <form [formGroup]="calificaForm" (ngSubmit)="calificar()" novalidate>
-      <ion-item>
-        <ion-label>Califica</ion-label>
-        <app-rating
-          rating="1"
-          fontSize = "20px">
-        </app-rating>
+      <ion-item color="light">
+        <ion-label slot="start">Fluency </ion-label>
+        <ngb-rating formControlName="fluency"  [max]="5"  (rateChange)="changefl($event)">
+          <ng-template let-fill="fill">
+            <span [class.filled]="fill === 100" [class.notfilled]="fill === 0">
+              <ion-icon name="custom-icono-speaker"></ion-icon>
+            </span>
+          </ng-template>
+        </ngb-rating>
+      </ion-item>
+      <ion-item color="light">
+        <ion-label slot="start">Pronunciation</ion-label>
+        <ngb-rating  formControlName="pronunciation" [max]="5" (rateChange)="changepr($event)">
+          <ng-template let-fill="fill">
+            <span [class.filled]="fill === 100" [class.notfilled]="fill === 0">
+              <ion-icon name="custom-icono-speaker"></ion-icon>
+            </span>
+          </ng-template>
+        </ngb-rating>
+      </ion-item>
+      <ion-item color="light">
+        <ion-label slot="start">Grammar</ion-label>
+        <ngb-rating  formControlName="grammar" [max]="5" (rateChange)="changegr($event)">
+          <ng-template let-fill="fill">
+            <span [class.filled]="fill === 100" [class.notfilled]="fill === 0">
+              <ion-icon name="custom-icono-speaker"></ion-icon>
+            </span>
+          </ng-template>
+        </ngb-rating>
+      </ion-item>
+      <ion-item color="light">
+        <ion-label slot="start">Puntos Totales  </ion-label>
+        <ion-label><span *ngIf="avg > 0">{{avg | number : '1.2-2'}}</span> <ion-icon *ngIf="avg > 0" name="custom-icono-speaker" color="azul" id="iconAVG"></ion-icon></ion-label>
+        <!-- <ngb-rating [rate]="avg"  formControlName="avg" [max]="5" [readonly]="true">
+          <ng-template let-fill="fill">
+            <span class="star" [class.full]="fill === 100">
+              <span class="half" [style.width.%]="fill"><ion-icon name="custom-icono-speaker"></ion-icon></span><ion-icon name="custom-icono-speaker"></ion-icon>
+            </span>
+          </ng-template>
+        </ngb-rating> -->
       </ion-item>
       <ion-button type="submit" expand="block" color="azul" [disabled]="calificaForm.invalid">
         Califica
@@ -53,10 +92,10 @@
   </div>
 
   <div class="ion-padding">
-    <p class="text-profile">
+    <!-- <p class="text-profile">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis itaque natus illum deserunt eos ex voluptatibus,
       tempore veniam quaerat eligendi, sint ducimus sit assumenda explicabo impedit expedita suscipit voluptate odit?
-    </p>
+    </p> -->
   </div>
 
 </ion-content>

@@ -1,12 +1,14 @@
 <ion-header class="ion-no-border"  translucent>
-    <ion-toolbar color="azul">
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="/"></ion-back-button>
-      </ion-buttons>
-      <ion-title class="ion-text-capitalize">Mi cuenta</ion-title>
-      
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar [color]="color">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-capitalize">Mi cuenta</ion-title>
+    <ion-avatar slot="end">
+      <img src="assets/logo-toolbar.png" />
+    </ion-avatar>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content class="ion-padding">
   <!-- <ion-item>
@@ -48,38 +50,72 @@
         </ion-grid>
       
       </div>
-    
-      <ion-grid fixed class="border-bottom border-top">
-        <ion-row class="ion-no-padding">
-          <ion-col size="4">
-            <div class="ion-text-center">
-              <span class="text-statics-big text-primary">1.5</span> <br>
-              <small>Post</small>
+      <ion-grid fixed>
+        <ion-row class="ion-no-padding" id="menuPerfil" *ngIf="_user.dataUser.role === 'conversador'">
+          <ion-col size="3">
+            <!-- <div class="ion-text-center" (click)="editarPerfil()"> -->
+            <div class="ion-text-center" routerLink="/perfil-options">
+              <ion-icon slot="start" name="person-circle-outline"></ion-icon> <br>
+              <small>Editar</small>
             </div>
           </ion-col>
-          <ion-col size="4">
-            <div class="ion-text-center">
-              <span class="text-statics-big text-primary">10.5</span> <br>
-              <small>Followers</small>
+          <ion-col size="3">
+            <div class="ion-text-center" routerLink="/calls">
+              <ion-icon slot="start" name="call-outline"></ion-icon> <br>
+              <small>Llamadas</small>
             </div>
           </ion-col>
-          <ion-col size="4">
-            <div class="ion-text-center">
-              <span class="text-statics-big text-primary">1.3</span> <br>
-              <small>Following</small>
+          <ion-col size="3">
+            <div class="ion-text-center" routerLink="/commissions">
+              <ion-icon slot="start" name="wallet-outline"></ion-icon> <br>
+              <small>Comisiones</small>
+            </div>
+          </ion-col>
+          <ion-col size="3">
+            <div class="ion-text-center" routerLink="/ayuda">
+              <ion-icon slot="start" name="help-buoy-outline"></ion-icon> <br>
+              <small>Ayuda</small>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-no-padding" id="menuPerfilImp" *ngIf="_user.dataUser.role === 'cliente'">
+          <ion-col size="3">
+            <!-- <div class="ion-text-center" (click)="editarPerfil()"> -->
+            <div class="ion-text-center" routerLink="/perfil-options">
+              <ion-icon slot="start" name="person-circle-outline"></ion-icon> <br>
+              <small>Editar</small>
+            </div>
+          </ion-col>
+          <ion-col size="3">
+            <div class="ion-text-center" routerLink="/plans">
+              <ion-icon slot="start" name="reader-outline"></ion-icon> <br>
+              <small>Planes</small>
+            </div>
+          </ion-col>
+          <ion-col size="3">
+            <div class="ion-text-center" routerLink="/wallet">
+              <ion-icon slot="start" name="wallet-outline"></ion-icon> <br>
+              <small>Wallet</small>
+            </div>
+          </ion-col>
+          <ion-col size="3">
+            <div class="ion-text-center" routerLink="/ayuda">
+              <ion-icon slot="start" name="help-buoy-outline"></ion-icon> <br>
+              <small>Ayuda</small>
             </div>
           </ion-col>
         </ion-row>
       </ion-grid>
+ 
     
-      <div class="vertical-padding">
+      <div class="vertical-padding" *ngIf="_user.dataUser.role === 'cliente'">
         <p class="ion-text-center text-profile">
           {{userPerfil.bio}}
         </p>
       </div>
     
       <div class="ion-padding">
-        <ion-grid class="ion-no-padding">
+        <ion-grid class="ion-no-padding" *ngIf="_user.dataUser.role === 'conversador'">
           <ion-row>
             <ion-col size="6">
               <strong class="text-tertiary">Género</strong> <br>
@@ -111,6 +147,38 @@
             </ion-col>
           </ion-row>
         </ion-grid>
+        <ion-grid class="ion-no-padding" *ngIf="_user.dataUser.role === 'cliente'">
+          <ion-row>
+            <ion-col size="6">
+              <strong class="text-primary">Género</strong> <br>
+              <small >{{userPerfil.gender}}</small>
+            </ion-col>
+            <ion-col size="6">
+              <strong class="text-primary">Email</strong> <br>
+              <small >{{userPerfil.email}}</small>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <strong class="text-primary">Teléfono</strong> <br>
+              <small >{{userPerfil.phone}}</small>
+            </ion-col>
+            <ion-col size="6">
+              <strong class="text-primary">Pais</strong> <br>
+              <small ><span class="ion-text-uppercase">{{userPerfil.country}}</span> <span class="iti-flag {{userPerfil.country}}"></span></small>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <strong class="text-primary">Cumpleaños</strong> <br>
+              <small >{{userPerfil.birthDtate | date: 'dd-MMMM-YYYY'}}</small>
+            </ion-col>
+            <ion-col size="6">
+              <!-- <strong class="text-tertiary">SPEI</strong> <br>
+              <small class="text-white">{{userPerfil.spei}}</small> -->
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </div>
 
       <div class="ion-padding">
@@ -133,15 +201,15 @@
       
 
     
-      <ion-fab vertical="center" horizontal="end" slot="fixed">
-        <ion-fab-button color="azul" size="small">
+      <ion-fab vertical="top" horizontal="end" slot="fixed">
+        <ion-fab-button [color]="color" size="small">
           <ion-icon name="settings-outline"></ion-icon>
         </ion-fab-button>
-        <ion-fab-list side="bottom">
-          <ion-fab-button color="naranja" (click)="editarPerfil()">
+        <ion-fab-list side="start">
+          <!-- <ion-fab-button color="naranja" (click)="editarPerfil()">
             <ion-icon  name="person-add-outline"></ion-icon>
-          </ion-fab-button>
-          <ion-fab-button color="naranja" (click)="subirImgPerfil()">
+          </ion-fab-button> -->
+          <ion-fab-button [color]="color" (click)="subirImgPerfil()">
             <ion-icon  name="camera-outline"></ion-icon>
             <input type="file" style="display: none;" #filePicker (change)="subirAlbum($event)">
           </ion-fab-button>

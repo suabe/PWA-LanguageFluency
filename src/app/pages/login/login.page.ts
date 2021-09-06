@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
   
   constructor(
     public authService: AuthenticationService,
-    public navCtrl: NavController,
+    public navCtrl: Router,
     public loginFormbuilder: FormBuilder,
     //private valuechecker: Validator,
     private toastservice: ToastService,
@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
     
     return this.authService.SignIn(this.loginform.get('email').value,this.loginform.get('password').value).then( data => {
       console.log('se logeo',data);
-      this.navCtrl.navigateRoot('/inicio', {animated: true});
+      this.navCtrl.navigate(['/inicio']);
       // if (data.user) {
       //   // this.redirectUser(data.user.emailVerified)
       //   //this.authService.getUserPerfil(data.user.uid);
@@ -67,7 +67,7 @@ export class LoginPage implements OnInit {
 
   private redirectUser(isVerified: boolean): void {
     if (isVerified) {
-      this.navCtrl.navigateRoot('/inicio', {animated: true});
+      this.navCtrl.navigate(['/inicio']);
     } else {
       this.toastservice.showToast('Email no verificado, por favor revisa tu buzon',4000)
     }

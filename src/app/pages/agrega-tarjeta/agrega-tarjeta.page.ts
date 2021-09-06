@@ -169,4 +169,9 @@ export class AgregaTarjetaPage implements OnInit {
     });
   }
 
+  cerrarModal() {
+    this.modalCtrl.dismiss();
+  }
+
+
 }

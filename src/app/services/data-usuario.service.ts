@@ -14,6 +14,7 @@ export class DataUsuarioService {
   cargo: false;
   userID = '';
   isAuthenticated: BehaviorSubject<Boolean> = new BehaviorSubject<Boolean>(null);
+  isLogin: BehaviorSubject<Boolean> = new BehaviorSubject<Boolean>(null);
   emailVerified: false;
   constructor(
     public afStrore: AngularFirestore,
@@ -28,6 +29,7 @@ export class DataUsuarioService {
           this.dataUser = result;
           this.userID = user.uid;
           this.isAuthenticated.next(true);
+          this.isLogin.next(true);
           this.emailVerified = user.emailVerified;
           // console.log(this.emailVerified);
         })

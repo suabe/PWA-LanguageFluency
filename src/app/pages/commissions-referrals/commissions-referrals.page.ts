@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataUsuarioService } from '../../services/data-usuario.service';
 
 @Component({
   selector: 'app-commissions-referrals',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./commissions-referrals.page.scss'],
 })
 export class CommissionsReferralsPage implements OnInit {
-
-  constructor() { }
+  color = 'azul'
+  constructor(
+    public _user: DataUsuarioService
+  ) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
+    if (this._user.dataUser.role === 'cliente') {
+      this.color = 'naranja'
+    }
   }
 
 }

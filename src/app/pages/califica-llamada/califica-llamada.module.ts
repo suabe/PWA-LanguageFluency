@@ -8,6 +8,7 @@ import { CalificaLlamadaPageRoutingModule } from './califica-llamada-routing.mod
 
 import { CalificaLlamadaPage } from './califica-llamada.page';
 import { ComponentsModule } from '../../components/components.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ComponentsModule } from '../../components/components.module';
     ReactiveFormsModule,
     IonicModule,
     CalificaLlamadaPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    NgbModule
   ],
   declarations: [CalificaLlamadaPage]
 })

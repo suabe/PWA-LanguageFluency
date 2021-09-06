@@ -1,5 +1,42 @@
-<app-header titulo="Ayuda"></app-header>
+<app-header titulo="Ayuda" [color]="color"></app-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+    <ngb-accordion activeIds="ngb-panel-0" [closeOthers]="true">
+        <ngb-panel title="Tema de Ayuda" color="naranja">
+            <ng-template ngbPanelContent>
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
+              aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+              craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+              occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+              labore sustainable VHS.
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel title="Tema de Ayuda">
+            <ng-template ngbPanelContent>
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
+              aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+              craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+              occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+              labore sustainable VHS.
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel title="Soporte">
+            <ng-template ngbPanelContent>
+              <p>¿Necesitas ayuda?, contactanos.</p>
+              <ion-button (click)="soporte()" expand="block" [color]="color">
+                Solicitud de Soporte
+              </ion-button>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel title="Facturación" *ngIf="_user.dataUser.role === 'cliente'">
+            <ng-template ngbPanelContent>
+              <p>Si requieres factura, contactanos.</p>
+              <ion-button (click)="factura()" expand="block" [color]="color">
+                Solicitud de Facturación
+              </ion-button>
+            </ng-template>            
+          </ngb-panel>
+    </ngb-accordion>
 </ion-content>

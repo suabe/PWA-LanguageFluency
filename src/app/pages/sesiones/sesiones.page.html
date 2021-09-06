@@ -1,18 +1,19 @@
-<app-header titulo="Sessiones"></app-header>
+<app-header titulo="{{'SESSIONS.TITLE' | translate}}" color="naranja"></app-header>
 
 <ion-content class="ion-padding">
   <ion-list>
-      <ion-list-header color="naranja" class="ion-text-center">
-        <ion-label>Ultimas llamadas</ion-label>
-      </ion-list-header>
-      <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1]; let i = index">
-        <ion-label>
-          <h2>Speeker</h2>          
-          <p>Realizada: 15/Abril/2021 Duracion: 10 min</p>
-        </ion-label>
-        <ion-button (click)="calificaCliente('1')" slot="end" *ngIf="i == 0 ||  i === 4"  color="azul">
-          <ion-icon slot="icon-only" name="checkmark-circle"></ion-icon>
-        </ion-button>
-      </ion-item>
-    </ion-list>
+    <ion-list-header color="naranja">
+      <ion-label>{{'SESSIONS.SUBTITLE' | translate}}</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let user of callList; let i = index" color="light">
+      <ion-label>
+        <h2>{{user.name}} {{user.lastName}}</h2>
+        <p>{{user.create | date: 'dd-MMM-YYYY'}}</p>
+      </ion-label>
+      <!-- <ion-label slot="end">Duracion 10 min</ion-label> -->
+      <ion-button [routerLink]="['/detalle-llamada',user.callId]" slot="end"  color="naranja">
+        <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>

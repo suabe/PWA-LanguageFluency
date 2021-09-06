@@ -30,8 +30,10 @@ export class PerfilPage implements OnInit {
     bio: "",
     role: "",
     spei: "",
-    foto: ""
+    foto: "",
+    country: ""
   }
+  color = 'azul';
   speiForm = new FormGroup({
     spei: new FormControl ('', [Validators.required,Validators.minLength(16)]),
   });
@@ -63,6 +65,9 @@ export class PerfilPage implements OnInit {
     
   }
   ionViewWillEnter() {
+    if (this._user.dataUser.role === 'cliente') {
+      this.color = 'naranja'
+    }
     this.getPerfil(this.uId);
   }
 
@@ -91,6 +96,7 @@ export class PerfilPage implements OnInit {
         this.userPerfil.role = result['role'];
         this.userPerfil.spei = result['spei'];
         this.userPerfil.foto = result['foto'];
+        this.userPerfil.country = result['country'];
       } )
     }catch(error) {
       this.toastservice.showToast(error.message, 2000);
@@ -127,6 +133,7 @@ export class PerfilPage implements OnInit {
     const actSheet = await this.asControler.create({
       header: 'Agregar Foto de Perfil',
       backdropDismiss: false,
+      mode: "ios",
       buttons: [
         {
           text: 'Camara',

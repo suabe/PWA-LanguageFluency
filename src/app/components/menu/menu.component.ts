@@ -61,7 +61,8 @@ export class MenuComponent implements OnInit {
   doLogout() {
     
     return this.fbauth.signOut().then(() => {
-      this.ngroute.navigate(['/login']);
+      // this.ngroute.navigate(['/login']);
+      this.ngroute.navigateByUrl("/login");
     });
   }
 

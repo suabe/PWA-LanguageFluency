@@ -6,7 +6,22 @@ import { WalletPage } from './wallet.page';
 const routes: Routes = [
   {
     path: '',
-    component: WalletPage
+    redirectTo: '/wallet/pagos',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
+    component: WalletPage,
+    children: [
+      {
+        path: 'pagos',
+        loadChildren: () => import('../wallet-pagos/wallet-pagos.module').then( m => m.WalletPagosPageModule)
+      },
+      {
+        path: 'tarjetas',
+        loadChildren: () => import('../wallet-tarjetas/wallet-tarjetas.module').then( m => m.WalletTarjetasPageModule)
+      }
+    ]
   }
 ];
 

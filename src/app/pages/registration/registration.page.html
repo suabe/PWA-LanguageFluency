@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar [color]="fillUser">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/login"><ion-icon slot="icon-only" name="add"></ion-icon></ion-back-button>
     </ion-buttons>
-    <ion-title></ion-title>
+    <ion-title>Crear Cuenta</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -17,18 +17,21 @@
             </ion-item>
           </ion-col>
         </ion-row>
-        <ion-row class="ion-padding">
+        <ion-row class="ion-padding">          
           <ion-col size="12" size-lg="3" size-md="4" size-sm="6" offsetMd="4">
             <ion-row>
-              <ion-col> 
-                <ion-button (click)="mostratRegCli()"  expand="block"  shape="round" color="azul">
+              <ion-col><h2 class="ion-text-center">Crear una cuenta como:</h2></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button (click)="mostratRegCli()"  expand="block"  shape="round" color="naranja">
                   Como Improver
                 </ion-button>
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col> 
-                <ion-button (click)="mostratRegConv()"  expand="block"  shape="round" color="naranja">
+              <ion-col>
+                <ion-button (click)="mostratRegConv()"  expand="block"  shape="round" color="azul">
                   Como Speaker
                 </ion-button>
               </ion-col>
@@ -42,68 +45,106 @@
         <ion-row class="ion-padding">
           <ion-col size="6" offset="3" size-lg="3" size-md="4" size-sm="6" offset-md="4">
             <ion-img src="/assets/logo-login.png"></ion-img>
-            
           </ion-col>
           <ion-col size="12">
             <form [formGroup]="registroForm" (ngSubmit)="registro('cliente')" novalidate>
-              <ion-item color="light">
-                <ion-icon slot="start" name="person-outline" color="naranja"></ion-icon>
-                <!-- <ion-label >Nombre</ion-label> -->
-                <ion-input type="text" placeholder="Nombre" [formControl]="$any(registroForm).controls.name"></ion-input>
-              </ion-item>
-              <ion-item color="light">
-                <ion-icon slot="start" name="person-add-outline" color="naranja"></ion-icon>
-                <!-- <ion-label >Apellidos</ion-label> -->
-                <ion-input type="text" placeholder="Apellidos"[formControl]="$any(registroForm).controls.lastName"></ion-input>
-              </ion-item>
-              <ion-item color="light">
-                <ion-icon slot="start" name="male-female-outline" color="naranja"></ion-icon>
-                <!-- <ion-label>Género</ion-label> -->
-                <ion-select cancelText="Cancelar" multiple="false" placeholder="Genero" interface="action-sheet" [formControl]="$any(registroForm).controls.gender">
-                  <ion-select-option value="hombre">Hombre</ion-select-option>
-                  <ion-select-option value="mujer">Mujer</ion-select-option>
-                </ion-select>
-              </ion-item>
-              <ion-item color="light">
-                <ion-icon slot="start" name="calendar-outline" color="naranja"></ion-icon>
-                <!-- <ion-label >Cumpleaños</ion-label> -->
-                <ion-datetime placeholder="Cumpleaños" display-format="YYYY-MMMM-DD" cancelText="Cancelar" done-text="Elegir" mode="ios" min="1970" max="2010" [formControl]="$any(registroForm).controls.birthDate"></ion-datetime>
-              </ion-item>
-              
-              <ion-item color="light">
-                <ion-icon slot="start" name="call-outline" color="naranja"></ion-icon>
-                <!-- <ion-label >Teléfono</ion-label> -->
-                <input type="tel" ionicTelInput [ionicTelInputOptions]="{initialCountry: 'mx',onlyCountries:['mx','ar','us']}"
-                (countryChange)="onCountryChange($event)"
-                (intlTelInputObject)="telInputObject($event)"
-                (hasError)="hasError($event)"
-                (ionicTelOutput)="getNumber($event)"
-                 placeholder="Teléfono" name="registroForm" [formControl]="$any(registroForm).controls.phone">
-              </ion-item>
-
-              <ion-item color="light">
-                <ion-icon slot="start" name="id-card-outline" color="naranja"></ion-icon>
-                <ion-textarea placeholder="Biografía" inputmode="text" [formControl]="$any(registroForm).controls.bio"></ion-textarea>
-              </ion-item>
-              
-              <ion-item color="light">
-                <ion-icon slot="start" name="mail-outline" color="naranja"></ion-icon>
-                <!-- <ion-label >Email</ion-label> -->
-                <ion-input placeholder="E-mail" type="email" [formControl]="$any(registroForm).controls.email"></ion-input>
-              </ion-item>
-
-              <ion-item color="light">
-                <ion-icon slot="start" name="key-outline" color="naranja"></ion-icon>
-                <!-- <ion-label >Contraseña</ion-label> -->
-                <ion-input placeholder="Contraseña" type="password" [formControl]="$any(registroForm).controls.password"></ion-input>
-              </ion-item>
-
-
-              <ion-row>
-                <ion-col>
-                <ion-button type="submit"  expand="block" [disabled]="registroForm.invalid">Registrar</ion-button>
-                </ion-col>
-              </ion-row>
+              <aw-wizard navBarLocation="bottom">
+                <aw-wizard-step stepTitle="Datos">
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="person-outline" color="naranja"></ion-icon>
+                    <!-- <ion-label >Nombre</ion-label> -->
+                    <ion-input type="text" placeholder="Nombre" [formControl]="$any(registroForm).controls.name"></ion-input>
+                  </ion-item>
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="person-add-outline" color="naranja"></ion-icon>
+                    <!-- <ion-label >Apellidos</ion-label> -->
+                    <ion-input type="text" placeholder="Apellidos"[formControl]="$any(registroForm).controls.lastName"></ion-input>
+                  </ion-item>
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="male-female-outline" color="naranja"></ion-icon>
+                    <!-- <ion-label>Género</ion-label> -->
+                    <ion-select cancelText="Cancelar" multiple="false" placeholder="Genero" interface="action-sheet" [formControl]="$any(registroForm).controls.gender">
+                      <ion-select-option value="hombre">Hombre</ion-select-option>
+                      <ion-select-option value="mujer">Mujer</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="calendar-outline" color="naranja"></ion-icon>
+                    <!-- <ion-label >Cumpleaños</ion-label> -->
+                    <ion-datetime placeholder="Cumpleaños" display-format="YYYY-MMMM-DD" cancelText="Cancelar" done-text="Elegir" mode="ios" min="1970" max="2010" [formControl]="$any(registroForm).controls.birthDate"></ion-datetime>
+                  </ion-item>
+    
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="call-outline" color="naranja"></ion-icon>
+                    <!-- <ion-label >Teléfono</ion-label> -->
+                    <input type="tel" ionicTelInput [ionicTelInputOptions]="{initialCountry: 'mx',onlyCountries:['mx','ar','us','ca','du','fr','es']}"
+                    (countryChange)="onCountryChange($event)"
+                    (intlTelInputObject)="telInputObject($event)"
+                    (hasError)="hasError($event)"
+                    (ionicTelOutput)="getNumber($event)"
+                     placeholder="Teléfono" name="registroForm" [formControl]="$any(registroForm).controls.phone">
+                  </ion-item>
+    
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="id-card-outline" color="naranja"></ion-icon>
+                    <ion-textarea placeholder="Intereses" inputmode="text" [formControl]="$any(registroForm).controls.bio"></ion-textarea>
+                  </ion-item>
+    
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="mail-outline" color="naranja"></ion-icon>
+                    <!-- <ion-label >Email</ion-label> -->
+                    <ion-input placeholder="E-mail" type="email" [formControl]="$any(registroForm).controls.email"></ion-input>
+                  </ion-item>
+    
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="key-outline" color="naranja"></ion-icon>
+                    <!-- <ion-label >Contraseña</ion-label> -->
+                    <ion-input placeholder="Contraseña" type="password" [formControl]="$any(registroForm).controls.password"></ion-input>
+                  </ion-item>
+                  <ion-button (click)="mostraMenu()" color="danger">
+                    Cancelar
+                  </ion-button>
+                  <ion-button  awNextStep>
+                    Siguiente
+                  </ion-button>
+                </aw-wizard-step>
+                <aw-wizard-step stepTitle="Horario">
+                  <!-- <ion-label color="naranja" class="titulo">Preferencia de horario</ion-label>
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="time-outline" color="naranja"></ion-icon>                     
+                    <ion-datetime placeholder="De" display-format="HH:mm" cancelText="Cancelar" done-text="Elegir" mode="ios" [formControl]="$any(registroForm).controls.horario" required></ion-datetime>
+                    <ion-datetime slot="end" placeholder="Hasta" display-format="HH:mm" cancelText="Cancelar" done-text="Elegir" mode="ios" [formControl]="$any(registroForm).controls.horario2" required></ion-datetime>
+                  </ion-item>
+                  <ion-label >"El horario introducido nos servirá como una referencia, las llamadas pueden ocurrir fuera de su preferencia."</ion-label><br><br> -->
+                  <ion-label class="ion-margin-bottom titulo" color="naranja" >¿Te recomendó un amigo? Coloca su ID</ion-label>
+                  <ion-item color="light">
+                    <ion-icon slot="start" name="people-circle-outline" color="naranja"></ion-icon>
+                    <!-- <ion-label >Nombre</ion-label> -->
+                    <ion-input type="text" placeholder="Id de Referido" [formControl]="$any(registroForm).controls.idref"></ion-input>
+                  </ion-item>
+                  <ion-item (click)="openModal(term)" class="ion-margin-top">
+                    <ion-label>Acepto términos y condiciones</ion-label>
+                    <ion-checkbox checked="true"  [formControl]="$any(registroForm).controls.termCond"></ion-checkbox>
+                    <!-- <ion-checkbox slot="end" [formControl]="$any(registroSPForm).controls.termCond" required></ion-checkbox> -->
+                  </ion-item>
+                  <ion-item (click)="openModal(priv)">
+                    <ion-label>He leído el aviso de privacidad</ion-label>
+                    <ion-checkbox checked="true"  [formControl]="$any(registroForm).controls.privacidad"></ion-checkbox>
+                    <!-- <ion-checkbox slot="end" [formControl]="$any(registroSPForm).controls.privacidad" required></ion-checkbox> -->
+                  </ion-item>
+                  <ion-row>
+                    <ion-col>
+                      <ion-button color="naranja" awPreviousStep>
+                        Regresar
+                      </ion-button>
+                    </ion-col>
+                    <ion-col>
+                      <ion-button type="submit"  [disabled]="registroForm.invalid">Registrar</ion-button>
+                    </ion-col>
+                  </ion-row>
+                </aw-wizard-step>
+                
+              </aw-wizard>
             </form>
           </ion-col>
         </ion-row>
@@ -116,23 +157,23 @@
             <ion-img src="/assets/logo-login.png"></ion-img>
           </ion-col>
           <ion-col size="12">
-            <form [formGroup]="registroForm" (ngSubmit)="registroSpeaker()" novalidate>
+            <form [formGroup]="registroSPForm" (ngSubmit)="registroSpeaker()" novalidate>
               <aw-wizard navBarLocation="bottom">
-                <aw-wizard-step stepTitle="">
+                <aw-wizard-step stepTitle="Datos">
                   <ion-item color="light">
                     <ion-icon slot="start" name="person-outline" color="azul"></ion-icon>
                     <!-- <ion-label >Nombre</ion-label> -->
-                    <ion-input type="text" placeholder="Nombre" [formControl]="$any(registroForm).controls.name" required></ion-input>
+                    <ion-input type="text" placeholder="Nombre" [formControl]="$any(registroSPForm).controls.name" required></ion-input>
                   </ion-item>
                   <ion-item color="light">
                     <ion-icon slot="start" name="person-add-outline" color="azul"></ion-icon>
                     <!-- <ion-label >Apellidos</ion-label> -->
-                    <ion-input type="text" placeholder="Apellidos"[formControl]="$any(registroForm).controls.lastName" required></ion-input>
+                    <ion-input type="text" placeholder="Apellidos"[formControl]="$any(registroSPForm).controls.lastName" required></ion-input>
                   </ion-item>
                   <ion-item color="light">
                     <ion-icon slot="start" name="male-female-outline" color="azul"></ion-icon>
                     <!-- <ion-label>Género</ion-label> -->
-                    <ion-select cancelText="Cancelar" multiple="false" placeholder="Género" interface="action-sheet" [formControl]="$any(registroForm).controls.gender" required>
+                    <ion-select cancelText="Cancelar" multiple="false" placeholder="Género" interface="action-sheet" [formControl]="$any(registroSPForm).controls.gender" required>
                       <ion-select-option value="hombre">Hombre</ion-select-option>
                       <ion-select-option value="mujer">Mujer</ion-select-option>
                     </ion-select>
@@ -140,84 +181,126 @@
                   <ion-item color="light">
                     <ion-icon slot="start" name="calendar-outline" color="azul"></ion-icon>
                     <!-- <ion-label >Cumpleaños</ion-label> -->
-                    <ion-datetime placeholder="Cumpleaños" display-format="YYYY-MMMM-DD" cancelText="Cancelar" done-text="Elegir" mode="ios" min="1970" max="2010" [formControl]="$any(registroForm).controls.birthDate" required></ion-datetime>
+                    <ion-datetime placeholder="Cumpleaños" display-format="YYYY-MMMM-DD" cancelText="Cancelar" done-text="Elegir" mode="ios" min="1970" max="2010" [formControl]="$any(registroSPForm).controls.birthDate" required></ion-datetime>
                   </ion-item>
                   <ion-item color="light">
                     <ion-icon slot="start" name="mail-outline" color="azul"></ion-icon>
                     <!-- <ion-label >Email</ion-label> -->
-                    <ion-input placeholder="E-mail" type="text" [formControl]="$any(registroForm).controls.email"></ion-input>
+                    <ion-input placeholder="E-mail" type="text" [formControl]="$any(registroSPForm).controls.email"></ion-input>
                   </ion-item>
-                  <ion-item color="light">
+                  <!-- <ion-item color="light">
                     <ion-icon slot="start" name="id-card-outline" color="azul"></ion-icon>
-                    <ion-textarea placeholder="Biografía" inputmode="text" [formControl]="$any(registroForm).controls.bio"></ion-textarea>
-                  </ion-item>
+                    <ion-textarea placeholder="Mis intereses" inputmode="text" [formControl]="$any(registroSPForm).controls.bio"></ion-textarea>
+                  </ion-item> -->
                   <ion-item color="light">
                     <ion-icon slot="start" name="call-outline" color="azul"></ion-icon>
                     <!-- <ion-label >Teléfono</ion-label> -->
-                    <input type="tel" ionicTelInput [ionicTelInputOptions]="{initialCountry: 'mx',onlyCountries:['mx','ar','us']}"
+                    <input type="tel" ionicTelInput [ionicTelInputOptions]="{initialCountry: 'mx',onlyCountries:['mx','ar','us','ca','du','fr','es']}"
                     (countryChange)="onCountryChange($event)"
                     (intlTelInputObject)="telInputObject($event)"
                     (hasError)="hasError($event)"
                     (ionicTelOutput)="getNumber($event)"
-                     placeholder="Teléfono" name="registroForm" [formControl]="$any(registroForm).controls.phone" required>
+                     placeholder="Teléfono" name="registroSPForm" [formControl]="$any(registroSPForm).controls.phone" required>
                   </ion-item>
                   <ion-item color="light">
                     <ion-icon slot="start" name="key-outline" color="azul"></ion-icon>
                     <!-- <ion-label >Contraseña</ion-label> -->
-                    <ion-input placeholder="Contraseña" type="password" [formControl]="$any(registroForm).controls.password"></ion-input>
+                    <ion-input placeholder="Contraseña" type="password" [formControl]="$any(registroSPForm).controls.password"></ion-input>
                   </ion-item>
                   <!-- <ion-item color="light">
                     <ion-icon slot="start" name="card-outline" color="naranja"></ion-icon>
                      <ion-label >Apellidos</ion-label>
-                    <ion-input type="text" placeholder="SPEI" [formControl]="$any(registroForm).controls.spei" required></ion-input>
+                    <ion-input type="text" placeholder="SPEI" [formControl]="$any(registroSPForm).controls.spei" required></ion-input>
                   </ion-item> -->
                   <!-- <button type="button" awNextStep>Next Step</button> -->
+                  <ion-button (click)="mostraMenu()" color="danger">
+                    Cancelar
+                  </ion-button>
                   <ion-button  awNextStep>
                     Siguiente
                   </ion-button>
                 </aw-wizard-step>
-                
-                <aw-wizard-step stepTitle="">
-                  <ion-item color="light">
+
+                <aw-wizard-step stepTitle="Idioma">
+                  <!-- <ion-item color="light">
                     <ion-icon slot="start" name="time-outline" color="azul"></ion-icon>
-                    <!-- <ion-label>Awesome Label</ion-label> -->
-                    <ion-datetime placeholder="Horario" display-format="HH:mm" cancelText="Cancelar" done-text="Elegir" mode="ios" [formControl]="$any(registroForm).controls.horario" required></ion-datetime>
-                  </ion-item>
-                  <ion-item color="light">
+                     <ion-label>Awesome Label</ion-label>
+                    <ion-datetime placeholder="De" display-format="HH:mm" cancelText="Cancelar" done-text="Elegir" mode="ios" [formControl]="$any(registroSPForm).controls.horario" required></ion-datetime>
+                    <ion-datetime slot="end" placeholder="Hasta" display-format="HH:mm" cancelText="Cancelar" done-text="Elegir" mode="ios" [formControl]="$any(registroSPForm).controls.horario2" required></ion-datetime>
+                  </ion-item> -->
+                  <!-- <ion-label >"El horario introducido nos servirá como una referencia, las llamadas pueden ocurrir fuera de su preferencia."</ion-label> -->
+                  <ion-item id="horario" color="light">
                     <ion-icon slot="start" name="male-female-outline" color="azul"></ion-icon>
                     <!-- <ion-label>Idioma</ion-label> -->
-                    <ion-select cancelText="Cancelar" multiple="false" placeholder="Idioma" interface="action-sheet" [formControl]="$any(registroForm).controls.idioma" required>
+                    <ion-select cancelText="Cancelar" multiple="true" placeholder="Idioma" interface="action-sheet" [formControl]="$any(registroSPForm).controls.idioma" required>
                       <ion-select-option value="es">Español</ion-select-option>
                       <ion-select-option value="en">Ingles</ion-select-option>
+                      <ion-select-option value="fr">Frances</ion-select-option>
+                      <ion-select-option value="du">Alemán</ion-select-option>
+                      <ion-select-option value="it">Italiano</ion-select-option>
                     </ion-select>
                   </ion-item>
+                  <ion-item (click)="openModal(term)">
+                    <ion-label>Acepto términos y condiciones</ion-label>
+                    <ion-checkbox checked="true" *ngIf="termCond" [formControl]="$any(registroSPForm).controls.termCond"></ion-checkbox>
+                    <!-- <ion-checkbox slot="end" [formControl]="$any(registroSPForm).controls.termCond" required></ion-checkbox> -->
+                  </ion-item>
+                  <ion-item (click)="openModal(priv)">
+                    <ion-label>He leído el aviso de privacidad</ion-label>
+                    <ion-checkbox checked="true" *ngIf="privacidad" [formControl]="$any(registroSPForm).controls.privacidad"></ion-checkbox>
+                    <!-- <ion-checkbox slot="end" [formControl]="$any(registroSPForm).controls.privacidad" required></ion-checkbox> -->
+                  </ion-item>
+                  <ng-template #term>
+                    <div class="modal-header" color="azul">
+                      <h4 class="modal-title" id="modal-basic-title">Términos y condiciones</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                      <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                      <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                      <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                      <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                      <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-dark" (click)="closeModal('term')">Aceptar</button>
+                    </div>
+                  </ng-template>
+
+                  <ng-template #priv>
+                    <div class="modal-header" color="azul">
+                      <h4 class="modal-title" id="modal-basic-title">Aviso de privacidad</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                      <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                      <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                      <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                      <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-dark" (click)="closeModal('priv')">Aceptar</button>
+                    </div>
+                  </ng-template>
+                  
                   <!-- <button type="button" awPreviousStep>Previous Step</button> -->
                   <ion-row>
                     <ion-col>
-                      <ion-button color="warning" awPreviousStep>
+                      <ion-button color="naranja" awPreviousStep>
                         Regresar
                       </ion-button>
                     </ion-col>
                     <ion-col>
-                    <ion-button type="submit" [disabled]="registroForm.invalid">Registrar</ion-button>
+                      <ion-button type="submit" [disabled]="registroSPForm.invalid">Registrar</ion-button>
                     </ion-col>
                   </ion-row>
                 </aw-wizard-step>
               </aw-wizard>
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-
-              
             </form>
           </ion-col>
         </ion-row>
@@ -227,19 +310,10 @@
 
 
 </ion-content>
-<!-- <ion-footer class="ion-no-border">
-  <ion-toolbar>
-    <ion-row>
-      <ion-col size="6">
-        <ion-button (click)="mostratRegCli()"  expand="block" fill="{{fillUser}}" shape="round" color="azul">
-          Como Improver
-        </ion-button>
-      </ion-col>
-      <ion-col size="6">
-        <ion-button (click)="mostratRegConv()"  expand="block" fill="{{fillConv}}" shape="round" color="naranja">
-          Como Speaker
-        </ion-button>
-      </ion-col>
-    </ion-row>
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="azul">
+    <ion-item color="azul" slot="end">
+      <ion-label> Language Fluency SAPI 2021</ion-label>
+    </ion-item>
   </ion-toolbar>
-</ion-footer> -->
+</ion-footer>

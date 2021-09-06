@@ -10,6 +10,7 @@ import { WalletPage } from './wallet.page';
 import { ComponentsModule } from '../../components/components.module';
 import { AgregaTarjetaPageModule } from '../agrega-tarjeta/agrega-tarjeta.module';
 import { AgregaTarjetaPage } from '../agrega-tarjeta/agrega-tarjeta.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   entryComponents: [
@@ -21,7 +22,8 @@ import { AgregaTarjetaPage } from '../agrega-tarjeta/agrega-tarjeta.page';
     IonicModule,
     WalletPageRoutingModule,
     ComponentsModule,
-    AgregaTarjetaPageModule
+    AgregaTarjetaPageModule,
+    TranslateModule
   ],
   declarations: [WalletPage]
 })

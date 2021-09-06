@@ -2,7 +2,7 @@
   "name": "Languague Fluency",
   "short_name": "Languague Fluency",
   "theme_color": "#ff8504",
-  "background_color": "#000000",
+  "background_color": "#cfe0f5",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",

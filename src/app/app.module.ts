@@ -18,6 +18,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -49,7 +50,8 @@ export function createTranslateLoader(http: HttpClient): any {
         deps: [HttpClient]
       }
     }),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    NgbModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy,  }],
   bootstrap: [AppComponent],

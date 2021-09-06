@@ -1,0 +1,55 @@
+<app-header titulo="Planes" color="naranja"></app-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-list-header color="naranja">
+      <ion-label>Planes</ion-label>
+    </ion-list-header>
+    <ion-list>
+      <ion-item-sliding>
+        <ion-item color="light" detail detailIcon="chevron-back-outline">
+          <ion-label>
+            <p>{{planes?.id}}</p>
+            <h2 *ngIf="planes?.items.data[0].price.id == 'price_1IiLcPFjLGC5FmHqDAZZskyw'">Fluency 10/3</h2>
+            <h2 *ngIf="planes?.items.data[0].price.id == 'price_1IiLr3FjLGC5FmHq8Z2z8pnq'">+Fluency</h2>
+            <p>Creada {{planes?.created*1000 | date}}</p>
+            <p></p>
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option (click)="eliminar()" color="danger"><ion-icon slot="icon-only" name="trash"></ion-icon></ion-item-option>
+          <ion-item-option color="primary" (click)="editar()" color="success"><ion-icon slot="icon-only" name="create"></ion-icon></ion-item-option>
+        </ion-item-options>
+    
+      </ion-item-sliding>
+    </ion-list>
+    
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="naranja" routerLink="/agrega-plan">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <!-- <ion-fab-list side="top">
+      <ion-fab-button color="azul"><ion-icon name="reader"></ion-icon></ion-fab-button>
+    </ion-fab-list> -->
+  </ion-fab>
+  <!-- <ion-slides mode="ios" pager="ios" scrollbar="ios" class="mainSlide">
+    <ion-slide>
+      <ion-card color="light">
+        <ion-card-header>
+          <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
+          <ion-card-title>Awesome Title</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card color="light">
+        <ion-card-header>
+          <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
+          <ion-card-title>Awesome Title</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+  </ion-slides> -->
+</ion-content>

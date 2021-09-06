@@ -99,6 +99,26 @@ $image-size: 120px;
     padding-top: 15px
 }
 
+#menuPerfil {
+    background-color: #fff;
+    border: 3px solid #0076ed;
+    border-radius: 10px;
+}
+
+#menuPerfilImp {
+    background-color: #fff;
+    border: 3px solid #ff8700;
+    border-radius: 10px;
+}
+
+#menuPerfilImp ion-icon {
+    color: #ff8700;
+}
+
+#menuPerfil ion-icon {
+    color: #0076ed;
+}
+
 ion-content {
     --background: url('/assets/shapes.svg') no-repeat 0 0/100% 185%;
 }
@@ -111,4 +131,12 @@ ion-img img {
     height: $image-size;
     margin: 0 auto;
     width: $image-size;
+}
+
+span.iti-flag {
+    position: absolute;
+    top: 22px;
+    bottom: 0;
+    margin: auto;
+    margin-left: 5px;
 }

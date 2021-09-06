@@ -1,22 +1,24 @@
 <ion-menu side="start" menuId="primerMenu" contentId="main">
   
   <ion-content>
-    <ion-list>
-      <ion-item color="azul">
+    <ion-list><!--Header-->
+      <ion-item color="naranja" *ngIf="_user.dataUser.role === 'cliente'">
         <ion-icon slot="start" size="large" name="person-circle" ></ion-icon>
         <ion-label>
           <h4>{{_user.dataUser.name }} {{_user.dataUser.lastName }}</h4>
           <p class="ion-text-capitalize">{{_user.dataUser.role }}</p>
         </ion-label>
-        <!-- <ion-buttons slot="end">
-          <ion-button (click)="showMenuPop( $event )">
-            <ion-icon slot="icon-only" name="caret-down" color="dark"></ion-icon>
-          </ion-button>
-        </ion-buttons> -->
       </ion-item>
-      
+      <ion-item color="azul" *ngIf="_user.dataUser.role === 'conversador'">
+        <ion-icon slot="start" size="large" name="person-circle" ></ion-icon>
+        <ion-label>
+          <h4>{{_user.dataUser.name }} {{_user.dataUser.lastName }}</h4>
+          <p class="ion-text-capitalize">{{_user.dataUser.role }}</p>
+        </ion-label>
+      </ion-item>
     </ion-list>
-    <ion-list *ngIf="_user.dataUser.role === 'cliente'">
+
+    <ion-list *ngIf="_user.dataUser.role === 'cliente'" id="menImpro"><!--Improver-->
       <ion-menu-toggle>
         <ion-item  routerLink="/inicio">
           <ion-icon slot="start" name="home-outline"></ion-icon>
@@ -36,9 +38,21 @@
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
+        <ion-item  routerLink="plans">
+          <ion-icon slot="start" name="reader-outline"></ion-icon>
+          <ion-label>{{'MENU.PLANS' | translate}}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
         <ion-item  routerLink="perfil">
           <ion-icon slot="start" name="person-circle-outline"></ion-icon>
           <ion-label>{{'MENU.ACOUNT' | translate}}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item  routerLink="commissions-referrals">
+          <ion-icon slot="start" name="cash-outline"></ion-icon>
+          <ion-label>{{'MENU.COMMISSIONS' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
@@ -54,7 +68,7 @@
         </ion-item>
       </ion-menu-toggle>
     </ion-list>
-    <ion-list *ngIf="_user.dataUser.role === 'conversador'">
+    <ion-list *ngIf="_user.dataUser.role === 'conversador'"><!--Speaker-->
       <ion-menu-toggle>
         <ion-item  routerLink="/inicio">
           <ion-icon slot="start" name="home-outline" color="naranja"></ion-icon>
@@ -73,12 +87,12 @@
           <ion-label>{{ 'MENU.RECORDS' | translate }}</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle>
+      <!-- <ion-menu-toggle>
         <ion-item  routerLink="calls">
           <ion-icon slot="start" name="call-outline"></ion-icon>
           <ion-label>{{ 'MENU.CALLS' | translate }}</ion-label>
         </ion-item>
-      </ion-menu-toggle>
+      </ion-menu-toggle> -->
       <ion-menu-toggle>
         <ion-item  routerLink="commissions">
           <ion-icon slot="start" name="wallet-outline"></ion-icon>
@@ -101,8 +115,8 @@
     </ion-item>
     <ion-toolbar color="azul">
       <ion-item slot="start" color="azul">
-        <ion-label>Language</ion-label>
-        <ion-select name="lang" interface="popover" (ionChange)="setLanguage($event)">
+        <!-- <ion-label>Language</ion-label> -->
+        <ion-select name="lang" interface="popover" (ionChange)="setLanguage($event)" placeholder="Lenguaje">
           <ion-select-option *ngFor="let item of listLang"
           [value]="item.lang">
           {{item.text}}</ion-select-option>

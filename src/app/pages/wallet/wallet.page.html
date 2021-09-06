@@ -1,33 +1,12 @@
-<app-header titulo="Wallet"></app-header>
-
-<ion-content class="ion-padding">
-    <ion-list>
-        <ion-list-header color="naranja" class="ion-text-center">
-          <ion-label>Pagos realizados</ion-label>
-        </ion-list-header>
-        <ion-item *ngFor="let pago of pagos">
-          <ion-label>
-            <h5>Monto</h5>
-            <p>{{ pago.pagado/100 | currency: 'MXN'}}</p>
-          </ion-label>
-          <ion-label slot="end" class="ion-text-right"><p>{{pago.created*1000 | date: 'dd/MM/YYYY'}}</p></ion-label>
-        </ion-item>
-      </ion-list>
-      <ion-list>
-        <ion-list-header color="naranja" class="ion-text-center">
-          <ion-label>Plan</ion-label>
-        </ion-list-header>
-        <ion-item *ngIf="wallet">
-          <ion-label>
-            <h5>{{wallet.plan}} </h5>
-            <p>Tarjeta {{wallet.card.last4}} - Expira {{wallet.card.exp_month}}/{{wallet.card.exp_year}}</p>
-          </ion-label>
-          <ion-button (click)="borraTarjeta()" slot="end">
-              <ion-icon slot="icon-only" name="trash"></ion-icon>
-          </ion-button>
-        </ion-item>
-      </ion-list>
-      <ion-button (click)="agregaTarjeta()" expand="full" color="tertiary" *ngIf="!wallet">
-          Agrega Plan
-      </ion-button>
-</ion-content>
+<ion-tabs>
+  <ion-tab-bar slot="bottom,top" color="naranja">
+    <ion-tab-button tab="pagos">
+      <ion-icon name="card-outline"></ion-icon>
+      <ion-label>Pagos</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="tarjetas">
+      <ion-icon name="wallet-outline"></ion-icon>
+      <ion-label>Metodo de pago</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

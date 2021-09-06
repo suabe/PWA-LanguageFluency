@@ -28,7 +28,7 @@ export class RecordsPage implements OnInit {
   async getCallsSpeaker() {
     try {
       this.fbstore.collection('calls', ref => ref.where('speId', '==', this._user.userID)
-                                                 .orderBy('create', 'desc').limit(3)
+                                                 .orderBy('create', 'desc')
       ).snapshotChanges().subscribe( data => {
         this.callList = data.map( result => {
           return {
@@ -46,7 +46,7 @@ export class RecordsPage implements OnInit {
             this.callList[index]['bio'] = perfil.payload.data()['bio']
           })
         }
-        console.log(this.callList);
+        // console.log(this.callList);
       })
     } catch (error) {
       
