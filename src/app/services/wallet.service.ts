@@ -23,14 +23,11 @@ export class WalletService {
   }
 
   async getWallet() {
-    await this.afStore.collection('wallet').doc(this.uid).ref.get().then( doc => {
-      if (doc.exists) {
-        //console.log(doc.data());
-        return this.wallet = doc.data()
-      } else {
-        console.log('Sin datos...');
-        
-      }
+    await this.afStore.collection('wallet', ref => ref.where('uid', '==', this.uid )).snapshotChanges()
+    .subscribe( data => {
+      this.wallet = data.map( result => {
+        return result.payload.doc.data()
+      })
     } )
   }
 }

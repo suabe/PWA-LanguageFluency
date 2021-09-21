@@ -10,7 +10,8 @@
         "RECORDS" : "Historial",
         "CALLS" : "Llamadas",
         "COMMISSIONS" : "Comisiones",
-        "LOGOUT": "Cerrar Sesión"
+        "LOGOUT": "Cerrar Sesión",
+        "LANGUAGE": "Lenguaje"
     },
     "HOME": {
         "LASTSESSIONS": "Últimas sesiones del mes",

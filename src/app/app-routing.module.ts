@@ -149,7 +149,8 @@ const routes: Routes = [
     path: 'plans',
     loadChildren: () => import('./pages/plans/plans.module').then( m => m.PlansPageModule),
     canActivate: [AuthGuard]
-  },  {
+  },
+  {
     path: 'referral-detail',
     loadChildren: () => import('./pages/referral-detail/referral-detail.module').then( m => m.ReferralDetailPageModule)
   },
@@ -168,6 +169,11 @@ const routes: Routes = [
   {
     path: 'ayuda-soporte',
     loadChildren: () => import('./pages/ayuda-soporte/ayuda-soporte.module').then( m => m.AyudaSoportePageModule)
+  },
+  {
+    path: 'add-plans',
+    loadChildren: () => import('./pages/add-plans/add-plans.module').then( m => m.AddPlansPageModule),
+    canActivate: [AuthGuard]
   },
 
 

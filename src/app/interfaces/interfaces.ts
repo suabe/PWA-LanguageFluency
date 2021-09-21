@@ -13,4 +13,5 @@ export interface User {
     mtoken?: string;
     horario?: string;
     horario2?: string;
+    idioma?: string;
  }

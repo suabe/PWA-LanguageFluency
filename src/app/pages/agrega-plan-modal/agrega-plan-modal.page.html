@@ -9,6 +9,7 @@
 
 <ion-content class="ion-padding">
  <form [formGroup]="contratarForm" (ngSubmit)="contratar()" color="azul">
+  
    <ion-card color="azul">
      <ion-card-content>
       <ion-item color="azul" class="ion-text-center">
@@ -32,17 +33,21 @@
       </ion-item>
      <ion-item color="azul">
        <ion-icon slot="start" name="time-outline" color="azul"></ion-icon>                     
-       <ion-datetime placeholder="De" display-format="HH:mm" cancelText="Cancelar" done-text="Elegir" mode="ios" [formControl]="$any(contratarForm).controls.horario" required></ion-datetime>
-       <ion-datetime slot="end" placeholder="Hasta" display-format="HH:mm" cancelText="Cancelar" done-text="Elegir" mode="ios" [formControl]="$any(contratarForm).controls.horario2" required></ion-datetime>
+       <ion-datetime mode="ios" placeholder="De" display-format="HH:mm" cancelText="Cancelar" done-text="Elegir" mode="ios" [formControl]="$any(contratarForm).controls.horario" required></ion-datetime>
+       <ion-datetime mode="ios" slot="end" placeholder="Hasta" display-format="HH:mm" cancelText="Cancelar" done-text="Elegir" mode="ios" [formControl]="$any(contratarForm).controls.horario2" required></ion-datetime>
      </ion-item>
      <ion-label >"El horario introducido nos servirá como una referencia, las llamadas pueden ocurrir fuera de su preferencia."</ion-label><br><br>
+     
      <ion-item color="azul">
-      <ion-select cancelText="Cancelar" mode="ios" placeholder="Tarjeta"  [formControl]="$any(contratarForm).controls.tarjeta" required>
-        <ion-select-option value="1">Visa-4343</ion-select-option>
-        <ion-select-option value="1">Master-4343</ion-select-option>
-        <ion-select-option value="1">AMEX-4343</ion-select-option>
+      <ion-select cancelText="Cancelar" mode="ios" placeholder="Tarjeta" interface="action-sheet" [formControl]="$any(contratarForm).controls.tarjeta"  required>
+          <ion-select-option *ngFor="let item of wallet" [value]="item.customer">{{item.card.brand}} {{item?.card.last4}} - Expira {{item?.card.exp_month}}/{{item?.card.exp_year}}</ion-select-option>
       </ion-select>
      </ion-item>
+     <ion-item color="azul">
+      <ion-button (click)="addCard()" color="light">
+        Agrega Tarjeta
+      </ion-button>
+    </ion-item>
      <ion-item color="azul">
        <ion-button block color="light" type="submit" [disabled]="contratarForm.invalid">
          Contratar

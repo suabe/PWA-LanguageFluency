@@ -1,4 +1,4 @@
-<ion-header class="ion-no-border"  translucent>
+<ion-header class="ion-no-border">
   <ion-toolbar [color]="color">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
@@ -50,64 +50,7 @@
         </ion-grid>
       
       </div>
-      <ion-grid fixed>
-        <ion-row class="ion-no-padding" id="menuPerfil" *ngIf="_user.dataUser.role === 'conversador'">
-          <ion-col size="3">
-            <!-- <div class="ion-text-center" (click)="editarPerfil()"> -->
-            <div class="ion-text-center" routerLink="/perfil-options">
-              <ion-icon slot="start" name="person-circle-outline"></ion-icon> <br>
-              <small>Editar</small>
-            </div>
-          </ion-col>
-          <ion-col size="3">
-            <div class="ion-text-center" routerLink="/calls">
-              <ion-icon slot="start" name="call-outline"></ion-icon> <br>
-              <small>Llamadas</small>
-            </div>
-          </ion-col>
-          <ion-col size="3">
-            <div class="ion-text-center" routerLink="/commissions">
-              <ion-icon slot="start" name="wallet-outline"></ion-icon> <br>
-              <small>Comisiones</small>
-            </div>
-          </ion-col>
-          <ion-col size="3">
-            <div class="ion-text-center" routerLink="/ayuda">
-              <ion-icon slot="start" name="help-buoy-outline"></ion-icon> <br>
-              <small>Ayuda</small>
-            </div>
-          </ion-col>
-        </ion-row>
-        <ion-row class="ion-no-padding" id="menuPerfilImp" *ngIf="_user.dataUser.role === 'cliente'">
-          <ion-col size="3">
-            <!-- <div class="ion-text-center" (click)="editarPerfil()"> -->
-            <div class="ion-text-center" routerLink="/perfil-options">
-              <ion-icon slot="start" name="person-circle-outline"></ion-icon> <br>
-              <small>Editar</small>
-            </div>
-          </ion-col>
-          <ion-col size="3">
-            <div class="ion-text-center" routerLink="/plans">
-              <ion-icon slot="start" name="reader-outline"></ion-icon> <br>
-              <small>Planes</small>
-            </div>
-          </ion-col>
-          <ion-col size="3">
-            <div class="ion-text-center" routerLink="/wallet">
-              <ion-icon slot="start" name="wallet-outline"></ion-icon> <br>
-              <small>Wallet</small>
-            </div>
-          </ion-col>
-          <ion-col size="3">
-            <div class="ion-text-center" routerLink="/ayuda">
-              <ion-icon slot="start" name="help-buoy-outline"></ion-icon> <br>
-              <small>Ayuda</small>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
- 
-    
+          
       <div class="vertical-padding" *ngIf="_user.dataUser.role === 'cliente'">
         <p class="ion-text-center text-profile">
           {{userPerfil.bio}}
@@ -206,9 +149,9 @@
           <ion-icon name="settings-outline"></ion-icon>
         </ion-fab-button>
         <ion-fab-list side="start">
-          <!-- <ion-fab-button color="naranja" (click)="editarPerfil()">
+          <ion-fab-button color="naranja" routerLink="/perfil-options">
             <ion-icon  name="person-add-outline"></ion-icon>
-          </ion-fab-button> -->
+          </ion-fab-button>
           <ion-fab-button [color]="color" (click)="subirImgPerfil()">
             <ion-icon  name="camera-outline"></ion-icon>
             <input type="file" style="display: none;" #filePicker (change)="subirAlbum($event)">

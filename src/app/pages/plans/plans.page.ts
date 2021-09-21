@@ -26,12 +26,13 @@ export class PlansPage implements OnInit {
 
   getPlans() {
     try {
-      this.fbstore.collection('plans').doc(this._user.userID).valueChanges().subscribe(
-        data => {
-          this.planes = data
-          // console.log(this.planes);
-        }
-      )
+      this.fbstore.collection('plans', ref => ref.where('uid', '==', this._user.userID )).snapshotChanges()
+      .subscribe( data => {
+        this.planes = data.map( result => {
+          return result.payload.doc.data()
+        })
+        
+      } )
     } catch (error) {
       console.log('erro');
       

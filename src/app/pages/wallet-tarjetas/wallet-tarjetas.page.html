@@ -5,12 +5,12 @@
         <ion-list-header color="naranja" class="ion-text-center">
           <ion-label>Metodos de pago</ion-label>
         </ion-list-header>
-        <ion-item *ngIf="wallet" color="light">
+        <ion-item color="light" *ngFor="let item of wallet">
           <ion-icon slot="start" name="card-outline"></ion-icon>
           <ion-label>
-            <h5>{{wallet.plan}} </h5>
-            <p>Tarjeta {{wallet.card.last4}} - Expira {{wallet.card.exp_month}}/{{wallet.card.exp_year}}</p>
-            <p>{{wallet.card.brand}}</p>
+            <h5>{{item.token}} </h5>
+            <p>Tarjeta {{item?.card.last4}} - Expira {{item?.card.exp_month}}/{{item?.card.exp_year}}</p>
+            <p>{{item?.card.brand}}</p>
           </ion-label>
           <ion-button (click)="borraTarjeta()" slot="end">
               <ion-icon slot="icon-only" name="trash"></ion-icon>

@@ -40,7 +40,7 @@ export class AgregaTarjetaPage implements OnInit {
     let elements = this.stripe.elements();
     var style = {
       base: {
-        color: '#fff',
+        color: '#000',
         lineHeight: '24px',
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSmoothing: 'antialiased',
@@ -75,6 +75,7 @@ export class AgregaTarjetaPage implements OnInit {
         const alert = await this.alertc.create({
           header: '¿Desea guardar?',
           message: 'Se guardaran solo los datos escenciales.',
+          mode: 'ios',
           buttons: [
             {
               text: 'Cancelar',
@@ -87,7 +88,8 @@ export class AgregaTarjetaPage implements OnInit {
               text: 'Si, guardar',
               handler: async () => {
                 this.loader = await this.loading.create({
-                  message: 'Procezando...'
+                  message: 'Procezando...',
+                  mode: 'ios'
                 });
                 this.loader.present();
 
@@ -120,13 +122,31 @@ export class AgregaTarjetaPage implements OnInit {
       //console.log(data);
       // this.loading.dismiss();
       if (data.id != '') {
-        this.savePaymentMethod(result, data)
+        this.saveWallet(result, data)
       } else {
         this.alertc.dismiss()
         this.loading.dismiss();
         this.toastService.showToast('¡Error al guardar!',2000)
       }
     });
+  }
+
+  async saveWallet(result, customer) {
+    let payMethod = {
+      uid: this._user.userID,
+      token: result.source.id,
+      card: result.source.card,
+      customer: customer.id,
+      activa: true,
+      creada: new Date().getTime()
+    }
+
+    await this.fbstore.collection('wallet').doc(result.source.id).set(payMethod).then(data => {
+      console.log('Se agrego Tarjeta');
+      this.alertc.dismiss()
+      this.modalCtrl.dismiss({plan: data});
+      this.loading.dismiss();
+    })
   }
 
   savePaymentMethod(result, customer) {

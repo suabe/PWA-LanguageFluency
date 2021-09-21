@@ -24,14 +24,11 @@ export class WalletTarjetasPage implements OnInit {
   }
 
   async getWallet() {
-    await this.afStore.collection('wallet').doc(this._user.userID).ref.get().then( doc => {
-      if (doc.exists) {
-        //console.log(doc.data());
-        return this.wallet = doc.data()
-      } else {
-        console.log('Sin datos...');
-        
-      }
+    await this.afStore.collection('wallet', ref => ref.where('uid', '==', this._user.userID )).snapshotChanges()
+    .subscribe( data => {
+      this.wallet = data.map( result => {
+        return result.payload.doc.data()
+      })
     } )
   }
 
@@ -46,8 +43,8 @@ export class WalletTarjetasPage implements OnInit {
     await modal.present();
 
     const {data} = await modal.onDidDismiss();
-    console.log('Datos a guardar', data);
-    window.location.reload();
+    // console.log('Datos a guardar', data);
+    // window.location.reload();
   }
 
   borraTarjeta() {

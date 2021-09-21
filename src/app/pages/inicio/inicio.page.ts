@@ -53,9 +53,7 @@ export class InicioPage implements OnInit {
     }
     this.verifica();
     this.menu.enable(true,'primerMenu');
-    
     this.requestPermission();
-    this.contador()
   }
 
   async mostrarNot(evento) {
@@ -70,7 +68,7 @@ export class InicioPage implements OnInit {
     
     //const {data} = await popover.onDidDismiss();
     const {data} = await popover.onWillDismiss();
-    console.log('Padre:', data);
+    //console.log('Padre:', data);
     
   }
   
@@ -83,7 +81,7 @@ export class InicioPage implements OnInit {
       });
       await modal.present();
     }, 2000);
-    console.log(user);
+    //console.log(user);
     
   }
   
@@ -158,13 +156,15 @@ export class InicioPage implements OnInit {
 
     async getPlans() {
       try {
-        this.fbstore.collection('plans', ref => ref.where('active', '==', true)
-                                                    .where('enllamada', '==', false)).snapshotChanges()
+        this.fbstore.collection('plans', ref => ref.where('activa', '==', true)
+                                                    .where('enllamada', '==', false)
+                                                    .where('idioma', 'in' , this._user.dataUser.idioma)).snapshotChanges()
         .subscribe( data => {
           this.userList = data.map( result => {
             return {
               planID: result.payload.doc.id,
               iUid: result.payload.doc.data()['uid'],
+              plan: result.payload.doc.data()
             }            
           })
           for (let index = 0; index < this.userList.length; index++) {

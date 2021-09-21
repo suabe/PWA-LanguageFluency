@@ -99,28 +99,29 @@ $image-size: 120px;
     padding-top: 15px
 }
 
-#menuPerfil {
+#menuPerfil ion-col {
     background-color: #fff;
     border: 3px solid #0076ed;
     border-radius: 10px;
 }
 
-#menuPerfilImp {
+#menuPerfilImp ion-col {
     background-color: #fff;
     border: 3px solid #ff8700;
     border-radius: 10px;
 }
 
-#menuPerfilImp ion-icon {
+#menuPerfilImp ion-col ion-icon {
     color: #ff8700;
 }
 
-#menuPerfil ion-icon {
+#menuPerfil ion-col ion-icon {
     color: #0076ed;
 }
 
 ion-content {
-    --background: url('/assets/shapes.svg') no-repeat 0 0/100% 185%;
+    
+    --background: var(--ion-background-color) url('/assets/shapes.svg') no-repeat 0 0/100% 185%;
 }
 
 ion-img img {

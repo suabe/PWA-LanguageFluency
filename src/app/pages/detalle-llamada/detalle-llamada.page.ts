@@ -29,7 +29,7 @@ export class DetalleLlamadaPage implements OnInit {
         this.call = llamada.payload.data();
         this.fbstore.collection('perfiles').doc(this.call['speId']).snapshotChanges().subscribe( speak => {
           this.call['speaker'] = speak.payload.data()
-          // console.log(this.call);
+          //  console.log(this.call);
         })
       })
       this._calls.complemento(param.id).subscribe(compe => {

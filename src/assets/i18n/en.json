@@ -3,12 +3,15 @@
         "HOME": "Home",
         "SESSIONS": "Sessions",
         "WALLET": "Wallet",
+        "PLANS": "Plans",
         "ACOUNT": "Account",
         "NOTIFICATIONS": "Notifications",
         "HELP": "Help",
         "RECORDS" : "Records",
         "CALLS" : "Calls",
-        "COMMISSIONS" : "Commissions"
+        "COMMISSIONS" : "Commissions",
+        "LOGOUT": "Logout",
+        "LANGUAGE": "Lenguage"
     },
     "HOME": {
         "LASTSESSIONS": "Last Sessions",
@@ -21,5 +24,19 @@
     },
     "CALLDETAIL": {
         "TITLE": "Call detail"
+    },
+    "CALLS": {
+        "TITLE": "Llamadas",
+        "SUBTITLE": "Llamadas a realizar"
+    },
+    "COMMISSIONS": {
+        "TITLE": "Comisiones por llamada",
+        "SUBTITLE": "Comisiones por referidos",
+        "CALLS": "Llamada",
+        "REFERRALS": "Referidos"
+    },
+    "SESSIONS": {
+        "TITLE": "Sesiones",
+        "SUBTITLE": "Ultimas Llamadas"
     }
 }

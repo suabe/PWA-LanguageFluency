@@ -1,6 +1,5 @@
-<ion-header class="ion-no-border"  translucent>
+<ion-header class="ion-no-border">
   <ion-toolbar color="naranja">
-    
     <ion-title class="ion-text-capitalize">Agregar Tarjeta</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="cerrarModal()">Cerrar</ion-button>
@@ -12,18 +11,12 @@
   <ion-list>
     
   </ion-list>
-  <ion-item>
+  <ion-item color="light">
     <ion-input placeholder="Nombre (requerido)" type="text" [(ngModel)]="name"></ion-input>
   </ion-item>
 
-  <ion-item>
+  <ion-item color="light">
     <ion-input placeholder="Email (requerido)" type="email" [(ngModel)]="email"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-select [(ngModel)]="priceID" placeholder="Selecciona Paln">
-      <ion-select-option value="price_1IiLcPFjLGC5FmHqDAZZskyw">Fluency 10/3 $100 al mes</ion-select-option>
-      <ion-select-option value="price_1IiLr3FjLGC5FmHq8Z2z8pnq">+Fluency $300 al mes</ion-select-option>
-    </ion-select>
   </ion-item>
   <form action="/" method="POST" id="payment-form">
     <div id="card-element">

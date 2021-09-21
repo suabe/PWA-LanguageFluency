@@ -23,7 +23,7 @@ export class LoginPage implements OnInit {
     public navCtrl: Router,
     public loginFormbuilder: FormBuilder,
     //private valuechecker: Validator,
-    private toastservice: ToastService,
+    public toastservice: ToastService,
     public menu: MenuController
   ) { 
     /*this.loginform = this.loginFormbuilder.group({
@@ -45,7 +45,7 @@ export class LoginPage implements OnInit {
     //console.log(this.loginform.get('email').value);
     
     return this.authService.SignIn(this.loginform.get('email').value,this.loginform.get('password').value).then( data => {
-      console.log('se logeo',data);
+      //console.log('se logeo',data);
       this.navCtrl.navigate(['/inicio']);
       // if (data.user) {
       //   // this.redirectUser(data.user.emailVerified)
@@ -59,7 +59,7 @@ export class LoginPage implements OnInit {
     }).catch((error) => {
       //window.alert(error.message)
       this.toastservice.showToast(error.message, 2000);
-      console.log(error.message);
+      //console.log(error.message);
       
     });
     

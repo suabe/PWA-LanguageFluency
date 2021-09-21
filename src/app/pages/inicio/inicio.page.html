@@ -92,13 +92,14 @@
     </ion-col>
   </ion-row>
   <ion-list>
-    <ion-list-header color="azul">
+    <ion-list-header color="azul" class="head-radius">
       <ion-label>{{'CALLS.SUBTITLE' | translate}}</ion-label>
     </ion-list-header>
-    <ion-item *ngFor="let user of userList; let i = index">
+    <ion-item *ngFor="let user of userList; let i = index; let last = last" [ngClass]="{'last-item': last}">
       <ion-label>
         <h2>{{user.name}}</h2>
         <p >{{user.gender | titlecase}} <span class="ion-text-uppercase">{{user.country}}</span> <span class="iti-flag {{user.country}}"></span>  </p>
+        <p>Idioma: {{user.plan.idioma}}  </p>
       </ion-label>
       <ion-button *ngIf="i == 0" (click)="llamarCliente(user)" slot="end"  color="azul">
         <ion-icon slot="icon-only" name="call"></ion-icon>
@@ -108,8 +109,6 @@
 </ion-content>
 <ion-footer class="ion-no-border">
   <ion-toolbar [color]="color">
-    <ion-item [color]="color" slot="end">
-      <ion-label> Language Fluency SAPI 2021</ion-label>
-    </ion-item>
+    <ion-title class="ion-text-right" size="small">Language Fluency SAPI 2021</ion-title>
   </ion-toolbar>
 </ion-footer>

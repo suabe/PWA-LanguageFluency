@@ -59,7 +59,7 @@ export class RegistrationPage implements OnInit {
   constructor(
     private authService: AuthenticationService,
     public addnewFormbuilder: FormBuilder,
-    private toastservice: ToastService,
+    public toastservice: ToastService,
     private fbstore: AngularFirestore,
     public router:  Router,
     private menu: MenuController,
@@ -112,13 +112,11 @@ export class RegistrationPage implements OnInit {
       phone: this.registroForm.get('phone').value,
       bio: this.registroForm.get('bio').value,
       idref: this.registroForm.get('idref').value,
-      //spei: this.registroForm.get('spei').value,
-      // idioma: this.registroForm.get('idioma').value,
-      // horario: this.registroForm.get('horario').value,
       code: this.countryCode,
       country: this.country,
       role: rol,
-      creado: new Date()
+      status: 'active',
+      creado: new Date().getTime()
     }
     // console.log(usuario);
 
@@ -129,9 +127,10 @@ export class RegistrationPage implements OnInit {
       console.log('se registro usuario',res.user.uid);
       try {
         await this.fbstore.doc('perfiles/'+res.user.uid).set(usuario).then(data => {
-          console.log('se creo perfil',data);
-          this.authService.SendVerificationMail();
-          this.router.navigate(['login']);
+          //console.log('se creo perfil',data);
+          //this.authService.SendVerificationMail();
+          //this.router.navigate(['agrega-plan']);
+          this.router.navigate(['add-plans']);
         })
 
       }catch(error) {
