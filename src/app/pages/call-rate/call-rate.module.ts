@@ -4,22 +4,24 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AddPlansPageRoutingModule } from './add-plans-routing.module';
+import { CallRatePageRoutingModule } from './call-rate-routing.module';
 
-import { AddPlansPage } from './add-plans.page';
+import { CallRatePage } from './call-rate.page';
 import { ComponentsModule } from '../../components/components.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AddPlansPageRoutingModule,
+    CallRatePageRoutingModule,
     ComponentsModule,
     TranslateModule,
+    NgbModule,
     ReactiveFormsModule
   ],
-  declarations: [AddPlansPage]
+  declarations: [CallRatePage]
 })
-export class AddPlansPageModule {}
+export class CallRatePageModule {}

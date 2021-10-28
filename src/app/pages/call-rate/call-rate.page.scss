@@ -1,10 +1,4 @@
-ion-item {
-    --background: #fff;
-    --color: #000;
-    --inner-border-width: 0px;
-    --border-color: #fff;
-}
-ngb-rating {
+#califica, ngb-rating {
     background-color: #ffffff;
 }
 
@@ -35,16 +29,6 @@ ngb-rating {
 }
 
 #iconAVG {
-  font-size: 2rem;
-  color: #0076ed;
-}
-
-.f-item {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-.last-item {
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+    font-size: 2rem;
+    color: #0076ed;
 }

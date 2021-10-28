@@ -151,7 +151,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'referral-detail',
+    path: 'referral-detail/:id',
     loadChildren: () => import('./pages/referral-detail/referral-detail.module').then( m => m.ReferralDetailPageModule)
   },
   {
@@ -175,6 +175,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/add-plans/add-plans.module').then( m => m.AddPlansPageModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'call-rate',
+    loadChildren: () => import('./pages/call-rate/call-rate.module').then( m => m.CallRatePageModule)
+  },
+
 
 
 

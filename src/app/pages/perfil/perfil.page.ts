@@ -8,6 +8,8 @@ import { ActionSheetController, ModalController, LoadingController } from '@ioni
 import { EditarPerfilPage } from '../editar-perfil/editar-perfil.page';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core'
 import { DataUsuarioService } from '../../services/data-usuario.service';
+import { map } from 'rxjs/operators';
+import { User } from '../../interfaces/interfaces';
 const  { Camera } = Plugins;
 @Component({
   selector: 'app-perfil',
@@ -19,20 +21,7 @@ export class PerfilPage implements OnInit {
   public uId: string;
   userData: any;
   fileData: any;
-  userPerfil = {
-    birthDtate: "",
-    email: "",
-    gender: "",
-    lastName: "",
-    name: "",
-    password: "",
-    phone: "",
-    bio: "",
-    role: "",
-    spei: "",
-    foto: "",
-    country: ""
-  }
+  userPerfil: User = {};
   color = 'azul';
   speiForm = new FormGroup({
     spei: new FormControl ('', [Validators.required,Validators.minLength(16)]),
@@ -85,19 +74,11 @@ export class PerfilPage implements OnInit {
 
   async getPerfil(uid: string) {
     try{
-      await this.fbstore.doc('perfiles/'+uid).valueChanges().subscribe( result => {
-        this.userPerfil.birthDtate = result['birthDtate'];
-        this.userPerfil.email = result['email'];
-        this.userPerfil.gender = result['gender'];
-        this.userPerfil.lastName = result['lastName'];
-        this.userPerfil.name = result['name'];
-        this.userPerfil.phone = result['phone'];
-        this.userPerfil.bio = result['bio'];
-        this.userPerfil.role = result['role'];
-        this.userPerfil.spei = result['spei'];
-        this.userPerfil.foto = result['foto'];
-        this.userPerfil.country = result['country'];
-      } )
+      await this.fbstore.collection('perfiles').doc(uid).snapshotChanges().subscribe(perfil => {
+        this.userPerfil = perfil.payload.data()
+      })
+      console.log(this.userPerfil);
+      
     }catch(error) {
       this.toastservice.showToast(error.message, 2000);
     }

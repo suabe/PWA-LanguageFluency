@@ -15,34 +15,14 @@
       <ion-label slot="end" class="ion-text-end">Activo</ion-label>      
     </ion-item>
     <ion-list>      
-      <ion-item color="light" detail  routerLink="/referral-detail">
+      <ion-item color="light" detail  routerLink="/referral-detail/{{referal.LFId}}" *ngFor="let referal of referals">
         <ion-label>
-          <p>I00001</p>
-          <h2>Jorge</h2>
+          <p>{{referal.LFId}}</p>
+          <h2>{{referal.name}}  {{referal.lastName}}</h2>
         </ion-label>
         <ion-icon slot="end" name="checkmark-circle-outline" color="success"></ion-icon>
       </ion-item>
-      <ion-item color="light" detail  routerLink="/referral-detail">
-        <ion-label>
-          <p>I00002</p>
-          <h2>Alina</h2>
-        </ion-label>
-        <ion-icon slot="end" name="checkmark-circle-outline" color="success"></ion-icon>
-      </ion-item>
-      <ion-item color="light" detail  routerLink="/referral-detail">
-        <ion-label>
-          <p>I00003</p>
-          <h2>Juan</h2>
-        </ion-label>
-        <ion-icon slot="end" name="checkmark-circle-outline" color="success"></ion-icon>
-      </ion-item>
-      <ion-item color="light" detail  routerLink="/referral-detail">
-        <ion-label>
-          <p>I00004</p>
-          <h2>Ale</h2>
-        </ion-label>
-        <ion-icon slot="end" name="checkmark-circle-outline" color="success"></ion-icon>
-      </ion-item>
+      
     </ion-list>
     <!-- <table class="table table-striped table-responsive">
       <thead>

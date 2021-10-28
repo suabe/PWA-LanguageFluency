@@ -17,7 +17,7 @@ export class LoginPage implements OnInit {
     email: new FormControl('seiyasuabe@icloud.com'),
     password: new FormControl('NETnet123'),
   });
-  
+  splitPaneState
   constructor(
     public authService: AuthenticationService,
     public navCtrl: Router,
@@ -34,11 +34,16 @@ export class LoginPage implements OnInit {
   }
   
   ngOnInit() {
-    
+    this.menu.enable(false,'primerMenu');
+  }
+
+  ngOnDestroy() {
+    this.menu.enable(true,'main');
   }
 
   ionViewWillEnter() {
-    this.menu.enable(false,'primerMenu');
+    this.menu.enable(false,'main');
+    this.splitPaneState = false;
   }
 
   doLogin() {

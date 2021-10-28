@@ -82,11 +82,11 @@
           <ion-row>
             <ion-col size="6">
               <strong class="text-tertiary">Cumpleaños</strong> <br>
-              <small class="text-white">{{userPerfil.birthDtate | date: 'dd-MMMM-YYYY'}}</small>
+              <small class="text-white">{{userPerfil.birthDate | date: 'dd-MMMM-YYYY'}}</small>
             </ion-col>
             <ion-col size="6">
-              <strong class="text-tertiary">SPEI</strong> <br>
-              <small class="text-white">{{userPerfil.spei}}</small>
+              <strong class="text-tertiary">LFId</strong> <br>
+              <small class="text-white">{{userPerfil.LFId}}</small>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -114,17 +114,17 @@
           <ion-row>
             <ion-col size="6">
               <strong class="text-primary">Cumpleaños</strong> <br>
-              <small >{{userPerfil.birthDtate | date: 'dd-MMMM-YYYY'}}</small>
+              <small >{{userPerfil.birthDate | date: 'dd-MMMM-YYYY'}}</small>
             </ion-col>
             <ion-col size="6">
-              <!-- <strong class="text-tertiary">SPEI</strong> <br>
-              <small class="text-white">{{userPerfil.spei}}</small> -->
+              <strong class="text-primary">LFId</strong> <br>
+              <small >{{userPerfil.LFId}}</small>
             </ion-col>
           </ion-row>
         </ion-grid>
       </div>
 
-      <div class="ion-padding">
+      <!-- <div class="ion-padding">
         <ion-row *ngIf="!userPerfil.spei">
             <ion-col size="12">
                 <form [formGroup]="speiForm" (ngSubmit)="agregaSpei()" novalidate>
@@ -139,7 +139,7 @@
                 </form>
             </ion-col>
         </ion-row>
-      </div>
+      </div> -->
 
       
 

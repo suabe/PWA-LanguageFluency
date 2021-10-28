@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { DataUsuarioService } from './services/data-usuario.service';
+import { LanguageService } from './services/language.service';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +11,17 @@ import { DataUsuarioService } from './services/data-usuario.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  listLang = [
+    { text: 'English', flag: 'assets/imags/flags/us.jpg', lang: 'en' },
+    { text: 'Spanish', flag: 'assets/imags/flags/spain.jpg', lang: 'es' },
+  ];
+  splitPaneState: any ;
   constructor(
     private platform: Platform,
     private fbauth: AngularFireAuth,
-    private route: Router,
-    private _user: DataUsuarioService
+    private ngroute: Router,
+    public _user: DataUsuarioService,
+    public languageService: LanguageService
   ) {    
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -27,5 +34,20 @@ export class AppComponent {
       //   }
       // })
     });
+  }
+
+  doLogout() {
+    
+    return this.fbauth.signOut().then(() => {
+      // this.ngroute.navigate(['/login']);
+      this.ngroute.navigateByUrl("/login");
+    });
+  }
+
+  setLanguage(lang) {
+    
+    this.languageService.setLanguage(lang.detail.value);
+
+    
   }
 }

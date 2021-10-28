@@ -14,7 +14,7 @@
     <ion-list-header color="azul">
       <ion-label>{{'RECORDS.SUBTITLE' | translate}}</ion-label>
     </ion-list-header>
-    <ion-item *ngFor="let user of callList; let i = index" >
+    <ion-item *ngFor="let user of callList; let i = index; let last = last" [ngClass]="{'last-item': last}" >
       <ion-label>
         <h2>{{user.name}} {{user.lastName}}</h2>
         <p>{{user.create | date: 'dd-MMM-YYYY'}}</p>

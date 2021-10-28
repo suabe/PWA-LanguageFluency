@@ -51,8 +51,8 @@ export class InicioPage implements OnInit {
     } else {
       this.getPlans();
     }
-    this.verifica();
-    this.menu.enable(true,'primerMenu');
+    //this.verifica();
+    this.menu.enable(true,'main');
     this.requestPermission();
   }
 

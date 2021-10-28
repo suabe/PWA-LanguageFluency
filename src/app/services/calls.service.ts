@@ -25,7 +25,19 @@ export class CallsService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'Basic ' + btoa('AC22ae1dad8bd832a2ecd25b28742feddc:84e565cb348fe86545ebfd53617bb4ca')
+        'Authorization': 'Basic ' + btoa('AC22ae1dad8bd832a2ecd25b28742feddc:9aa31c2d0d5d07a9ff66af0b2be1e969')
+      })
+    }
+    return this.http.get(url,httpOptions);
+  }
+
+  childCall(uri:string) {
+    var url = 'https://api.twilio.com/2010-04-01/Accounts/AC22ae1dad8bd832a2ecd25b28742feddc/Calls.json?ParentCallSid='+uri;
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic ' + btoa('AC22ae1dad8bd832a2ecd25b28742feddc:9aa31c2d0d5d07a9ff66af0b2be1e969')
       })
     }
     return this.http.get(url,httpOptions);
@@ -37,7 +49,7 @@ export class CallsService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'Basic ' + btoa('AC22ae1dad8bd832a2ecd25b28742feddc:84e565cb348fe86545ebfd53617bb4ca')
+        'Authorization': 'Basic ' + btoa('AC22ae1dad8bd832a2ecd25b28742feddc:9aa31c2d0d5d07a9ff66af0b2be1e969')
       })
     }
     return this.http.get(url,httpOptions);

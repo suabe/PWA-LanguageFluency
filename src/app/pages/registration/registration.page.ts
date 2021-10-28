@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { IonSlides, MenuController } from '@ionic/angular';
 import { Validator } from '../../helpers/validation.helpers';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-registration',
@@ -19,7 +20,7 @@ export class RegistrationPage implements OnInit {
   fillUser = {};
   fillConv = {};
   countryCode = '';
-  country = '';
+  country = 'mx';
   registroForm = new FormGroup({
     email: new FormControl( '',[Validators.required,Validators.email]),
     password: new FormControl ('', [Validators.required]),
@@ -34,8 +35,8 @@ export class RegistrationPage implements OnInit {
     // horario: new FormControl('',Validators.required),
     // horario2: new FormControl('',Validators.required),
     // idioma: new FormControl('',Validators.required),
-    termCond: new FormControl(undefined,[Validators.required]),
-    privacidad: new FormControl(undefined,[Validators.required])
+    // termCond: new FormControl(undefined,[Validators.required]),
+    // privacidad: new FormControl(undefined,[Validators.required])
   });
   registroSPForm = new FormGroup({
     email: new FormControl( '',[Validators.required,Validators.email]),
@@ -56,6 +57,12 @@ export class RegistrationPage implements OnInit {
   });
   termCond
   privacidad
+  lang;
+  current
+  listLang = [
+    { text: 'English', flag: 'assets/imags/flags/us.jpg', lang: 'en' },
+    { text: 'Spanish', flag: 'assets/imags/flags/spain.jpg', lang: 'es' },
+  ];
   constructor(
     private authService: AuthenticationService,
     public addnewFormbuilder: FormBuilder,
@@ -64,12 +71,14 @@ export class RegistrationPage implements OnInit {
     public router:  Router,
     private menu: MenuController,
     config: NgbModalConfig,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    public languageService: LanguageService
   ) {
     config.backdrop = 'static';
     config.keyboard = false;
     config.centered = true;
     config.scrollable = true;
+    this.current = languageService.current
   }
 
   checkCheckbox(c: AbstractControl){
@@ -80,15 +89,22 @@ export class RegistrationPage implements OnInit {
 
   ngOnInit() {
     //this.slides.lockSwipes(true);
-
+    this.menu.enable(false,'main');
   }
   ionViewDidEnter() {
+    this.menu.enable(false,'main');
     this.slides.lockSwipes(true);
     this.getIndex();
+    console.log('lenguaje =>',this.languageService.current);
+    
   }
 
   ionViewWillEnter() {
     this.menu.enable(false,'primerMenu');
+  }
+
+  ngOnDestroy() {
+    //this.menu.enable(true,'main');
   }
 
   signUp(email, password){
@@ -154,7 +170,7 @@ export class RegistrationPage implements OnInit {
       birthDtate: this.registroSPForm.get('birthDate').value,
       phone: this.registroSPForm.get('phone').value,
       // bio: this.registroSPForm.get('bio').value,
-      spei: this.registroSPForm.get('spei').value,
+      //spei: this.registroSPForm.get('spei').value,
       // cinbanck: this.registroSPForm.get('spei').value,
       idioma: this.registroSPForm.get('idioma').value,
       code: this.countryCode,
@@ -245,6 +261,13 @@ export class RegistrationPage implements OnInit {
     }
     this.modalService.dismissAll()
     console.log(modal);
+  }
+
+  setLanguage(lang) {
+    
+    this.languageService.setLanguage(lang.detail.value);
+
+    this.current = lang.detail.value
   }
 
 }

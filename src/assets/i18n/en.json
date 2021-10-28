@@ -11,7 +11,31 @@
         "CALLS" : "Calls",
         "COMMISSIONS" : "Commissions",
         "LOGOUT": "Logout",
-        "LANGUAGE": "Lenguage"
+        "LANGUAGE": "EN"
+    },
+    "REGISTRO": {
+        "TITLE": "Sign Up",
+        "SUBTITLE": "Create an account as:",
+        "COMOSPEAKER": "As a Speaker",
+        "COOMOIMPROVER": "As a Improver",
+        "NOMBRE": "Name",
+        "APELLIDOS": "Lastname",
+        "GENERO": "Gender",
+        "CUMPLEANOS": "Birthday",
+        "TELEFONO": "Telephone",
+        "INTERESES": "Interests",
+        "EMAIL": "E-mail",
+        "CONTRASENA": "Password",
+        "CANCELAR": "Cancel",
+        "SIGUIENTE": "Next",
+        "LABELREFERIDO": "Did a friend recommend you? Enter your ID",
+        "REFERIDO": "Referral Id",
+        "LABELIDIOMAS": "Select your languages",
+        "IDIOMAS": "Languages",
+        "TERMINOS": "I accept terms and conditions",
+        "PRIVACIDAD": "I have read the privacy notice",
+        "REGRESAR": "Back",
+        "REGISTRAR": "Sign up"
     },
     "HOME": {
         "LASTSESSIONS": "Last Sessions",

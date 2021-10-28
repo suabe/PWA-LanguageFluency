@@ -5,7 +5,7 @@
         <ion-list-header color="naranja" class="ion-text-center">
           <ion-label>Pagos realizados</ion-label>
         </ion-list-header>
-        <ion-item *ngFor="let pago of pagos" color="light">
+        <ion-item *ngFor="let pago of pagos; let last = last" [ngClass]="{'last-item': last}" color="light">
           <ion-label>
             <h5>Monto</h5>
             <p>{{ pago.pagado/100 | currency: 'MXN'}}</p>

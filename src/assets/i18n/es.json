@@ -11,7 +11,31 @@
         "CALLS" : "Llamadas",
         "COMMISSIONS" : "Comisiones",
         "LOGOUT": "Cerrar Sesión",
-        "LANGUAGE": "Lenguaje"
+        "LANGUAGE": "ES"
+    },
+    "REGISTRO": {
+        "TITLE": "Crear Cuenta",
+        "SUBTITLE": "Crear una cuenta como:",
+        "COMOSPEAKER": "Como Speaker",
+        "COOMOIMPROVER": "Como Improver",
+        "NOMBRE": "Nombre",
+        "APELLIDOS": "Apellidos",
+        "GENERO": "Genero",
+        "CUMPLEANOS": "Cumpleaños",
+        "TELEFONO": "Telèfono",
+        "INTERESES": "Intereses",
+        "EMAIL": "E-mail",
+        "CONTRASENA": "Contraseña",
+        "CANCELAR": "Cancelar",
+        "SIGUIENTE": "Siguiente",
+        "LABELREFERIDO": "¿Te recomendó un amigo? Coloca su ID",
+        "REFERIDO": "Id de Referido",
+        "LABELIDIOMAS": "Selecciona tus idiomas",
+        "IDIOMAS": "Idiomas",
+        "TERMINOS": "Acepto términos y condiciones",
+        "PRIVACIDAD": "He leído el aviso de privacidad",
+        "REGRESAR": "Regresar",
+        "REGISTRAR": "Registrar"
     },
     "HOME": {
         "LASTSESSIONS": "Últimas sesiones del mes",

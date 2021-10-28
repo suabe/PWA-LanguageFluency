@@ -14,4 +14,7 @@ export interface User {
     horario?: string;
     horario2?: string;
     idioma?: string;
+    LFId?: string;
+    foto?: string;
+    country?: string;
  }

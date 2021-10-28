@@ -87,11 +87,14 @@
     <ion-list-header color="naranja">
       <ion-label>Llamada</ion-label>
     </ion-list-header>
-    <ion-item *ngIf="recordings">
-      <audio controls>
+    <ion-item *ngIf="recordings" >
+      <audio controls class="audio-container">
         <source [src]="url" type="audio/mpeg">
       </audio>
     </ion-item>
   </ion-list>
+  <ion-button (click)="calificaSpeker()" expand="block" fill="solid" shape="round" color="azul" *ngIf="!call?.calSpe">
+    Calificar Speaker
+  </ion-button>
 </ion-content>
 

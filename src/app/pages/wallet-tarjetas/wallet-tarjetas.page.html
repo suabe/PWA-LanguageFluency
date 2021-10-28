@@ -5,7 +5,7 @@
         <ion-list-header color="naranja" class="ion-text-center">
           <ion-label>Metodos de pago</ion-label>
         </ion-list-header>
-        <ion-item color="light" *ngFor="let item of wallet">
+        <ion-item color="light" *ngFor="let item of wallet; let last = last" [ngClass]="{'last-item': last}">
           <ion-icon slot="start" name="card-outline"></ion-icon>
           <ion-label>
             <h5>{{item.token}} </h5>

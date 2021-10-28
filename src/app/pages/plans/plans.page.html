@@ -1,28 +1,41 @@
-<app-header titulo="Planes" color="naranja"></app-header>
+<!-- <app-header titulo="Planes" color="naranja"></app-header> -->
+<ion-header class="ion-no-border">
+  <ion-toolbar color="naranja">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-capitalize">Planes</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
 
 <ion-content class="ion-padding">
   <ion-list>
     <ion-list-header color="naranja">
       <ion-label>Planes</ion-label>
     </ion-list-header>
-    <ion-list>
-      <ion-item-sliding *ngFor="let plan of planes">
-        <ion-item color="light" detail detailIcon="chevron-back-outline">
-          <ion-label>
-            <p>{{plan?.plan}}</p>
-            <h2 *ngIf="plan?.price == 'price_1IiLcPFjLGC5FmHqDAZZskyw'">Fluency 10/3</h2>
-            <h2 *ngIf="plan?.price == 'price_1IiLr3FjLGC5FmHq8Z2z8pnq'">+Fluency</h2>
-            <p>Creada {{plan?.creada*1000 | date}}</p>
-            <p>Idioma: {{plan?.idioma}} </p>
-          </ion-label>
-        </ion-item>
-        <ion-item-options side="end">
-          <ion-item-option (click)="eliminar()" color="danger"><ion-icon slot="icon-only" name="trash"></ion-icon></ion-item-option>
-          <ion-item-option color="primary" (click)="editar()" color="success"><ion-icon slot="icon-only" name="create"></ion-icon></ion-item-option>
-        </ion-item-options>
+    <ion-item-sliding *ngFor="let plan of planes; let last = last" #slidingItem>
+      <ion-item color="light" detail detailIcon="chevron-back-outline" [ngClass]="{'last-item': last}">
+        <ion-label>
+          <!-- <p>{{plan?.plan}}</p> -->
+          <h2 *ngIf="plan?.price == 'price_1IiLcPFjLGC5FmHqDAZZskyw'">Fluency 10/3</h2>
+          <h2 *ngIf="plan?.price == 'price_1IiLr3FjLGC5FmHq8Z2z8pnq'">+Fluency</h2>
+          <p *ngIf="plan?.activa">Creado {{plan?.creada*1000 | date}}</p>
+          <p *ngIf="!plan?.activa">Cancelado {{plan?.canceled_at*1000 | date}}</p>
+          <p>Idioma: {{plan?.idioma}} </p>
+          <p>
+            <ion-badge color="success" mode="ios" *ngIf="plan?.activa">Activo</ion-badge>
+            <ion-badge color="danger" mode="ios" *ngIf="!plan?.activa">Cancelado</ion-badge>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="eliminar(plan);slidingItem.close()" color="danger"><ion-icon slot="icon-only" name="trash"></ion-icon></ion-item-option>
+        <ion-item-option color="primary" (click)="editar(plan);slidingItem.close()" color="success"><ion-icon slot="icon-only" name="create"></ion-icon></ion-item-option>
+      </ion-item-options>
+  
+    </ion-item-sliding>
     
-      </ion-item-sliding>
-    </ion-list>
     
   </ion-list>
 

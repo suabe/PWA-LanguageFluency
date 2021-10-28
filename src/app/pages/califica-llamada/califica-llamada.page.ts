@@ -52,7 +52,7 @@ export class CalificaLlamadaPage implements OnInit {
       destination: this.imTel,//Numero del Improver, con codigo de pais
       impId: this.iUid//UID del Improver
     }).subscribe( async (data: any) => {
-      //console.log(data.sid);
+      console.log('callid =>',data.sid);
       this.callId = data.sid
     } )
     // console.log(this.imTel);
@@ -76,6 +76,8 @@ export class CalificaLlamadaPage implements OnInit {
     } catch (error) {
       this.modalCtrl.dismiss();
       this.toastservice.showToast(error,5000);
+      console.log(error);
+      
     }
     
     //console.log(this.calificaForm.value);

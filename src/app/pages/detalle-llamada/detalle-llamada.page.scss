@@ -9,6 +9,10 @@ ngb-rating {
     background-color: #ffffff;
 }
 
+.audio-container {
+  margin: 0 auto; display: table;
+}
+
 .star {
     position: relative;
     display: inline-block;
@@ -39,3 +43,4 @@ ngb-rating {
   font-size: 2rem;
   color: #0076ed;
 }
+

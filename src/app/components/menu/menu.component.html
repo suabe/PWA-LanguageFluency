@@ -1,4 +1,4 @@
-<ion-menu side="start" menuId="primerMenu" contentId="main">
+<ion-menu side="start" menuId="main" contentId="main">
   
   <ion-content>
     <ion-list><!--Header-->
@@ -19,49 +19,49 @@
     </ion-list>
 
     <ion-list *ngIf="_user.dataUser.role === 'cliente'" id="menImpro"><!--Improver-->
-      <ion-menu-toggle>
+      <ion-menu-toggle autoHide="false">
         <ion-item  routerLink="/inicio">
           <ion-icon slot="start" name="home-outline"></ion-icon>
           <ion-label>{{'MENU.HOME' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle>
+      <ion-menu-toggle autoHide="false">
         <ion-item  routerLink="sesiones" >
           <ion-icon slot="start" name="chatbubbles-outline"></ion-icon>
           <ion-label>{{'MENU.SESSIONS' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle>
+      <ion-menu-toggle autoHide="false">
         <ion-item  routerLink="wallet">
           <ion-icon slot="start" name="wallet-outline"></ion-icon>
           <ion-label>{{'MENU.WALLET' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle>
+      <ion-menu-toggle autoHide="false">
         <ion-item  routerLink="plans">
           <ion-icon slot="start" name="reader-outline"></ion-icon>
           <ion-label>{{'MENU.PLANS' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle>
+      <ion-menu-toggle autoHide="false">
         <ion-item  routerLink="perfil">
           <ion-icon slot="start" name="person-circle-outline"></ion-icon>
           <ion-label>{{'MENU.ACOUNT' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle>
+      <ion-menu-toggle autoHide="false">
         <ion-item  routerLink="commissions-referrals">
           <ion-icon slot="start" name="cash-outline"></ion-icon>
           <ion-label>{{'MENU.COMMISSIONS' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle>
+      <ion-menu-toggle autoHide="false">
         <ion-item routerLink="notificaciones">
           <ion-icon slot="start" name="notifications-outline"></ion-icon>
           <ion-label>{{'MENU.NOTIFICATIONS' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle>
+      <ion-menu-toggle autoHide="false">
         <ion-item  routerLink="ayuda">
           <ion-icon slot="start" name="help-buoy-outline"></ion-icon>
           <ion-label>{{'MENU.HELP' | translate}}</ion-label>
@@ -69,38 +69,38 @@
       </ion-menu-toggle>
     </ion-list>
     <ion-list *ngIf="_user.dataUser.role === 'conversador'"><!--Speaker-->
-      <ion-menu-toggle>
+      <ion-menu-toggle autoHide="false">
         <ion-item  routerLink="/inicio">
           <ion-icon slot="start" name="home-outline" color="naranja"></ion-icon>
           <ion-label>{{'MENU.HOME' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle>
+      <ion-menu-toggle autoHide="false">
         <ion-item  routerLink="perfil">
           <ion-icon slot="start" name="person-circle-outline"></ion-icon>
           <ion-label>{{'MENU.ACOUNT' | translate}}</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle>
+      <ion-menu-toggle autoHide="false">
         <ion-item  routerLink="records">
           <ion-icon slot="start" name="folder-outline"></ion-icon>
           <ion-label>{{ 'MENU.RECORDS' | translate }}</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <!-- <ion-menu-toggle>
+      <!-- <ion-menu-toggle autoHide="false">
         <ion-item  routerLink="calls">
           <ion-icon slot="start" name="call-outline"></ion-icon>
           <ion-label>{{ 'MENU.CALLS' | translate }}</ion-label>
         </ion-item>
       </ion-menu-toggle> -->
-      <ion-menu-toggle>
+      <ion-menu-toggle autoHide="false">
         <ion-item  routerLink="commissions">
           <ion-icon slot="start" name="wallet-outline"></ion-icon>
           <ion-label>{{ 'MENU.COMMISSIONS' | translate }}</ion-label>
         </ion-item>
       </ion-menu-toggle>
       
-      <ion-menu-toggle>
+      <ion-menu-toggle autoHide="false">
         <ion-item  routerLink="ayuda">
           <ion-icon slot="start" name="help-buoy-outline"></ion-icon>
           <ion-label>{{'MENU.HELP' | translate}}</ion-label>
