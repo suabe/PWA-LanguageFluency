@@ -43,6 +43,7 @@ export class AyudaSoportePage implements OnInit {
       from: this._user.userID,
       name: this.soporteForm.get('name').value,
       message: this.soporteForm.get('message').value,
+      status: 'notAnswered',
       creationTime: new Date().getTime()
     }
     this.fbstore.collection('support').add(msg).then(async support => {

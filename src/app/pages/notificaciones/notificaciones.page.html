@@ -1,10 +1,13 @@
 <app-header titulo="Notificaciones" color="naranja"></app-header>
 
 <ion-content class="ion-padding">
-    <!-- <ion-card color="light" *ngFor="let item of [1,1,1]">
+    <ion-card color="light" *ngFor="let noti of notifications">
         <ion-card-header>
-            <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
-            <ion-card-title>Awesome Title</ion-card-title>
+            <ion-card-title>{{noti?.title}}</ion-card-title>
         </ion-card-header>
-    </ion-card> -->
+        <ion-card-content>
+            {{noti?.message}} <br>
+            {{noti?.created | date}}
+        </ion-card-content>
+    </ion-card>
 </ion-content>

@@ -19,13 +19,9 @@ export class ReferralDetailPage implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(param => {
-      this.fbstore.collection('perfiles', ref => ref.where('LFId','==',param.id)).snapshotChanges().subscribe( impro => {
-        this.referal = impro.map( result => {
-          const perfil = result.payload.doc.data()
-          const uid = result.payload.doc.id
-          return  {perfil,uid}
-        } )
-        this.fbstore.collection('plans', ref => ref.where('uid','==',this.referal[0]['uid'])).snapshotChanges().subscribe( plans => {
+      this.fbstore.collection('perfiles').doc(param.id).snapshotChanges().subscribe( impro => {
+        this.referal = impro.payload.data() 
+        this.fbstore.collection('plans', ref => ref.where('uid','==',param.id)).snapshotChanges().subscribe( plans => {
           this.referal['plans'] = plans.map( result => {
             return result.payload.doc.data()
           })

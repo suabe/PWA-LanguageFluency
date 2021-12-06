@@ -39,7 +39,7 @@
             </ion-col>
             <ion-col size="4">   
               <img *ngIf="userPerfil.foto" [src]="userPerfil.foto" class="image-round border-tertiary margin-top">
-              <img *ngIf="!userPerfil.foto" src="https://image.flaticon.com/icons/svg/163/163801.svg" alt="" class="image-round border-tertiary margin-top">
+              <img *ngIf="!userPerfil.foto" src="/assets/boy.png" alt="" class="image-round border-tertiary margin-top">
             </ion-col>
             <!-- <ion-col size="4" class="ion-no-padding position-relative">
               <ion-button fill="clear" class="button-vertical-align button-right">
@@ -62,31 +62,41 @@
           <ion-row>
             <ion-col size="6">
               <strong class="text-tertiary">Género</strong> <br>
-              <small class="text-white">{{userPerfil.gender}}</small>
+              <small >{{userPerfil.gender}}</small>
             </ion-col>
             <ion-col size="6">
               <strong class="text-tertiary">Email</strong> <br>
-              <small class="text-white">{{userPerfil.email}}</small>
+              <small >{{userPerfil.email}}</small>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="6">
               <strong class="text-tertiary">Teléfono</strong> <br>
-              <small class="text-white">{{userPerfil.phone}}</small>
+              <small >{{userPerfil.phone}}</small>
             </ion-col>
             <ion-col size="6">
               <strong class="text-tertiary">Pais</strong> <br>
-              <small class="text-white">México</small>
+              <small >México</small>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="6">
               <strong class="text-tertiary">Cumpleaños</strong> <br>
-              <small class="text-white">{{userPerfil.birthDate | date: 'dd-MMMM-YYYY'}}</small>
+              <small >{{userPerfil.birthDate | date: 'dd-MMMM-YYYY'}}</small>
             </ion-col>
             <ion-col size="6">
               <strong class="text-tertiary">LFId</strong> <br>
-              <small class="text-white">{{userPerfil.LFId}}</small>
+              <small >{{userPerfil.LFId}}</small>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <strong class="text-tertiary">SPEI</strong> <br>
+              <small >{{userPerfil?.spei }}</small>
+            </ion-col>
+            <ion-col size="6">
+              <!-- <strong class="text-tertiary">LFId</strong> <br>
+              <small class="text-white">{{userPerfil.LFId}}</small> -->
             </ion-col>
           </ion-row>
         </ion-grid>

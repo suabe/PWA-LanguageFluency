@@ -48,12 +48,9 @@
           <ion-item color="light">
             <ion-icon slot="start" name="call-outline" color="azul"></ion-icon>
             <!-- <ion-label >Teléfono</ion-label> -->
-            <input type="tel" ionicTelInput [ionicTelInputOptions]="{initialCountry: 'mx',onlyCountries:['mx','ar','us','ca','du','fr','es']}"
-            (countryChange)="onCountryChange($event)"
-            (intlTelInputObject)="telInputObject($event)"
-            (hasError)="hasError($event)"
-            (ionicTelOutput)="getNumber($event)"
-             placeholder="Teléfono" name="registroForm" [formControl]="$any(registroForm).controls.phone" required>
+            <ion-intl-tel-input    
+              [formControl]="$any(registroForm).controls.phone" >
+            </ion-intl-tel-input>
           </ion-item>
           
           
@@ -95,12 +92,9 @@
               <ion-item color="light">
                 <ion-icon slot="start" name="call-outline" color="naranja"></ion-icon>
                 <!-- <ion-label >Teléfono</ion-label> -->
-                <input type="tel" ionicTelInput [ionicTelInputOptions]="{initialCountry: 'mx',onlyCountries:['mx','ar','us','ca','du','fr','es']}"
-                (countryChange)="onCountryChange($event)"
-                (intlTelInputObject)="telInputObject($event)"
-                (hasError)="hasError($event)"
-                (ionicTelOutput)="getNumber($event)"
-                 placeholder="Teléfono" name="registroForm" [formControl]="$any(registroForm).controls.phone">
+                <ion-intl-tel-input    
+                  [formControl]="$any(registroForm).controls.phone" >
+                </ion-intl-tel-input>
               </ion-item>
 
               <ion-item color="light">
@@ -108,17 +102,8 @@
                 <ion-textarea placeholder="Intereses" inputmode="text" [formControl]="$any(registroForm).controls.bio"></ion-textarea>
               </ion-item>
 
-              <ion-item color="light">
-                <ion-icon slot="start" name="mail-outline" color="naranja"></ion-icon>
-                <!-- <ion-label >Email</ion-label> -->
-                <ion-input placeholder="E-mail" type="email" [formControl]="$any(registroForm).controls.email"></ion-input>
-              </ion-item>
-              <ion-item color="light">
-                <ion-icon slot="start" name="time-outline" color="naranja"></ion-icon>
-                 <!-- <ion-label>Awesome Label</ion-label> -->
-                <ion-datetime placeholder="De" display-format="HH:mm" cancelText="Cancelar" done-text="Elegir" mode="ios" [formControl]="$any(registroForm).controls.horario" required></ion-datetime>
-                <ion-datetime slot="end" placeholder="Hasta" display-format="HH:mm" cancelText="Cancelar" done-text="Elegir" mode="ios" [formControl]="$any(registroForm).controls.horario2" required></ion-datetime>
-              </ion-item>
+              
+              
               
               <ion-row>
                 <ion-col>

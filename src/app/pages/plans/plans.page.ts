@@ -5,6 +5,7 @@ import { ModalController, AlertController, LoadingController } from '@ionic/angu
 import { AgregaPlanPage } from '../agrega-plan/agrega-plan.page';
 import { HttpClient } from '@angular/common/http';
 import { ToastService } from '../../services/toast.service';
+import { PlanEditPage } from '../plan-edit/plan-edit.page';
 
 @Component({
   selector: 'app-plans',
@@ -33,7 +34,7 @@ export class PlansPage implements OnInit {
 
   getPlans() {
     try {
-      this.fbstore.collection('plans', ref => ref.where('uid', '==', this._user.userID )).snapshotChanges()
+      this.fbstore.collection('plans', ref => ref.where('uid', '==', this._user.userID ).where('activa','==',true)).snapshotChanges()
       .subscribe( data => {
         this.planes = data.map( result => {
           return result.payload.doc.data()
@@ -99,8 +100,14 @@ export class PlansPage implements OnInit {
     await alert.present();
   }
 
-  editar(plan) {
-    //plan.close()
+  async editar(plan) {
+    console.log(plan);
+    
+    const modal = await this.modalCtrl.create({
+      component: PlanEditPage,
+      componentProps: plan
+    })
+    await modal.present();
   }
 
   async presentLoading( message: string ) {

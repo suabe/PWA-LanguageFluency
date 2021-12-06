@@ -88,7 +88,7 @@ export class AgregaTarjetaPage implements OnInit {
               text: 'Si, guardar',
               handler: async () => {
                 this.loader = await this.loading.create({
-                  message: 'Procezando...',
+                  message: 'Procesando...',
                   mode: 'ios'
                 });
                 this.loader.present();

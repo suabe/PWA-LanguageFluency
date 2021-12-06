@@ -7,9 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { RegistrationPageRoutingModule } from './registration-routing.module';
 
 import { RegistrationPage } from './registration.page';
-import {IonicTelInputModule} from 'ionic-tel-input';
+//import {IonicTelInputModule} from 'ionic-tel-input';
 import { TranslateModule } from '@ngx-translate/core';
 import{ ArchwizardModule } from 'angular-archwizard'
+import { IonIntlTelInputModule } from 'ion-intl-tel-input';
+
 
 @NgModule({
   imports: [
@@ -18,9 +20,9 @@ import{ ArchwizardModule } from 'angular-archwizard'
     IonicModule,
     RegistrationPageRoutingModule,
     ReactiveFormsModule,
-    IonicTelInputModule,
     ArchwizardModule,
-    TranslateModule
+    TranslateModule,
+    IonIntlTelInputModule
   ],
   declarations: [RegistrationPage]
 })

@@ -26,7 +26,7 @@
     <ion-item>
       <ion-label slot="start">
         <h2>Duración</h2>
-        <p>{{complemento?.duration/60}} min</p>
+        <p>{{complemento?.duration/60 |number : "1.2-2"}} min</p>
       </ion-label>
       <ion-icon *ngIf="complemento?.duration/60 > 9" name="checkmark-circle-outline" color="success"></ion-icon>
       <ion-icon *ngIf="complemento?.duration/60 < 9" name="ban-outline" color="danger"></ion-icon>
@@ -42,7 +42,7 @@
       <ion-label slot="start">
         <h2>Fluency</h2>
         <p>
-          <ngb-rating [rate]="call?.calImp?.fl" [max]="5">
+          <ngb-rating [rate]="call?.calImp?.fl" [max]="5" [readonly]="true">
             <ng-template let-fill="fill">
               <span [class.filled]="fill === 100" [class.notfilled]="fill === 0">
                 <ion-icon name="custom-icono-speaker"></ion-icon>
@@ -54,7 +54,7 @@
       <ion-label>
         <h2>Pronunciation</h2>
         <p>
-          <ngb-rating [rate]="call?.calImp?.pr" [max]="5">
+          <ngb-rating [rate]="call?.calImp?.pr" [max]="5" [readonly]="true">
             <ng-template let-fill="fill">
               <span [class.filled]="fill === 100" [class.notfilled]="fill === 0">
                 <ion-icon name="custom-icono-speaker"></ion-icon>
@@ -68,7 +68,7 @@
       <ion-label slot="start">
         <h2>Grammar</h2>
         <p>
-          <ngb-rating [rate]="call?.calImp?.gr" [max]="5">
+          <ngb-rating [rate]="call?.calImp?.gr" [max]="5" [readonly]="true">
             <ng-template let-fill="fill">
               <span [class.filled]="fill === 100" [class.notfilled]="fill === 0">
                 <ion-icon name="custom-icono-speaker"></ion-icon>

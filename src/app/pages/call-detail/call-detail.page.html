@@ -43,7 +43,7 @@
       <ion-label slot="start">
         <h2>Fluency</h2>
         <p>
-          <ngb-rating [rate]="call?.calSpe?.fl" [max]="5">
+          <ngb-rating [rate]="call?.calSpe?.fl" [max]="5" [readonly]="true">
             <ng-template let-fill="fill">
               <span [class.filled]="fill === 100" [class.notfilled]="fill === 0">
                 <ion-icon name="custom-icono-speaker"></ion-icon>
@@ -55,7 +55,7 @@
       <ion-label>
         <h2>Pronunciation</h2>
         <p>
-          <ngb-rating [rate]="call?.calSpe?.pr" [max]="5">
+          <ngb-rating [rate]="call?.calSpe?.pr" [max]="5" [readonly]="true">
             <ng-template let-fill="fill">
               <span [class.filled]="fill === 100" [class.notfilled]="fill === 0">
                 <ion-icon name="custom-icono-speaker"></ion-icon>
@@ -69,7 +69,7 @@
       <ion-label slot="start">
         <h2>Grammar</h2>
         <p>
-          <ngb-rating [rate]="call?.calSpe?.gr" [max]="5">
+          <ngb-rating [rate]="call?.calSpe?.gr" [max]="5" [readonly]="true">
             <ng-template let-fill="fill">
               <span [class.filled]="fill === 100" [class.notfilled]="fill === 0">
                 <ion-icon name="custom-icono-speaker"></ion-icon>

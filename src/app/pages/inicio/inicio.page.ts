@@ -9,6 +9,7 @@ import { DataUsuarioService } from '../../services/data-usuario.service';
 import { CalificaLlamadaPage } from '../califica-llamada/califica-llamada.page';
 import { MessagingService } from '../../services/messaging.service';
 
+
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
@@ -25,6 +26,8 @@ export class InicioPage implements OnInit {
   //userPerfil = JSON.parse(localStorage.getItem('perfil'));
   emailVerified: false;
   color = 'azul';
+  banners: any;
+  langSelect
   constructor(
     public ngroute: Router,
     private fbauth: AngularFireAuth,
@@ -43,6 +46,7 @@ export class InicioPage implements OnInit {
   
   ngOnInit() {
   }
+
   ionViewWillEnter() {
     this.userPerfil = this._user.dataUser
     if (this._user.dataUser.role === 'cliente') {
@@ -51,10 +55,53 @@ export class InicioPage implements OnInit {
     } else {
       this.getPlans();
     }
+    this.getBanners(this._user.dataUser.role)
     //this.verifica();
     this.menu.enable(true,'main');
     this.requestPermission();
+    this.langSelect = 'en';
+    console.log('lang =>', 'en');
+    
   }
+
+  async getBanners(role) {
+    if (role == 'cliente') {
+      const applocation = 'appimp'
+      const language = 'en'
+      await this.fbstore.collection('banners', ref => ref.where('language','array-contains',language)).snapshotChanges()
+    .subscribe(data => {
+      this.banners = data.map(result => {
+        return {
+          bid: result.payload.doc.id,
+          img: result.payload.doc.data()['file'],
+          lang: result.payload.doc.data()['language']
+        }
+      })
+
+      console.log(this.banners);
+      
+    })
+    } else {
+      const applocation = 'appspk'
+      const language = 'en'
+      await this.fbstore.collection('banners', ref => ref.where('language','array-contains',language)).snapshotChanges()
+    .subscribe(data => {
+      this.banners = data.map(result => {
+        return {
+          bid: result.payload.doc.id,
+          img: result.payload.doc.data()['file'],
+          lang: result.payload.doc.data()['language']
+        }
+      })
+
+      console.log(this.banners);
+      
+    })
+    }
+
+    
+  }
+
 
   async mostrarNot(evento) {
     const popover = await this.popoverCtrl.create({

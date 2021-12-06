@@ -47,6 +47,7 @@ export class AyudaFacturaPage implements OnInit {
       rfc: this.facturaForm.get('rfc').value,
       address: this.facturaForm.get('address').value,
       message: this.facturaForm.get('message').value,
+      status: 'pending',
       creationTime: new Date().getTime()
     }
     

@@ -124,6 +124,6 @@
   --ion-color-shade: var(--ion-color-fondo-shade);
   --ion-color-tint: var(--ion-color-fondo-tint);
 }
-@import 'intl-tel-input-mobile/build/css/intlTelInput.css';
-.iti-flag {background-image: url("../assets/imgs/flags/flags.png");}
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { .iti-flag {background-image: url("../assets/imgs/flags/flags@2x.png");} }
+// @import 'intl-tel-input-mobile/build/css/intlTelInput.css';
+// .iti-flag {background-image: url("../assets/imgs/flags/flags.png");}
+// @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { .iti-flag {background-image: url("../assets/imgs/flags/flags@2x.png");} }

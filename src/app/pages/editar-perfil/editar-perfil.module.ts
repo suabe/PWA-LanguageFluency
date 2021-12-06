@@ -7,7 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { EditarPerfilPageRoutingModule } from './editar-perfil-routing.module';
 
 import { EditarPerfilPage } from './editar-perfil.page';
-import {IonicTelInputModule} from 'ionic-tel-input';
+import { IonIntlTelInputModule } from 'ion-intl-tel-input';
+
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import {IonicTelInputModule} from 'ionic-tel-input';
     IonicModule,
     ReactiveFormsModule,
     EditarPerfilPageRoutingModule,
-    IonicTelInputModule
+    IonIntlTelInputModule
   ],
   declarations: [EditarPerfilPage]
 })

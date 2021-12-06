@@ -6,6 +6,7 @@ import { DataUsuarioService } from '../../services/data-usuario.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { LanguageService } from 'src/app/services/language.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-menu',
@@ -28,7 +29,8 @@ export class MenuComponent implements OnInit {
     public menu: MenuController,
     private fbauth: AngularFireAuth,
     public ngroute: Router,
-    public languageService:LanguageService
+    public languageService:LanguageService,
+    private auThService: AuthenticationService
   ) {}
   
   ionViewDidEnter() {}
@@ -60,10 +62,7 @@ export class MenuComponent implements OnInit {
 
   doLogout() {
     
-    return this.fbauth.signOut().then(() => {
-      // this.ngroute.navigate(['/login']);
-      this.ngroute.navigateByUrl("/login");
-    });
+    this.auThService.SignOut()
   }
 
   setLanguage(lang) {

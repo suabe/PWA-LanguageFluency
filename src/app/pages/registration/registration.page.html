@@ -46,7 +46,7 @@
           <ion-col size="6" offset="3" size-lg="3" size-md="4" size-sm="6" offset-md="4">
             <ion-img src="/assets/logo-login.png"></ion-img>
           </ion-col>
-          <ion-col size="12">
+          <ion-col size="12" size-lg="4" size-md="4" size-sm="6" offsetMd="4" offsetLg="4">
             <form [formGroup]="registroForm" (ngSubmit)="registro('cliente')" novalidate>
               <aw-wizard navBarLocation="bottom">
                 <aw-wizard-step stepTitle="" [canExit]="registroForm.valid">
@@ -77,12 +77,17 @@
                   <ion-item color="light">
                     <ion-icon slot="start" name="call-outline" color="naranja"></ion-icon>
                     <!-- <ion-label >Teléfono</ion-label> -->
-                    <input type="tel" ionicTelInput [ionicTelInputOptions]="{initialCountry: 'mx',onlyCountries:['mx','ar','us','ca','du','fr','es']}"
+                    <ion-intl-tel-input
+                    
+                      [formControl]="$any(registroForm).controls.phone" >
+                    </ion-intl-tel-input>
+                    <!-- <input type="tel" ionicTelInput [ionicTelInputOptions]="{initialCountry: 'mx',onlyCountries:['mx','ar','us','ca','du','fr','es']}"
                     (countryChange)="onCountryChange($event)"
                     (intlTelInputObject)="telInputObject($event)"
                     (hasError)="hasError($event)"
                     (ionicTelOutput)="getNumber($event)"
-                    [placeholder]="'REGISTRO.TELEFONO' | translate" name="registroForm" [formControl]="$any(registroForm).controls.phone">
+                    [placeholder]="'REGISTRO.TELEFONO' | translate" name="registroForm" 
+                    [formControl]="$any(registroForm).controls.phone"> -->
                   </ion-item>
     
                   <ion-item color="light">
@@ -154,7 +159,7 @@
           <ion-col size="6" offset="3" size-lg="3" size-md="4" size-sm="6" offset-md="4">
             <ion-img src="/assets/logo-login.png"></ion-img>
           </ion-col>
-          <ion-col size="12">
+          <ion-col size="12" size-lg="4" size-md="4" size-sm="6" offsetMd="4" offsetLg="4">
             <form [formGroup]="registroSPForm" (ngSubmit)="registroSpeaker()" novalidate>
               <aw-wizard navBarLocation="bottom">
                 <aw-wizard-step stepTitle="Datos">
@@ -193,12 +198,15 @@
                   <ion-item color="light">
                     <ion-icon slot="start" name="call-outline" color="azul"></ion-icon>
                     <!-- <ion-label >Teléfono</ion-label> -->
-                    <input type="tel" ionicTelInput [ionicTelInputOptions]="{initialCountry: 'mx',onlyCountries:['mx','ar','us','ca','du','fr','es']}"
+                    <ion-intl-tel-input 
+                      formControlName="phone" >
+                    </ion-intl-tel-input>
+                    <!-- <input type="tel" ionicTelInput [ionicTelInputOptions]="{initialCountry: 'mx',onlyCountries:['mx','ar','us','ca','du','fr','es']}"
                     (countryChange)="onCountryChange($event)"
                     (intlTelInputObject)="telInputObject($event)"
                     (hasError)="hasError($event)"
                     (ionicTelOutput)="getNumber($event)"
-                    [placeholder]="'REGISTRO.TELEFONO' | translate" name="registroSPForm" [formControl]="$any(registroSPForm).controls.phone" required>
+                    [placeholder]="'REGISTRO.TELEFONO' | translate" name="registroSPForm" [formControl]="$any(registroSPForm).controls.phone" required> -->
                   </ion-item>
                   <ion-item color="light">
                     <ion-icon slot="start" name="key-outline" color="azul"></ion-icon>

@@ -8,6 +8,8 @@ import { IonSlides, MenuController } from '@ionic/angular';
 import { Validator } from '../../helpers/validation.helpers';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LanguageService } from '../../services/language.service';
+import { IonIntlTelInputModel, IonIntlTelInputValidators } from 'ion-intl-tel-input';
+
 
 @Component({
   selector: 'app-registration',
@@ -16,6 +18,12 @@ import { LanguageService } from '../../services/language.service';
   providers: [NgbModalConfig, NgbModal]
 })
 export class RegistrationPage implements OnInit {
+  phone: IonIntlTelInputModel = {
+    dialCode: '+92',
+    internationalNumber: '+92 300 1234567',
+    isoCode: 'pk',
+    nationalNumber: '300 1234567'
+  }
   @ViewChild('sliderRegistro') slides: IonSlides;
   fillUser = {};
   fillConv = {};
@@ -31,7 +39,11 @@ export class RegistrationPage implements OnInit {
     bio: new FormControl('',Validators.required),
     idref: new FormControl(''),
     // spei: new FormControl('',Validators.required),
-    phone: new FormControl('',[Validators.required,Validators.minLength(10)]),
+    phone: new FormControl({
+      internationalNumber: '',
+      nationalNumber: '',
+      isoCode: 'mx'
+    },[Validators.required,Validators.minLength(10),IonIntlTelInputValidators.phone]),
     // horario: new FormControl('',Validators.required),
     // horario2: new FormControl('',Validators.required),
     // idioma: new FormControl('',Validators.required),
@@ -48,7 +60,11 @@ export class RegistrationPage implements OnInit {
     // bio: new FormControl('',Validators.required),
     // spei: new FormControl('',Validators.required),
     // cinbanck: new FormControl('',Validators.required),
-    phone: new FormControl('',[Validators.required,Validators.minLength(10)]),
+    phone: new FormControl({
+      internationalNumber: '',
+      nationalNumber: '',
+      isoCode: 'mx'
+    },[Validators.required,Validators.minLength(10),IonIntlTelInputValidators.phone]),
     // horario: new FormControl('',Validators.required),
     // horario2: new FormControl('',Validators.required),
     idioma: new FormControl('',Validators.required),
@@ -124,17 +140,17 @@ export class RegistrationPage implements OnInit {
       name: this.registroForm.get('name').value,
       lastName: this.registroForm.get('lastName').value,
       gender: this.registroForm.get('gender').value,
-      birthDtate: this.registroForm.get('birthDate').value,
-      phone: this.registroForm.get('phone').value,
+      birthDate: this.registroForm.get('birthDate').value,
+      phone: this.registroForm.get('phone').value['nationalNumber'],
       bio: this.registroForm.get('bio').value,
       idref: this.registroForm.get('idref').value,
-      code: this.countryCode,
-      country: this.country,
+      code: this.registroForm.get('phone').value['internationalNumber'],
+      country: this.registroForm.get('phone').value['isoCode'],
       role: rol,
       status: 'active',
       creado: new Date().getTime()
     }
-    // console.log(usuario);
+     console.log(usuario);
 
     this.authService.RegisterUser(usuario.email, usuario.password)
     .then(async (res) => {
@@ -167,17 +183,18 @@ export class RegistrationPage implements OnInit {
       name: this.registroSPForm.get('name').value,
       lastName: this.registroSPForm.get('lastName').value,
       gender: this.registroSPForm.get('gender').value,
-      birthDtate: this.registroSPForm.get('birthDate').value,
-      phone: this.registroSPForm.get('phone').value,
+      birthDate: this.registroSPForm.get('birthDate').value,
+      phone: this.registroSPForm.get('phone').value['nationalNumber'],
       // bio: this.registroSPForm.get('bio').value,
       //spei: this.registroSPForm.get('spei').value,
       // cinbanck: this.registroSPForm.get('spei').value,
       idioma: this.registroSPForm.get('idioma').value,
-      code: this.countryCode,
-      country: this.country,
-      creado: new Date()
+      code: this.registroSPForm.get('phone').value['internationalNumber'],
+      country: this.registroSPForm.get('phone').value['isoCode'],
+      creado: new Date().getTime()
     }
-
+    console.log(usuario);
+    
     return this.fbstore.collection('potenciales').add(usuario).then( (potencialID) => {
       this.router.navigate(['login']);
       this.toastservice.showToast('Registro Exitoso, te hemos enviado a tu correo las instrucciones para completar tu Registro', 5000)

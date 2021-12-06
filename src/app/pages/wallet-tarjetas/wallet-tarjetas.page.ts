@@ -29,6 +29,8 @@ export class WalletTarjetasPage implements OnInit {
       this.wallet = data.map( result => {
         return result.payload.doc.data()
       })
+      // console.log(this.wallet);
+      
     } )
   }
 

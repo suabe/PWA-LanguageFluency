@@ -15,7 +15,7 @@
       <ion-label slot="end" class="ion-text-end">Activo</ion-label>      
     </ion-item>
     <ion-list>      
-      <ion-item color="light" detail  routerLink="/referral-detail/{{referal.LFId}}" *ngFor="let referal of referals">
+      <ion-item color="light" detail  routerLink="/referral-detail/{{referal.uid}}" *ngFor="let referal of referals">
         <ion-label>
           <p>{{referal.LFId}}</p>
           <h2>{{referal.name}}  {{referal.lastName}}</h2>

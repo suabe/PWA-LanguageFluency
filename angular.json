@@ -39,7 +39,13 @@
               "src/combined-sw.js",
               "src/firebase-messaging-sw.js"
             ],
-            "styles": ["node_modules/bootstrap/dist/css/bootstrap.min.css","node_modules/angular-archwizard/styles/archwizard.css", "src/theme/variables.scss", "src/global.scss"],
+            "styles": [
+              "node_modules/flag-icon-css/css/flag-icons.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "node_modules/angular-archwizard/styles/archwizard.css", 
+              "src/theme/variables.scss", 
+              "src/global.scss"],
             "scripts": []
           },
           "configurations": {

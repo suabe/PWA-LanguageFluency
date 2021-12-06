@@ -4,7 +4,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 //import { Validator } from '../../helpers/validation.helpers';
 import { ToastService } from '../../services/toast.service';
-import { MenuController, NavController } from '@ionic/angular';
+import { MenuController, NavController, LoadingController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,13 +18,16 @@ export class LoginPage implements OnInit {
     password: new FormControl('NETnet123'),
   });
   splitPaneState
+  loader: any;
   constructor(
     public authService: AuthenticationService,
     public navCtrl: Router,
     public loginFormbuilder: FormBuilder,
     //private valuechecker: Validator,
     public toastservice: ToastService,
-    public menu: MenuController
+    public menu: MenuController,
+    private loadingCtrl: LoadingController,
+    private alert: AlertController
   ) { 
     /*this.loginform = this.loginFormbuilder.group({
       email: ['', Validators.required, this.valuechecker.emailCheck],
@@ -46,12 +49,19 @@ export class LoginPage implements OnInit {
     this.splitPaneState = false;
   }
 
-  doLogin() {
+  async doLogin() {
     //console.log(this.loginform.get('email').value);
-    
+    this.loader = await this.loadingCtrl.create({
+      message: 'Procesando...',
+      mode: 'ios'
+    })
+    this.loader.present();
     return this.authService.SignIn(this.loginform.get('email').value,this.loginform.get('password').value).then( data => {
       //console.log('se logeo',data);
-      this.navCtrl.navigate(['/inicio']);
+      this.loadingCtrl.dismiss();
+      this.navCtrl.navigate(['/']).then(() => {
+        window.location.reload();
+      });
       // if (data.user) {
       //   // this.redirectUser(data.user.emailVerified)
       //   //this.authService.getUserPerfil(data.user.uid);
@@ -61,9 +71,25 @@ export class LoginPage implements OnInit {
       // }
       
       //this.router.navigateRoot('inicio', {animated: true});
-    }).catch((error) => {
+    }).catch(async (error) => {
+      this.loadingCtrl.dismiss();
+      const alerta = this.alert.create({
+        mode: 'ios',
+        header: 'Error',
+        subHeader: 'No se puydo inciar sessiòn.',
+        message: error.message,
+        buttons: [          
+          {
+            text: 'Ok',
+            handler: (blah) => {
+              console.log('Boton Ok');
+            }
+          }
+        ]
+      });
+      await (await alerta).present()
       //window.alert(error.message)
-      this.toastservice.showToast(error.message, 2000);
+      //this.toastservice.showToast(error.message, 2000);
       //console.log(error.message);
       
     });

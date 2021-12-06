@@ -1,16 +1,16 @@
-<app-header titulo="Editar Cuenta Bancaria" color="azul"></app-header>
+<app-header titulo="Editar Cuenta Bancaria" [color]="color"></app-header>
 
 <ion-content class="ion-padding">
-  <ion-item color="light">
+  <ion-item color="light" *ngIf="userPerfil?.spei">
     <ion-thumbnail slot="start">
       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
     </ion-thumbnail>
     <ion-label>
-      <h3>123456789123456789</h3>
-      <p>Banco</p>
+      <h3>{{userPerfil?.spei}}</h3>
+      <p>SPEI</p>
     </ion-label>
   </ion-item>
-  <ion-button color="azul" expand="block" >
+  <ion-button [color]="color" expand="block" >
     Editar
   </ion-button>
 </ion-content>

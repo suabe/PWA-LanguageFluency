@@ -4,27 +4,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PlansPageRoutingModule } from './plans-routing.module';
+import { PlanEditPageRoutingModule } from './plan-edit-routing.module';
 
-import { PlansPage } from './plans.page';
+import { PlanEditPage } from './plan-edit.page';
 import { ComponentsModule } from '../../components/components.module';
 import { TranslateModule } from '@ngx-translate/core';
-import { ArchwizardModule } from 'angular-archwizard';
-import { PlanEditPageModule } from '../plan-edit/plan-edit.module';
-
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PlansPageRoutingModule,
+    PlanEditPageRoutingModule,
     ComponentsModule,
     TranslateModule,
-    ArchwizardModule,
-    ReactiveFormsModule,
-    PlanEditPageModule
+    ReactiveFormsModule
   ],
-  declarations: [PlansPage]
+  declarations: [PlanEditPage]
 })
-export class PlansPageModule {}
+export class PlanEditPageModule {}

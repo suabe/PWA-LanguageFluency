@@ -5,21 +5,23 @@
       <ion-row>
         <ion-col size="6">
           <strong [class]="color" >ID</strong> <br>
-          <small >I00001</small>
+          <small >{{referal?.LFId}}</small>
         </ion-col>
         <ion-col size="6">
           <strong [class]="color">Usuario</strong> <br>
-          <small >Jorge</small>
+          <small >{{referal?.name}} {{referal?.lastName}}</small>
         </ion-col>
       </ion-row>
-      <ion-row>
+      <ion-row *ngIf="referal?.plans">
         <ion-col size="6">
           <strong [class]="color">Contract</strong> <br>
-          <small >Fluent 10/3</small>
+          <small *ngIf="referal?.plans[0].price == 'price_1IiLcPFjLGC5FmHqDAZZskyw'">Fluency 10/3</small>
+          <small *ngIf="referal?.plans[0].price == 'price_1IiLr3FjLGC5FmHq8Z2z8pnq'">+Fluency</small>
         </ion-col>
         <ion-col size="6">
           <strong [class]="color">Fee</strong> <br>
-          <small >$45</small>
+          <small *ngIf="referal?.plans[0].price == 'price_1IiLcPFjLGC5FmHqDAZZskyw'">{{ 100 | currency: 'MX':"symbol" }}</small>
+          <small *ngIf="referal?.plans[0].price == 'price_1IiLr3FjLGC5FmHq8Z2z8pnq'">{{ 300 | currency: 'MX':"symbol" }}</small>
         </ion-col>
       </ion-row>
       <ion-row>

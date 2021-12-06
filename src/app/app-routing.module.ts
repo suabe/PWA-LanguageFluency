@@ -178,7 +178,11 @@ const routes: Routes = [
   {
     path: 'call-rate',
     loadChildren: () => import('./pages/call-rate/call-rate.module').then( m => m.CallRatePageModule)
+  },  {
+    path: 'plan-edit',
+    loadChildren: () => import('./pages/plan-edit/plan-edit.module').then( m => m.PlanEditPageModule)
   },
+
 
 
 

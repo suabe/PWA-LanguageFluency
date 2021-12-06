@@ -1,42 +1,242 @@
 <app-header titulo="Ayuda" [color]="color"></app-header>
 
 <ion-content class="ion-padding">
-    <ngb-accordion activeIds="ngb-panel-0" [closeOthers]="true">
-        <ngb-panel title="Tema de Ayuda" color="naranja">
-            <ng-template ngbPanelContent>
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
-              aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-              craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-              occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-              labore sustainable VHS.
-            </ng-template>
-          </ngb-panel>
-          <ngb-panel title="Tema de Ayuda">
-            <ng-template ngbPanelContent>
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
-              aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-              craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-              occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-              labore sustainable VHS.
-            </ng-template>
-          </ngb-panel>
-          <ngb-panel title="Soporte">
-            <ng-template ngbPanelContent>
-              <p>¿Necesitas ayuda? Contactanos.</p>
-              <ion-button (click)="soporte()" expand="block" [color]="color">
-                Solicitud de Soporte
-              </ion-button>
-            </ng-template>
-          </ngb-panel>
-          <ngb-panel title="Facturación" *ngIf="_user.dataUser.role === 'cliente'">
-            <ng-template ngbPanelContent>
-              <p>Si requieres factura, contactanos.</p>
-              <ion-button (click)="factura()" expand="block" [color]="color">
-                Solicitud de Facturación
-              </ion-button>
-            </ng-template>            
-          </ngb-panel>
+    <ngb-accordion  [closeOthers]="true">
+        <ngb-panel title="Preguntas Frecuentes" color="naranja">
+          <ng-template ngbPanelContent>
+            <p class=MsoNormal><span style='font-size:14.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>1.- Quién es LF?<br>
+              <span class=SpellE>Language</span> <span class=SpellE>Fluency</span> es una
+              empresa que crea una plataforma tecnológica que te permite conversar en
+              distintos idiomas con personas en todo el mundo. <br>
+              ¡¡Lo más importante es que <span class=SpellE>tu</span> no tienes que hacer
+              nada más que hablar!!</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>2.- Qué es un IMPROVER?<br>
+              Ya estudiaste un <span class=GramE>idioma</span> pero no lo dominas al hablar? <br>
+              El IMPROVER aprovecha su tiempo libre y mejora sus habilidades conversando.
+              REGISTRATE!</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>3.- Qué es un SPEAKER?</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>¿Dominas un idioma y quieres ganar dinero
+              mientras hablas? El IMPROVER solo tiene que conversar para mejorar sus ingresos.
+              REGISTRATE!</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>4.- Cómo funciona la plataforma?</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>PENDIENTE</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>5.- Con LF puedo aprender un nuevo idioma?<br>
+              LF NO es una escuela de idiomas. <br>
+              La plataforma de LF está diseñada para mejorar tu conversación y pronunciación
+              mientras practicas <span class=GramE>un idiomas</span> que ya adquiriste. <br>
+              Sugerimos ya tener un nivel intermedio o avanzado para poder sacar mejor
+              provecho.</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>6.- Que idiomas puedo practicar?<br>
+              En la plataforma de LF contamos con los siguientes idiomas disponibles para ti:</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>* inglés</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>* español</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>* Frances</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>7.- Que nivel necesito para empezar a
+              practicar un idioma?</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>LF NO es una escuela de idiomas. <br>
+              La plataforma de LF está diseñada para mejorar tu conversación y pronunciación
+              mientras practicas un idioma que ya adquiriste. Sugerimos ya tener un nivel
+              intermedio o avanzado para poder sacar mejor provecho.</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>8.- Cuantos idiomas puedo practicar al mismo
+              tiempo?<br>
+              Con el apoyo de nuestra plataforma, en LF puedes practicar los idiomas que tu
+              deseas, siempre y cuando se acomoden a tus horarios.</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>9.- Cual es el objetivo principal de LF?<br>
+              ¡El objetivo principal de nuestra plataforma es crear una gran experiencia al
+              practicar el idioma de tu preferencia, en el horario que mejor te acomode y sin
+              tener que hacer nada más que hablar!</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>10.- Puedo elegir el horario que yo quiera?<br>
+              La plataforma de LF cuenta con 4 horarios a elegir.<br>
+              De acuerdo al que mejor te acomode podrás hacer o recibir las llamadas que
+              prefieras.<br>
+              HORARIO1</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>HORARIO2</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>HORARIO3</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>HORARIO4</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>11.- Cómo me puedo inscribir?</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>PENDIENTE</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>12.- Todos los profesores son nativos?</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>En LF nos encanta la autenticidad, por lo
+              tanto, fomentamos que <span class=SpellE>Speakers</span> e <span class=SpellE>Improvers</span>
+              sean de cualquier nacionalidad, sexo, nivel social, edad, raza, etc. <br>
+              Esto nos lleva a buscar una diversidad social originadora de libertad y
+              bienestar, al saber que todos pueden realizar las mismas actividades.</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>13.- Como puedo ganar dinero?</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>Es muy fácil, tienes dos opciones para generar
+              ganancias:</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>1.- Regístrate como SPEAKER y realiza llamadas
+              para generar comisiones.</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>2.- Refiere a un amigo! Y recibe dinero cada
+              vez que éste realice sus pagos.</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>14.- Cuántos referidos puedo tener?</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>Es ilimitado, con la plataforma de LF puedes
+              generar tantas ganancias como tú lo desee.</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>15.- Quién puede ser un IMPROVER?<br>
+              Todo aquel que ya adquirido un idioma y ya sea que lo ha olvidado por falta de
+              práctica o que simplemente quiera mejorar su pronunciación y la seguridad al
+              hablarlo.</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>16.- Quién puede ser un SPEAKER</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>Todo aquel que domine un idioma y quiera
+              generar ganancias conversando.</span></p>
+              
+              <p class=MsoNormal><a name="_heading=h.gjdgxs"></a><span style='font-size:13.0pt;
+              font-family:"Calibri",sans-serif;mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>17.- Existe algún límite de edad para
+              inscribirse?</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>¡No existe un límite! </span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>En LF nos encanta la autenticidad, por lo
+              tanto, fomentamos que <span class=SpellE>Speakers</span> e <span class=SpellE>Improvers</span>
+              sean de cualquier nacionalidad, sexo, nivel social, edad, raza, etc. Esto nos
+              lleva a buscar una diversidad social originadora de libertad y bienestar, al
+              saber que todos pueden realizar las mismas actividades.</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>18.- Puedo pagar con diferentes tarjetas de
+              crédito?</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'>Si, aceptamos todas las tarjetas de crédito</span></p>
+              
+              <p class=MsoNormal><span style='font-size:13.0pt;font-family:"Calibri",sans-serif;
+              mso-fareast-font-family:Calibri'></span></p>
+          </ng-template>
+        </ngb-panel>
+        
+        <ngb-panel title="Soporte">
+          <ng-template ngbPanelContent>
+            <p>¿Necesitas ayuda? Contactanos.</p>
+            <ion-button (click)="soporte()" expand="block" [color]="color">
+              Solicitud de Soporte
+            </ion-button>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel title="Facturación" *ngIf="_user.dataUser.role === 'cliente'">
+          <ng-template ngbPanelContent>
+            <p>Si requieres factura, contactanos.</p>
+            <ion-button (click)="factura()" expand="block" [color]="color">
+              Solicitud de Facturación
+            </ion-button>
+          </ng-template>            
+        </ngb-panel>
     </ngb-accordion>
 </ion-content>

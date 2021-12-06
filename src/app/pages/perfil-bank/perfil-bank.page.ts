@@ -8,6 +8,7 @@ import { DataUsuarioService } from '../../services/data-usuario.service';
 })
 export class PerfilBankPage implements OnInit {
   userPerfil
+  color = 'azul';
   constructor(
     private _user: DataUsuarioService
   ) { }
@@ -16,6 +17,9 @@ export class PerfilBankPage implements OnInit {
   }
 
   ionViewWillEnter() {
+    if (this._user.dataUser.role === 'cliente') {
+      this.color = 'naranja'
+    }
     this.userPerfil = this._user.dataUser 
   }
 
