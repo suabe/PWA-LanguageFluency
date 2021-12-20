@@ -10,7 +10,8 @@
   <div id="headeRating">
     <div class="empty"></div>
     <div class="ion-text-center image-over-div">
-      <img [src]="foto" alt="" class="image-round ">
+      <img *ngIf="foto" [src]="foto" alt="" class="image-round ">
+      <img *ngIf="!foto" src="/assets/boy.png" alt="" class="image-round ">
     </div>
 
     <div class="ion-text-center">
@@ -18,7 +19,7 @@
       <p class="text-profile">
         {{bio}}
       </p>
-      <p>Miembro desde {{creado.toDate() | date: 'dd-MMM-YYYY'}} </p>
+      <p>Miembro desde {{creado | date: 'dd-MMM-YYYY'}} </p>
     </div>
     <ion-grid fixed class="">
       <ion-row class="ion-no-padding">

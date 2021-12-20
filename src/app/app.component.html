@@ -102,7 +102,12 @@
               <ion-label>{{ 'MENU.COMMISSIONS' | translate }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
-          
+          <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="notificaciones">
+              <ion-icon slot="start" name="notifications-outline"></ion-icon>
+              <ion-label>{{'MENU.NOTIFICATIONS' | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
           <ion-menu-toggle autoHide="false">
             <ion-item  routerLink="ayuda">
               <ion-icon slot="start" name="help-buoy-outline"></ion-icon>

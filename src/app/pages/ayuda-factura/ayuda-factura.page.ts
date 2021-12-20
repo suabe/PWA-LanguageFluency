@@ -16,6 +16,7 @@ export class AyudaFacturaPage implements OnInit {
     name: new FormControl('',[Validators.required]),
     rfc: new FormControl('',[Validators.required]),
     address: new FormControl('',[Validators.required]),
+    email: new FormControl('',[Validators.required, Validators.email]),
     message: new FormControl('',[Validators.required])
   })
   constructor(
@@ -46,6 +47,7 @@ export class AyudaFacturaPage implements OnInit {
       name: this.facturaForm.get('name').value,
       rfc: this.facturaForm.get('rfc').value,
       address: this.facturaForm.get('address').value,
+      email: this.facturaForm.get('email').value,
       message: this.facturaForm.get('message').value,
       status: 'pending',
       creationTime: new Date().getTime()

@@ -182,6 +182,10 @@ const routes: Routes = [
     path: 'plan-edit',
     loadChildren: () => import('./pages/plan-edit/plan-edit.module').then( m => m.PlanEditPageModule)
   },
+  {
+    path: 'bank-edit',
+    loadChildren: () => import('./pages/bank-edit/bank-edit.module').then( m => m.BankEditPageModule)
+  },
 
 
 

@@ -9,6 +9,7 @@ import { DataUsuarioService } from '../../services/data-usuario.service';
 })
 export class NotificacionesPage implements OnInit {
   notifications: any;
+  color = 'azul'
   constructor(
     private afstore: AngularFirestore,
     private _user: DataUsuarioService
@@ -19,6 +20,9 @@ export class NotificacionesPage implements OnInit {
   }
 
   ionViewWillEnter() {
+    if (this._user.dataUser.role === 'cliente') {
+      this.color = 'naranja'
+    }
     this.getNotifications()
   }
 

@@ -191,6 +191,7 @@ export class RegistrationPage implements OnInit {
       idioma: this.registroSPForm.get('idioma').value,
       code: this.registroSPForm.get('phone').value['internationalNumber'],
       country: this.registroSPForm.get('phone').value['isoCode'],
+      status: 'pending',
       creado: new Date().getTime()
     }
     console.log(usuario);
