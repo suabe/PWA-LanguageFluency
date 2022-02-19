@@ -127,6 +127,7 @@ export class AuthenticationService {
           name: result['name'],
           phone: result['phone'],
           role: result['role'],
+          status: result['status'],
           emailVerified: true
         }
         localStorage.setItem('perfil', JSON.stringify(userData));

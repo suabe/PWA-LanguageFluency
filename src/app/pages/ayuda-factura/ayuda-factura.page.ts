@@ -12,7 +12,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class AyudaFacturaPage implements OnInit {
   color = 'azul'
   loader: any;
+  pagos
   facturaForm = new FormGroup({
+    pago: new FormControl('',[Validators.required]),
     name: new FormControl('',[Validators.required]),
     rfc: new FormControl('',[Validators.required]),
     address: new FormControl('',[Validators.required]),
@@ -28,12 +30,41 @@ export class AyudaFacturaPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getPagos()
   }
 
   ionViewWillEnter() {
     if (this._user.dataUser.role === 'cliente') {
       this.color = 'naranja'
     }
+  }
+
+  async getPagos() {
+    await  this.fbstore.collection('pagos', ref => ref.where('uid','==',this._user.userID)).snapshotChanges()
+    .subscribe( data => {
+      this.pagos = data.map( result => {
+        // console.log('Pagos=>',result);
+        return {
+          id: result.payload.doc.id,
+          invoice: result.payload.doc.data()['invoice'],
+          pagado: result.payload.doc.data()['amount_paid'],
+          created: result.payload.doc.data()['created'],
+          subscription: result.payload.doc.data()['subscription'],
+          plan: '',
+          lang: '',
+          planStatus: '',
+          planDate: ''
+        }
+      })
+      this.pagos.forEach((pago) => {
+        this.fbstore.collection('plans').doc(pago.subscription).get().subscribe(plan => {
+          pago.plan = plan.data()['price'],
+          pago.lang = plan.data()['idioma'],
+          pago.planStatus = plan.data()['status'],
+          pago.planDate = plan.data()['start_date']
+        })
+      })
+    } )
   }
 
   async factura() {
@@ -44,6 +75,7 @@ export class AyudaFacturaPage implements OnInit {
     this.loader.present()
     let factura = {
       from: this._user.userID,
+      pago: this.facturaForm.get('pago').value,
       name: this.facturaForm.get('name').value,
       rfc: this.facturaForm.get('rfc').value,
       address: this.facturaForm.get('address').value,

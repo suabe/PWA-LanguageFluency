@@ -109,32 +109,33 @@
                   <ion-button (click)="mostraMenu()" color="danger">
                     {{"REGISTRO.CANCELAR" | translate}}
                   </ion-button>
-                  <ion-button  awNextStep>
+                  <!-- <ion-button  awNextStep>
                     {{"REGISTRO.SIGUIENTE" | translate}}
-                  </ion-button>
+                  </ion-button> -->
+                  <ion-button type="submit"  [disabled]="registroForm.invalid">{{"REGISTRO.REGISTRAR" | translate}}</ion-button>
                 </aw-wizard-step>
-                <aw-wizard-step stepTitle="">
-                  <!-- <ion-label color="naranja" class="titulo">Preferencia de horario</ion-label>
+                <!-- <aw-wizard-step stepTitle="">
+                  <ion-label color="naranja" class="titulo">Preferencia de horario</ion-label>
                   <ion-item color="light">
                     <ion-icon slot="start" name="time-outline" color="naranja"></ion-icon>                     
                     <ion-datetime placeholder="De" display-format="HH:mm" cancelText="Cancelar" done-text="Elegir" mode="ios" [formControl]="$any(registroForm).controls.horario" required></ion-datetime>
                     <ion-datetime slot="end" placeholder="Hasta" display-format="HH:mm" cancelText="Cancelar" done-text="Elegir" mode="ios" [formControl]="$any(registroForm).controls.horario2" required></ion-datetime>
                   </ion-item>
-                  <ion-label >"El horario introducido nos servirá como una referencia, las llamadas pueden ocurrir fuera de su preferencia."</ion-label><br><br> -->
+                  <ion-label >"El horario introducido nos servirá como una referencia, las llamadas pueden ocurrir fuera de su preferencia."</ion-label><br><br>
                   <ion-label class="ion-margin-bottom titulo" color="naranja" >{{"REGISTRO.LABELREFERIDO" | translate}}</ion-label>
                   <ion-item color="light">
                     <ion-icon slot="start" name="people-circle-outline" color="naranja"></ion-icon>
-                    <!-- <ion-label >Nombre</ion-label> -->
+                    <ion-label >Nombre</ion-label>
                     <ion-input type="text" [placeholder]="'REGISTRO.REFERIDO' | translate" [formControl]="$any(registroForm).controls.idref"></ion-input>
                   </ion-item>
-                  <!-- <ion-item (click)="openModal(term)" class="ion-margin-top">
+                  <ion-item (click)="openModal(term)" class="ion-margin-top">
                     <ion-label>Acepto términos y condiciones</ion-label>
                     <ion-checkbox checked="true"  [formControl]="$any(registroForm).controls.termCond"></ion-checkbox>
                   </ion-item>
                   <ion-item (click)="openModal(priv)">
                     <ion-label>He leído el aviso de privacidad</ion-label>
                     <ion-checkbox checked="true"  [formControl]="$any(registroForm).controls.privacidad"></ion-checkbox>
-                  </ion-item> -->
+                  </ion-item>
                   <ion-row>
                     <ion-col>
                       <ion-button color="naranja" awPreviousStep>
@@ -145,7 +146,7 @@
                       <ion-button type="submit"  [disabled]="registroForm.invalid">{{"REGISTRO.REGISTRAR" | translate}}</ion-button>
                     </ion-col>
                   </ion-row>
-                </aw-wizard-step>
+                </aw-wizard-step> -->
                 
               </aw-wizard>
             </form>

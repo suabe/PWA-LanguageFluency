@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from '../interfaces/interfaces';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 
 @Injectable({
@@ -16,6 +17,7 @@ export class DataUsuarioService {
   isAuthenticated: BehaviorSubject<Boolean> = new BehaviorSubject<Boolean>(null);
   isLogin: BehaviorSubject<Boolean> = new BehaviorSubject<Boolean>(null);
   emailVerified: false;
+  lfID
   constructor(
     public afStrore: AngularFirestore,
     public ngFireAuth: AngularFireAuth
@@ -48,4 +50,19 @@ export class DataUsuarioService {
     
     
   }
+
+  checkLfIdExists(value: string) {
+  //console.log(value);
+   this.afStrore.collection('perfiles', ref => ref.where('LFId','==', value).limit(1)).snapshotChanges().subscribe(user => {
+    this.lfID = user.map((result) => {return result.payload.doc.data()['LFId']})
+     
+    })
+    console.log('Buscado: '+this.lfID+' Valor:'+value);
+    return of(this.lfID === value).pipe(delay(1000))
+  }
+
+  buscaLFId( value: string){
+    return this.afStrore.collection('perfiles', ref => ref.where('LFId','==', value).limit(1)).snapshotChanges()
+  }
+
 }

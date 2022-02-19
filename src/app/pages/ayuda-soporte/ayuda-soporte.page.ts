@@ -14,7 +14,8 @@ export class AyudaSoportePage implements OnInit {
   loader: any;
   soporteForm = new FormGroup({
     name: new FormControl('',[Validators.required]),
-    message: new FormControl('',[Validators.required])
+    message: new FormControl('',[Validators.required]),
+    tipo: new FormControl('',[Validators.required])
   })
   constructor(
     public _user: DataUsuarioService,
@@ -43,6 +44,7 @@ export class AyudaSoportePage implements OnInit {
       from: this._user.userID,
       name: this.soporteForm.get('name').value,
       message: this.soporteForm.get('message').value,
+      tipo: this.soporteForm.get('tipo').value,
       status: 'notAnswered',
       creationTime: new Date().getTime()
     }

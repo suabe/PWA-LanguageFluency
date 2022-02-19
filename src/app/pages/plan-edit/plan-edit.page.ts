@@ -14,13 +14,13 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 export class PlanEditPage implements OnInit {
   @Input() plan;
   @Input() customer;
-  @Input() horario;
+  @Input() schedule;
   loading
   wallet
   planData
   editaPlanForm = new FormGroup({
     tarjeta: new FormControl('',[Validators.required]),
-    horario: new FormControl('',[Validators.required])
+    schedule: new FormControl('',[Validators.required])
   })
   constructor(
     private afStore: AngularFirestore,
@@ -42,7 +42,7 @@ export class PlanEditPage implements OnInit {
     this.getWallet();
     this.editaPlanForm.setValue({
       tarjeta: this.customer,
-      horario: this.horario
+      schedule: this.schedule
     })
   }
 
@@ -72,8 +72,13 @@ export class PlanEditPage implements OnInit {
       plan: this.plan,
       customer: this.editaPlanForm.get('tarjeta').value
     }).subscribe(async (data:any) => {
-      console.log(data);
+      console.log('Guardar =>',data);
       //Falta guardar en firebase
+      console.log(this.editaPlanForm.get('schedule').value);
+      let planActual = {
+        schedule: this.editaPlanForm.get('schedule').value
+      }
+      this.afStore.collection('plans').doc(this.plan).update(planActual).then()
       this.loading.dismiss()
       this.modalCtrl.dismiss();
     })

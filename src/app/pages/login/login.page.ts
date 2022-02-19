@@ -6,6 +6,9 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { ToastService } from '../../services/toast.service';
 import { MenuController, NavController, LoadingController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { HttpClient } from '@angular/common/http';
+import ErrorFirebase  from './login.model';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +30,9 @@ export class LoginPage implements OnInit {
     public toastservice: ToastService,
     public menu: MenuController,
     private loadingCtrl: LoadingController,
-    private alert: AlertController
+    private alert: AlertController,
+    private afstore: AngularFirestore,
+    private http: HttpClient
   ) { 
     /*this.loginform = this.loginFormbuilder.group({
       email: ['', Validators.required, this.valuechecker.emailCheck],
@@ -57,27 +62,59 @@ export class LoginPage implements OnInit {
     })
     this.loader.present();
     return this.authService.SignIn(this.loginform.get('email').value,this.loginform.get('password').value).then( data => {
-      //console.log('se logeo',data);
-      this.loadingCtrl.dismiss();
-      this.navCtrl.navigate(['/']).then(() => {
-        window.location.reload();
-      });
-      // if (data.user) {
-      //   // this.redirectUser(data.user.emailVerified)
-      //   //this.authService.getUserPerfil(data.user.uid);
+      this.afstore.collection('perfiles').doc(data.user.uid).get().subscribe( async user =>  {
+        //console.log(user.data()['name']);
+        if (user.data()['status'] == 'canceled') {
+          this.loadingCtrl.dismiss();
+          this.authService.SignOut();
+          const alerta = this.alert.create({
+            mode: 'ios',
+            header: 'Error',
+            subHeader: 'No se puydo inciar sessiòn.',
+            message: 'Tu cuenta esta Cancelada, para aclaraciones comunicate con soprte.',
+            buttons: [          
+              {
+                text: 'Ok',
+                handler: (blah) => {
+                  console.log('Boton Ok');
+                }
+              }
+            ]
+          });
+          await (await alerta).present()
+        } else if (user.data()['status'] == 'suspended') {
+          this.loadingCtrl.dismiss();
+          this.authService.SignOut();
+          const alerta = this.alert.create({
+            mode: 'ios',
+            header: 'Error',
+            subHeader: 'No se puydo inciar sessiòn.',
+            message: 'Tu cuenta esta Suspendida, para aclaraciones comunicate con soprte.',
+            buttons: [          
+              {
+                text: 'Ok',
+                handler: (blah) => {
+                  console.log('Boton Ok');
+                }
+              }
+            ]
+          });
+          await (await alerta).present()
+        } else {
+          this.loadingCtrl.dismiss();
+          this.navCtrl.navigate(['/']);
+        }
         
-      // } else {
-      //   console.log('no hay usuario'); 
-      // }
+      })
       
-      //this.router.navigateRoot('inicio', {animated: true});
     }).catch(async (error) => {
       this.loadingCtrl.dismiss();
+      let erorTans = this.getError(error.code);
       const alerta = this.alert.create({
         mode: 'ios',
         header: 'Error',
         subHeader: 'No se puydo inciar sessiòn.',
-        message: error.message,
+        message: erorTans,
         buttons: [          
           {
             text: 'Ok',
@@ -88,11 +125,15 @@ export class LoginPage implements OnInit {
         ]
       });
       await (await alerta).present()
-      //window.alert(error.message)
-      //this.toastservice.showToast(error.message, 2000);
-      //console.log(error.message);
+      
       
     });
+    
+  }
+
+  getError(code) {
+    console.log(ErrorFirebase[code]);
+    return ErrorFirebase[code]
     
   }
 

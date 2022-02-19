@@ -1,5 +1,15 @@
-<app-header titulo="Agregar Planes" color="naranja"></app-header>
 
+<ion-header class="ion-no-border"  translucent>
+  <ion-toolbar color="naranja">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/plans" ></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-capitalize">Agregar Planes</ion-title>
+    <ion-avatar slot="end">
+      <img src="assets/logo-toolbar.png" />
+    </ion-avatar>
+  </ion-toolbar>
+</ion-header>
 
   <ion-content class="ion-padding" >
     <form [formGroup]="addPlans" (ngSubmit)="contrata()">
@@ -29,7 +39,7 @@
             </td>
             <td>
               <ion-item color="light">
-                <ion-select placeholder="Selecciona" mode="ios">
+                <ion-select placeholder="Selecciona" mode="ios" formControlName="schedule">
                   <ion-select-option value="8">8:00 - 11:00</ion-select-option>
                   <ion-select-option value="11">11:00 - 14:00</ion-select-option>
                   <ion-select-option value="14">14:00 - 17:00</ion-select-option>
@@ -55,7 +65,7 @@
             </td>
             <td>
               <ion-item color="light">
-                <ion-select placeholder="Selecciona" mode="ios">
+                <ion-select placeholder="Selecciona" mode="ios" formControlName="schedule">
                   <ion-select-option value="8">8:00 - 11:00</ion-select-option>
                   <ion-select-option value="11">11:00 - 14:00</ion-select-option>
                   <ion-select-option value="14">14:00 - 17:00</ion-select-option>
@@ -73,7 +83,7 @@
             </td>
             <td>
               <ion-item color="light">
-                <ion-select  placeholder="Selecciona" mode="ios" formControlName="plan">
+                <ion-select  placeholder="Selecciona" mode="ios" formControlName="plan" >
                   <ion-select-option value="price_1IiLcPFjLGC5FmHqDAZZskyw">Fluency 10/3</ion-select-option>
                   <ion-select-option value="price_1IiLr3FjLGC5FmHq8Z2z8pnq">+ Fluency</ion-select-option>
                 </ion-select>
@@ -81,7 +91,7 @@
             </td>
             <td>
               <ion-item color="light">
-                <ion-select placeholder="Selecciona" mode="ios" >
+                <ion-select placeholder="Selecciona" mode="ios" formControlName="schedule">
                   <ion-select-option value="8">8:00 - 11:00</ion-select-option>
                   <ion-select-option value="11">11:00 - 14:00</ion-select-option>
                   <ion-select-option value="14">14:00 - 17:00</ion-select-option>
@@ -107,7 +117,7 @@
             </td>
             <td>
               <ion-item color="light">
-                <ion-select placeholder="Selecciona" mode="ios">
+                <ion-select placeholder="Selecciona" mode="ios" formControlName="schedule">
                   <ion-select-option value="8">8:00 - 11:00</ion-select-option>
                   <ion-select-option value="11">11:00 - 14:00</ion-select-option>
                   <ion-select-option value="14">14:00 - 17:00</ion-select-option>
@@ -123,6 +133,21 @@
                     <ion-select-option *ngFor="let item of wallet" [value]="item.customer">{{item.card.brand}} {{item?.card.last4}} - Expira {{item?.card.exp_month}}/{{item?.card.exp_year}}</ion-select-option>
                 </ion-select>
               </ion-item>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <ion-label class="ion-margin-bottom titulo" color="naranja" >{{"REGISTRO.LABELREFERIDO" | translate}}</ion-label>
+                <ion-item color="light">
+                  <ion-icon slot="start" name="people-circle-outline" color="naranja"></ion-icon>
+                  <!-- <ion-label >Nombre</ion-label> -->
+                  <ion-input type="text" [placeholder]="'REGISTRO.REFERIDO' | translate" [formControl]="$any(addPlans).controls.idref"></ion-input>
+                  <div *ngIf="!$any(addPlans).controls.idref.hasError('lfidExists')" class="invalid-feedback">Error</div>
+                  <div *ngIf="addPlans.get('idref').hasError('lfidExists')" class="invalid-feedback">
+                    <span>valio</span>
+                    <span *ngIf="addPlans.get('idref').hasError('lfidExists')">El LFId no existe</span>
+                  </div>
+                </ion-item>
             </td>
           </tr>
         </tbody>

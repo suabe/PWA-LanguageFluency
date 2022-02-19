@@ -13,6 +13,14 @@
     </ion-card-header>
     <ion-card-content>
       <form [formGroup]="facturaForm" (ngSubmit)="factura()">
+        <ion-item color="ligth">
+          <ion-select multiple="false" placeholder="Selecciona pago" interface="action-sheet" formControlName="pago">
+            <ion-select-option *ngFor="let pago of pagos" [value]="pago.id">
+              <p *ngIf="pago?.plan == 'price_1IiLcPFjLGC5FmHqDAZZskyw'">Fluency 10/3-Idioma: {{pago.lang | uppercase}}-Monto: {{pago.pagado/100 | currency: 'MXN'}}</p>
+              <p *ngIf="pago?.plan == 'price_1IiLr3FjLGC5FmHq8Z2z8pnq'">+Fluency-Idioma: {{pago.lang | uppercase}}-Monto:{{pago.pagado/100 | currency: 'MXN'}}</p>
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
         <ion-item color="light">
           <ion-input type="text" placeholder="Nombre" formControlName="name"></ion-input>
         </ion-item>

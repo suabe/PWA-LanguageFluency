@@ -14,6 +14,14 @@
     </ion-card-header>
     <ion-card-content>
       <form [formGroup]="soporteForm" (ngSubmit)="soporte()">
+        <ion-item color="light">          
+          <ion-select placeholder="Tipo Incidencia" formControlName="tipo">
+            <ion-select-option value="Tipo 1">Tipo 1</ion-select-option>
+            <ion-select-option value="Tipo 2">Tipo 2</ion-select-option>
+            <ion-select-option value="Tipo 3">Tipo 3</ion-select-option>
+            <ion-select-option value="Tipo 4">Tipo 4</ion-select-option>
+          </ion-select>
+        </ion-item>
         <ion-item color="light">
           <ion-input type="text" placeholder="Asunto" formControlName="name"></ion-input>
         </ion-item>

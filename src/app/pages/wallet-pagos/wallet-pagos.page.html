@@ -9,6 +9,9 @@
           <ion-label>
             <h5>Monto</h5>
             <p>{{ pago.pagado/100 | currency: 'MXN'}}</p>
+            <p *ngIf="pago?.plan == 'price_1IiLcPFjLGC5FmHqDAZZskyw'">Fluency 10/3</p>
+            <p *ngIf="pago?.plan == 'price_1IiLr3FjLGC5FmHq8Z2z8pnq'">+Fluency</p>
+            <p>Idioma: {{pago.lang | uppercase}}</p>
           </ion-label>
           <ion-label slot="end" class="ion-text-right"><p>{{pago.created*1000 | date: 'dd/MM/YYYY'}}</p></ion-label>
         </ion-item>

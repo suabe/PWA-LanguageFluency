@@ -37,7 +37,7 @@ export class RegistrationPage implements OnInit {
     gender: new FormControl('',Validators.required),
     birthDate: new FormControl('',Validators.required),
     bio: new FormControl('',Validators.required),
-    idref: new FormControl(''),
+    //idref: new FormControl(''),
     // spei: new FormControl('',Validators.required),
     phone: new FormControl({
       internationalNumber: '',
@@ -143,7 +143,7 @@ export class RegistrationPage implements OnInit {
       birthDate: this.registroForm.get('birthDate').value,
       phone: this.registroForm.get('phone').value['nationalNumber'],
       bio: this.registroForm.get('bio').value,
-      idref: this.registroForm.get('idref').value,
+      //idref: this.registroForm.get('idref').value,
       code: this.registroForm.get('phone').value['internationalNumber'],
       country: this.registroForm.get('phone').value['isoCode'],
       role: rol,

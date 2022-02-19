@@ -8,6 +8,7 @@ import { AgregaTarjetaPage } from '../agrega-tarjeta/agrega-tarjeta.page';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LfidValidator } from './lfid.validator';
 
 @Component({
   selector: 'app-add-plans',
@@ -29,20 +30,25 @@ export class AddPlansPage implements OnInit {
       es: new FormGroup({
         ln: new FormControl(undefined),
         plan: new FormControl(''),
+        schedule: new FormControl('')
       }),
       en: new FormGroup({
         ln: new FormControl(undefined),
         plan: new FormControl(''),
+        schedule: new FormControl('')
       }),
       fr: new FormGroup({
         ln: new FormControl(undefined),
         plan: new FormControl(''),
+        schedule: new FormControl('')
       }),
       cn: new FormGroup({
         ln: new FormControl(undefined),
         plan: new FormControl(''),
+        schedule: new FormControl('')
       }),
     }),
+    idref: new FormControl('',[Validators.minLength(8)]),
     tarjeta: new FormControl('',[Validators.required]),
     termCond: new FormControl(undefined,[Validators.required]),
     privacidad: new FormControl(undefined,[Validators.required])
@@ -144,6 +150,33 @@ export class AddPlansPage implements OnInit {
     })
     this.loader.present()
     let planes = this.addPlans.get('planes').value;
+    let referido
+    if (this.addPlans.get('idref').value) {
+      console.log('capturo');
+      this._user.buscaLFId(this.addPlans.get('idref').value).subscribe(user => {
+        referido = user.map(result => { return result.payload.doc.data()})
+        //console.log('capturo? ',this.addPlans.get('idref').value);
+        
+        if (referido.length >= 1) {
+          console.log('con referido',referido);
+          this.contratar(planes)
+        } else {
+          console.log('sin referido ',referido);
+          this._toast.showToast('¡El ID de referido no existe!', 5000);
+          this.loader.dismiss();
+        }
+
+      })
+    } else {
+      console.log('no capturo');
+      this.contratar(planes)
+    }
+    
+      
+    
+  }
+
+  async contratar(planes) {
     for( let plan in planes ) {
       //console.log('=>',this.addPlans.get('planes.'+plan+'.ln').value);
       if (this.addPlans.get('planes.'+plan+'.ln').value) {
@@ -159,13 +192,14 @@ export class AddPlansPage implements OnInit {
           price: this.addPlans.get('planes.'+plan+'.plan').value,
           enllamada: false,
           creada: data.created,
+          creadaDate: new Date(),
           uid: this._user.userID,
           status: data.status,
           start_date: data.start_date,
           customer: data.customer,
           idioma: plan,
-          start: 'aa',
-          end: 'aa'
+          schedule: this.addPlans.get('planes.'+plan+'.schedule').value,
+          idref: this.addPlans.get('idref').value
         }
         await this.afStore.collection('plans').doc(data.id).set(plans).then( data => {
           this.loader.dismiss();
@@ -181,49 +215,7 @@ export class AddPlansPage implements OnInit {
     } )
       }  
       
-    }  
-    
-  }
-
-  async contratar() {
-    this.loader = await this.loading.create({
-      message: 'Procesando...',
-      mode: 'ios',
-      spinner: 'bubbles'
-    })
-    this.loader.present()
-    this.http.post('https://us-central1-ejemplocrud-e7eb1.cloudfunctions.net/crearPlan', {
-      customer: 'aa',
-      priceId: this.precio
-    }).subscribe( async (data: any) => {
-      if (data.id) {
-        let plan = {
-          plan: data.id,
-          activa: true,
-          price: this.precio,
-          enllamada: false,
-          creada: data.created,
-          uid: this._user.userID,
-          status: data.status,
-          start_date: data.start_date,
-          customer: data.customer,
-          idioma: 'aa',
-          start: 'aa',
-          end: 'aa'
-        }
-        await this.afStore.collection('plans').doc(data.id).set(plan).then( data => {
-          this.loader.dismiss();
-          this.modalCtrl.dismiss();
-          this._toast.showToast('¡Se ha agregado un nuevo plan!', 5000)
-        })
-      } else {
-        this.loader.dismiss();
-        this.modalCtrl.dismiss();
-        this._toast.showToast('¡Error al crear plan!', 5000)
-      }
-      
-    } )
-    //this.modalCtrl.dismiss();
+    }
   }
 
 }

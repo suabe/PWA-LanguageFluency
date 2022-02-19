@@ -17,4 +17,5 @@ export interface User {
     LFId?: string;
     foto?: string;
     country?: string;
+    status?: string;
  }
